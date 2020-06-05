@@ -1,0 +1,179 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\usepackage[margin=0.5in]{geometry}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Lin}{Lin}
+
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+
+\title{Komutativna algebra - $3.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+\begin{enumerate}[label=(\alph*)]
+	\item Naj bosta $R, S$ komutativna kolobarja in $M, N$ $R$-modula. S homomorfizmom $\phi\colon R \to S$ razširimo skalarje. Pokazali bomo
+	\[
+	M_S \otimes_S N_S \cong (M \otimes_R N)_S.
+	\]
+	
+	Najprej si oglejmo, kako razširitev skalarjev sploh deluje. Kolobar $S$ opremimo s strukturo $R$-modula s pomočjo homomorfizma $\phi$ na naslednji način:
+	\[
+	r \cdot s := \phi(r)s.
+	\]
+	Nato definiramo $S$-modul $M_S$ s pomočjo tenzorskega produkta $M_S = S \otimes_R M$
+	z operacijo na enostavnih tenzorjih $s \cdot (s' \otimes m) := (ss')\otimes m$.
+	Enako definiramo $S$-modul $N_S$. Opazimo, da velja
+	\[
+	s \otimes m = s \cdot (1 \otimes m).
+	\]
+	$S$-modul $(M \otimes_R N)_S$ je torej definiran kot $(M \otimes_R N)_S := S \otimes_R M \otimes_R N$
+	z operacijo na enostavnih tenzorjih $s \cdot (s' \otimes m \otimes n) := (ss') \otimes m \otimes n$.
+	Z zgornjo opazko v mislih zato definiramo homomorfizem modulov
+	\[
+	\varphi\colon M_S \otimes_S N_S \to (M \otimes_R N)_S
+	\]
+	s predpisom na enostavnih tenzorjih
+	\[
+	(s_1 \otimes m)\otimes(s_2 \otimes n) \mapsto s_1s_2 \otimes m \otimes n.
+	\]
+	Po opazki je predpis dobro definiran, saj
+	\[
+	(s_1 \otimes m)\otimes(s_2 \otimes n) = (s_1 \otimes m)\otimes s_2 \cdot (1 \otimes n) = s_2\cdot (s_1 \otimes m)\otimes(1 \otimes n) = (s_1s_2 \otimes m)\otimes(1\otimes n).
+	\]
+	Inverz je sedaj očiten
+	\[
+	s \otimes m \otimes n \mapsto (s \otimes m) \otimes (1 \otimes n)
+	\]
+	in dobro definiran po zgornji opazki.
+	\item Ali lahko kaj podobnega povemo o omejitvi skalarjev?
+	
+	Naj bosta $M,N$ tokrat $S$-modula in $\phi\colon R \to S$ omejitev skalarjev. $R$-modul $M^R = M$ je definiran z operacijo $r \cdot m := \phi(r)\cdot m$, enako naredimo za $N^R$. Ali velja
+	\[
+	M^R \otimes^R N^R \cong (M \otimes_S N)^R?
+	\]
+	$R$-modul $(M \otimes_S N)^R = M \otimes_S N$ je definiran z operacijo $r \cdot (m\otimes n) := \phi(r)(m\otimes n)$. Sumimo, da se bo težava pojavila pri dobri definiranosti izomorfizma. Res, naj bo preslikava
+	\[
+	\varphi\colon M^R \otimes^R N^R \to (M \otimes_S N)^R
+	\]
+	kandidat za izomorfizem modulov podan s predpisom na enostavnih tenzorjih
+	\[
+	m \otimes n \mapsto m' \otimes n'.
+	\]
+	Brez škode za splošnost lahko privzamemo, da se enostavni tenzorji slikajo v enostavne, sicer upoštevamo zahtevo linearnosti.
+	Preverimo, ali je to res homomorfizem modulov:
+	\[
+	\varphi(r \cdot (m \otimes n)) = \varphi(\phi(r)m\otimes n) = \phi(r)m'\otimes n',
+	\]
+	tukaj pa se pojavi težava. Za preslikavo $\phi$ namreč nimamo vsaj lokalnega inverza in zato ne moremo izpostaviti skalarja $r$. Vidimo, da mora biti homomorfizem $\phi$ injektiven.
+	Res, če je homomorfizem $\phi$ injektiven, je preslikava $\varphi$, definirana s $m \otimes n \to m \otimes n$, izomorfizem modulov.
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+Naj bo $I \subideal R$ nilpotenten ideal komutativnega kolobarja $R$ in naj bo $n_0$ njegova stopnja nilpotentnosti, torej najmanjše naravno število, da je $I^{n_0} = (0)$. Naj bosta $M$ in $N$ poljubna $R$-modula.
+\begin{enumerate}[label=(\alph*)]
+	\item Pokazali bomo, da iz $IM = M$ sledi $M = 0$. To enostavno sledi, če privzeto formulo uporabimo $n_0$-krat:
+	\[
+	0 = I^{n_0}M = I^{n_0-1}(IM) = I^{n_0-1}M = \dots = IM = M.
+	\]
+	\item Pokažimo, da je homomorfizem $\phi\colon N \to M$ surjektiven natanko tedaj, ko je inducirani kvocientni homomorfizem $\overline{\phi}\colon N/IN \to M/IM$ surjektiven.
+	
+	Implikacija iz leve v desno sledi neposredno iz definicije induciranega homomorfizma (izreki o izomorfizmih).
+	
+	Obratno, naj bo $\overline{\phi} \colon N/IN \to M/IM$ surjektiven homomorfizem, tj. za vsak $\overline{b} \in M/IM$ obstaja $a \in N$, da je
+	\[
+	\overline{b} = \overline{\phi}(\overline{a}),
+	\]
+	kjer je $\overline{a} = a + IN$ in $\overline{b} = b + IM$ za neki $b \in M$. Po definiciji inducirane preslikave je
+	\[
+	\overline{\phi}(\overline{a}) = \overline{\phi(a)} = \phi(a) + IM.
+	\]
+	Iz obeh enačb sledi $b + IM = \phi(a) + IM$,
+	oziroma ekvivalentno $b - \phi(a) \in IM$.
+	Od tod sledi, da je $b \in \phi(N) + IM$ za vsak $b \in M$, saj je kvocientna projekcija surjektivna.
+	
+	Sedaj bi radi videli, da lahko $I$ v formuli nadomestimo s katerokoli njegovo potenco, torej da $b \in \phi(N) + I^nM$ za vsako naravno število $n$. Trditev bomo dokazali z indukcijo. Osnovni primer, kjer $n=1$ je ravno prejšnji argument, zato dokažimo indukcijski korak. Naj bo $b \in \phi(N) + I^nM$. Potem je
+	\[
+	b = \phi(a) + \Sigma_i \alpha_i c_i,
+	\]
+	kjer $\alpha_i \in I^n$, $c_i \in M$, vsota pa je končna.
+	Ker je $c_i \in M$, po primeru $n = 1$ sledi
+	\[
+	c_i = \phi(a_i) + \Sigma_{j_i}\beta_{j_i}d_{j_i},
+	\]
+	kjer $a_i \in N$, $\beta_{j_i} \in I$, $d_{j_i} \in M$, vsota pa je končna.
+	Torej
+	\begin{align*}
+	b &=  \phi(a) + \Sigma_i \alpha_i c_i =  \phi(a) + \Sigma_i \alpha_i \Sigma_{j_i} \beta_{j_i}d_{j_i} = \phi(a) + \Sigma_i\alpha_i\phi(a_i) + \Sigma_i \Sigma_{j_i}\alpha_i \beta_{j_i}d_{j_i} \\
+	&= \phi(a) + \Sigma_i\phi(\alpha_i a_i) + \Sigma_i \Sigma_{j_i}(\alpha_i \beta_{j_i})d_{j_i} =  \phi\left( a + \Sigma_i\alpha_i a_i\right) + \Sigma_i \Sigma_{j_i}(\alpha_i \beta_{j_i})d_{j_i}.
+	\end{align*}
+	Ker $\alpha_i \in I^n$ in $\beta_{j_i} \in I$, je $\alpha_i\beta_{j_i} \in I^{n+1}$ in posledično $b \in \phi(N) + I^{n+1}M$.
+	
+	Ker je $I$ nilpotenten, vstavimo $n = n_0$ in dobimo $b \in \phi(N)$ za vsak $b \in M$, torej je $\phi$ surjektivna preslikava.
+	
+	\item Za konec pokažimo še, da množica $\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace$ generira $M$ kot $R$-modul natanko tedaj, ko množica $\lbrace \overline{m_\lambda} ; \; \lambda \in \Lambda \rbrace$ generira $M/IM$ kot $R/I$-modul.
+	
+	Implikacija iz leve v desno sledi direktno iz lastnosti kvocientne preslikave. Vsak element $a \in M$ lahko zapišemo kot končno vsoto $a = \Sigma_\lambda \alpha_\lambda m_\lambda$. Upoštevamo dejstvo, da je kvocientna preslikava surjektivna in vsak element $\overline{a} \in M/IM$ zapišemo kot končno vsoto
+	\[
+	\overline{a} = a + IM = \Sigma_\lambda \alpha_\lambda m_\lambda + IM = \Sigma_\lambda (\alpha_\lambda m_\lambda + IM) = \Sigma_\lambda (\alpha_\lambda + I) ( m_\lambda + IM) = \Sigma_\lambda \overline{\alpha_\lambda} \overline{m_\lambda}.
+	\]
+	
+	Dokaz obratne implikacije bo zelo podoben dokazu točke (b). Naj množica $\lbrace \overline{m_\lambda} ; \; \lambda \in \Lambda \rbrace$ generira $M/IM$ kot $R/I$-modul, torej se da vsak $\overline{a} \in M/IM$ zapisati kot končno vsoto $\overline{a} = \Sigma_\lambda \overline{\alpha_\lambda} \overline{m_\lambda}$. Upoštevamo definicijo kvocientnega prostora in dobimo
+	\[
+	a + IM = \Sigma_\lambda \alpha_\lambda m_\lambda + IM \implies a - \Sigma_\lambda \alpha_\lambda m_\lambda \implies a \in \Lin(\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace) + IM,
+	\]
+	kjer smo z $\Lin(\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace)$ označili prost modul, generiran z množico  $\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace$. Ker je kvocientna preslikava surjektivna, to velja za vsak $a \in M$.
+	
+	Z indukcijo dokažimo, da $a \in \Lin(\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace) + I^nM$ za vsak $a \in M$ in $n \in \N$. Primer $n=1$ je zgoraj, zato nam preostane le še dokaz indukcijskega koraka. Naj bo torej $a \in \Lin(\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace) + I^nM$. Potem se da $a$ zapisati kot
+	\[
+	a =  \Sigma_\lambda \alpha_\lambda m_\lambda + \Sigma_i \beta_i c_i,
+	\]
+	kjer $\beta_i \in I^n$ in $c_i \in M$. Potem se po primeru $n = 1$ vsak $c_i$ da zapisati kot končno vsoto
+	\[
+	c_i = \Sigma_{\lambda_i} c_{\lambda_i} m_{\lambda_i} + \Sigma_{j_i} \gamma_{j_i} d_{j_i}.
+	\]
+	To vstavimo v zgornjo enačbo in dobimo (z združivijo delov z $m_\lambda$)
+	\[
+	a = \Sigma_\lambda \delta_\lambda m_\lambda + \Sigma_i\Sigma_{j_i}\beta_i \gamma_{j_i} d_{j_i}.
+	\]
+	Ker je $\beta_i \in I^n$ in $\gamma_{j_i} \in I$, je njun produkt v $I^{n+1}$. Trditev smo z indukcijo dokazali.
+	
+	Ker je $I$ nilpotenten ideal, vstavimo $n = n_0$ in dobimo $a \in \Lin(\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace)$. Z drugimi besedami, množica $\lbrace m_\lambda ; \; \lambda \in \Lambda \rbrace$ generira modul $M$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $8.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $X = \Spec R$ opremljen s topologijo Zarinskega in naj bo $Y \subset X$ podprostor. Definiramo $I(Y) = \bigcap_{p \in Y} p \subideal R$. Pokažimo, da je $Y$ nerazcepen natanko tedaj, ko je $I(Y)$ praideal v $R$ (torej element prostora $X$).
+
+Naj bo $Y$ nerazcepen topološki prostor in naj bo produkt elementov $fg \in I(Y)$. Potem po definiciji preseka $Y \subseteq V(I(Y)) \subseteq V(fg)$. Spomnimo se, da $V(fg) = V(f) \cup V(g)$. Prostor $Y$ lahko torej razcepimo na naslednji način
+\[
+Y = (V(f) \cap Y) \cup (V(g) \cap Y).
+\]
+Vendar pa je $Y$ nerazcepen, torej je $Y$ kar enak eni izmed zgornjih množic; brez škode za splošnost vzamemo prvo, torej $Y = V(f) \cap Y$. Po definiciji operatorja $V$ vsi praideali v $Y$ vsebujejo element $f$, zato ga vsebuje tudi presek $I(Y)$. Torej je $I(Y)$ praideal.
+
+Obratno, naj bo $I(Y)$ praideal in naj obstajata množici $A, B \neq Y$, da je $Y = A \cup B$ (torej razcep prostora $Y$). Velja $I(Y) = I(A \cup B) = I(A) \cap I(B)$ po definiciji preseka. Opazimo, da če $I(Y) = I(A)$, potem $Y = A$, zato lahko vzamemo $f \in I(A)\setminus I(Y)$. Za poljuben $g \in I(B)$ potem velja $fg \in I(A)\cap I(B) = I(Y)$. Ker je po predpostavki $I(Y)$ praideal in po izbiri $f \notin I(Y)$, je $g \in I(Y)$. Ker je bil $g$ poljuben element, je $I(B) \subseteq I(Y)$. Ker seveda $I(Y) = I(A) \cap I(B) \subseteq I(B)$, je $I(Y) = I(B)$, kar je protislovje. Torej taki množici $A, B$ ne obstajata in $Y$ je nerazcepen.
+
+\textbf{Alternativna rešitev:}
+Opazimo podobnost z $2$. nalogo iz vaj, saj je $\sqrt{(0)} = \bigcap_{p \in X} p = I(X)$, zato poskusimo dokazati na podoben način.  Omejimo operator $V$ na podprostor $Y$, torej $V(W) := V_X(W) \cap Y$ (tako na običajen način definiramo zaprte množice na podprostoru $Y$ z relativno topologijo).
+
+Naj bo $I(Y) \in X$. Predpostavimo, da obstajata $V(I), V(J) \neq Y$, da je $V(I) \cup V(J) = V(I \cap J) = Y$. Hkrati po definiciji preseka velja $V(I(Y)) = Y$. Od tod $I \cap J \subseteq I(Y)$. Ker je $I(Y)$ praideal, velja $I \subseteq I(Y)$ ali $J \subseteq I(Y)$. Torej $V(I) = Y$ ali $V(J) = Y$, kar je seveda protislovje.
+
+Obratno privzemimo, da je za vsaki dve množici $V(I), V(J) \neq Y$ velja $V(I \cap J) \neq Y$. Želimo pokazati, da je $I(Y) \in X$. Po definiciji preseka $V(I(Y)) = Y$. Ker $V(I) \neq Y$, velja $I \neq I(Y)$ in simetrično $J \neq I(Y)$. Torej obstajata $f \in I$ in $g \in J$, da $f, g \notin I(Y)$. Želimo $I \cap J \neq I(Y)$.
+Ker sta $Y_f$ in $Y_g$ neprazni odprti množici, je tudi $Y_f \cap Y_g$ neprazna odprta množica. Iz $5$. vaj vemo $Y_f \cap Y_g = Y_{fg}$. Sledi torej $fg \notin I(Y)$. Sledi, da je $I(Y)$ praideal.
+\newline
+
+\underline{\textbf{Nal. 2:}}
+Pokažimo, da so naslednje trditve ekvivalentne:
+\begin{enumerate}[label=(\alph*)]
+	\item $X = \Spec R$ je nepovezan.
+	\item $R \cong R_1 \times R_2$, kjer sta $R_1$ in $R_2$ netrivialna kolobarja.
+	\item $R$ ima netrivialen idempotent.
+\end{enumerate}
+\begin{itemize}
+	\item (a) $\implies$ (b): Ekvivalentno je $X$ enak disjunktni uniji dveh zaprtih množic (ki sta seveda tudi odprti). Po definiciji topologije na $X$ so zaprte množice oblike $V(I)$ za nek ideal $I \subideal R$ (tehnično smo jih definirali preko poljubnih podmnožic v $R$, vendar $V(W) = V((W))$). Naša predpostavka je torej ekvivalentna temu, da obstajata ideala $I, J \subideal R$, da $V(I) \cup V(J) = X$ in $V(I) \cap V(J) = \emptyset$. Ker $V(I) \cap V(J) = V(I + J)$, velja $V(I + J) = \emptyset$. Od tod sledi, da ideal $I + J$ ni vsebovan v nobenem praidealu kolobarja $R$ (tudi maksimalnem), torej $I + J$ ni pravi ideal, oziroma $I + J = R$. Po drugi strani se spomnimo $V(I) \cup V(J) = V(I\cap J)$. Iz zgornje enačbe dobimo $I \cap J \subseteq \sqrt{(0)}$. Sedaj se spomnimo, da je $X \approx \Spec (R/\sqrt{(0)})$, zato lahko privzamemo $I \cap J = (0)$. Po kitajskem izreku o ostankih imamo izomorfizem $R \cong R/I \times R/J$.
+	
+	\item (b) $\implies$ (a): Naj bo $R \cong R_1 \times R_2$ za neka netrivialna kolobarja. Trdimo, da so praideali v končnem produktu $n$ kolobarjev enaki produktu $P = \Pi_{i=1}^n A_i$, kjer je $A_j = P \subideal R_j$ praideal za nek $j$ in $A_i = R_i$ za $j \neq i$. Jasno je, da je vsak ideal take oblike praideal v produktu.  Obratno naj bo $P$ praideal v produktu. Za $1 \leq k \leq n$ naj bo $e_k$ element v produktu, ki ima $k$-to koordinato enako $1$ in vse ostale enake $0$. Ker je $P$ pravi ideal, obstaja nek $j$, da $e_j \notin P$, brez škode $j=1$. Za $k \neq 1$ imamo $e_1e_k = 0 \in P$, torej $e_k \in P$. Potem $0 \times \Pi_{i=2}^n R_i \subseteq P$. Za kanonično projekcijo $\pi_1$ na prvo komponento je potem $\pi_1(P)$ praideal v $R_1$, torej $P = \pi_1(P) \times \Pi_{i=2}^n R_i$.
+	
+	Ker po (b) $R \cong R_1 \times R_2$, je vsak praideal v $P$ izomorfen praidealu oblike bodisi $P_1 \times R_2$ bodisi $R_1 \times P_2$, kjer $P_1 \subideal R_1$ in $P_2 \subideal R_2$. Če množici $R_1\times \lbrace 0 \rbrace$ in $\lbrace 0 \rbrace\times R_2$ preslikamo z izomorfizmom v množici $A_1, A_2 \subset R$, je očitno prostor $X$ disjunktna unija zaprtih množic $V(A_1)$ in $V(A_2)$, torej je nepovezan.
+	
+	\item (b) $\implies$ (c): Trivialna idempotenta v $R_1 \times R_2$ sta $0 := (0, 0)$ in $1 := (1, 1)$, saj so operacije po komponentah. Seveda pa sta tudi elementa $(1, 0)$ in $(0, 1)$ idempotentna, ki nista enaka $0$ ali $1$ v produktu (bolj natančno, ta dva elementa z izomorfizmo preslikamo nazaj v $R$, kjer zaradi bijektivnosti ne moreta biti enaka $0$ ali $1$, kljub temu pa sta idempotenta v $R$).
+	
+	\item (c) $\implies$ (a): Naj bo $e \in R$ netrivialen idempotent. Potem je $(e) + (1-e) = (1)$ in $(e)\cdot(1-e) = (0)$, torej
+	\begin{align*}
+	V(e) \cup V(1-e) &= V((e)\cdot(1-e)) = V(0) = X \\
+	V(e) \cap V(1-e) &= V((e) + (1-e)) = V(1) = \emptyset
+	\end{align*}
+	Po definiciji topologije Zarinskega sta seveda množici $V(e)$ in $V(1-e)$ zaprti. Ker $e \neq 0, 1$, sta obe množici tudi neprazni, torej je $X$ nepovezan topološki prostor.
+\end{itemize}
+
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}

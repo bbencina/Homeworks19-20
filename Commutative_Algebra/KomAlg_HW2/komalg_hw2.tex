@@ -1,0 +1,103 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\usepackage[margin=0.5in]{geometry}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+
+\title{Komutativna algebra - $2.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+\begin{enumerate}[label=(\alph*)]
+	\item Pri reševanju naloge bomo uporabili razvojno okolje Macaulay 2 - glej priloženo datoteko \textit{nal1a.m2} (če se je ne da naložiti direktno, kopirajte vrstice eno za drugo). Programu najprej povemo, da bomo delali s kolobarjem racionalnih polinomov v dveh spremenljivkah. Nato definiramo ideal $I = (xy^2 + 2y^2, x^4 - 2x^2 + 1)$ in vnesemo testna polinoma $p = x^4 + 1$ in $q = x^2 - y - 1$. Če želimo, lahko še posebej izračunamo Gr\"obnerjevo bazo ideala $I$ in si ogledamo njene generatorje. Vemo, da je polinom v idealu $I$ natanko tedaj, ko je njegov ostanek pri deljenju z Gr\"obnerjevo bazo enak ničelnemu polinomu. Pri obeh polinomih dobimo neničelen ostanek, torej $p,q \notin I$.
+	Enako ponovimo z $J = \sqrt{I}$. V tem primeru ima $p$ neničelen ostanek, ostanek pri $q$ pa je enak $0$, torej $p \notin J$ in $q \in J$.
+	\item Iščemo vse točke algebraične množice $V := V_\C(x^2 + y^2  - z, x^2 + y + z^2, -x + y^2 + z^2)$.
+	
+	Najprej si množico oglejmo v okolju Macaulay 2 - glej datoteko \textit{nal1b.m2}. Najprej programu povemo, da bomo delali z racionalnimi polinomi v treh spremenljivkah z leksikografsko (Lex) monomsko ureditvijo in vnesemo algebraično množico v obliki ideala $I = (x^2 + y^2  - z, x^2 + y + z^2, -x + y^2 + z^2)$. Ukaz \texttt{dim I} vrne vrednost $0$, kar pomeni, da je $V$ diskretna množica točk (ne pa npr. krivulja ali ploskev). Ukaz \texttt{degree I} nam pove, da je točk najverjetneje $8$. Izračunamo Gr\"obnerjevo bazo ideala $I$ in si ogledamo njene generatorje. Sedaj postane jasno, zakaj smo na začetku vztrajali pri Lex ureditvi monomov. Prvi bazni polinom je polinom le v spremenljivki $z$, vsak naslednji pa ima največ eno spremenljivko več od prejšnjega. Postopek reševanja je sedaj idejno podoben Gaussovi eliminaciji - najprej bomo rešili prvo enačbo, dobili kandidate za $z$-koordinato rešitev in nato vstavljali v naslednje enačbe.
+	
+	Postopek bomo na tem mestu še poenostavili. Iz definicijskih enačb množice $V$ lahko sumimo na neke vrste simetrijo spremenljivk $x$ in $z$. To zlahka preverimo tako, da v okolju Macaulay 2 v definiciji kolobarja zamenjamo vrstni red spremenljivk $x$ in $z$. V Gr\"obnerjevi bazi je na prvem mestu isti polinom, le da je tokrat v spremenljivki $x$. Spremenljivki $x$ in $z$ svoje vrednosti torej jemljeta iz iste množice rešitev, spremenljivko $y$ pa zlahka izrazimo iz druge definicijske enačbe množice $V$.
+	
+	Edini problem je v dejstvu, da je prvi bazni polinom 6. stopnje, konkretno je to polinom
+	\[
+	p(z) = 8z^6+12z^5+10z^4+z^3-z^2-2z.
+	\]
+	Poskusimo ga zmanjšati. Prva očitna rešitev je $z = 0$ (ta sovpada z očitno rešitvijo sistema $(0, 0, 0)$). S faktorizacijo dobimo polinom 5. stopnje. Na tej točki se spomnimo, da kompleksne rešitve vedno nastopajo v konjugiranih parih. Torej mora nujno obstajati še ena realna rešitev. S pomočjo slike, ki jo naredi Octave (ali Matlab) skripta $slika.m$, uganemo rešitev $z = \frac{1}{2}$. Če to rešitev vstavimo v preostanek baznih polinomov, dobimo še drugo realno rešitev $(\frac{1}{2}, -\frac{1}{2}, \frac{1}{2})$, kar lahko razberemo tudi samo s slike. S pomočjo Hornerjevega algoritma faktoriziramo polinom in dobimo polinom 4. stopnje
+	\[
+	p(z) = 8z^4 + 16z^3 + 18z^2 + 10z + 4.
+	\] 
+	Za polinomske enačbe 4. stopnje končno obstaja splošna rešitev, zato rešimo $p(z) = 0$ v programskem okolju Mathematica ali pa s spletnimi orodji, na primer \url{https://www.wolframalpha.com/widgets/view.jsp?id=dcc8007e03af36a0bd3635b09e4cd5a2}.
+	Dobimo 4 kompleksne rešitve
+	\begin{align*}
+	z_1 &= -\frac{1}{4}i(\sqrt{7} - 3i), \\
+	z_2 &= -\frac{1}{4}i(\sqrt{7} - i), \\
+	z_3 &= \frac{1}{4}i(\sqrt{7} + 3i), \\
+	z_4 &= \frac{1}{4}i(\sqrt{7} + i).
+	\end{align*}
+	Vemo, da ima spremenljivka $x$ isto množico rešitev, spremenljivko $y$ pa lahko izračunamo iz druge definicijske enačbe množice $V$, zato preverimo vseh 16 možnosti. S skripto \textit{resitve.m} jih lahko preverimo numerično in pričakovano dobimo še preostalih 6 rešitev:
+	\begin{itemize}
+		\item $(-\frac{1}{4} + \frac{\sqrt{7}}{4}i, \frac{1}{4} - \frac{\sqrt{7}}{4}i, -\frac{3}{4} - \frac{\sqrt{7}}{4}i)$
+		\item $(-\frac{1}{4} - \frac{\sqrt{7}}{4}i, \frac{3}{4} - \frac{\sqrt{7}}{4}i, -\frac{1}{4} - \frac{\sqrt{7}}{4}i)$
+		\item $(-\frac{3}{4} + \frac{\sqrt{7}}{4}i, \frac{1}{4} + \frac{\sqrt{7}}{4}i, -\frac{1}{4} - \frac{\sqrt{7}}{4}i)$
+		\item $(-\frac{1}{4} - \frac{\sqrt{7}}{4}i, \frac{1}{4} + \frac{\sqrt{7}}{4}i, -\frac{3}{4} + \frac{\sqrt{7}}{4}i)$
+		\item $(-\frac{3}{4} - \frac{\sqrt{7}}{4}i, \frac{1}{4} - \frac{\sqrt{7}}{4}i, -\frac{1}{4} + \frac{\sqrt{7}}{4}i)$
+		\item $(-\frac{1}{4} + \frac{\sqrt{7}}{4}i, \frac{3}{4} + \frac{\sqrt{7}}{4}i, -\frac{1}{4} + \frac{\sqrt{7}}{4}i)$
+	\end{itemize}
+	Da smo res gotovi, dobljene točke vstavimo v definicijske enačbe, ali pa rezultate preverimo še simbolno z Mathematico.
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+\begin{enumerate}[label=(\alph*)]
+	\item Naj bo $I$ poljuben pravi ideal kolobarja $R$. Želimo pokazati, da obstaja minimalni praideal $P$ nad $I$, tj. tak praideal $P$, ki vsebuje $I$, da ne obstaja noben praideal $Q$, za katerega velja $I \subset Q \subsetneq P$. V dokazu bomo "navzdol" uporabili Zornovo lemo.
+	
+	Označimo z $\Lambda$ družino vseh praidealov kolobarja $R$, ki vsebujejo $I$. Ker je vsak pravi ideal vsebovan v nekem maksimalnem idealu, vsak maksimalen ideal pa je praideal, družina $\Lambda$ ni prazna. Družino $\Lambda$ sedaj delno uredimo z obratno vsebovanostjo, torej $P \leq Q \iff P \supseteq Q$, kjer sta $P,Q \in \Lambda$. Vzemimo poljubno linearno urejeno poddružino $C \subseteq \Lambda$ in si oglejmo
+	\[
+	Q = \bigcap_{P \in C}P.
+	\]
+	Očitno $I \subseteq Q$. Trdimo, da je $Q$ praideal. Podtrditev dokažimo s protislovjem.
+	
+	Recimo, da $Q$ ni praideal kolobarja $R$. Potem obstajata elementa $x, y \in R$, da je $xy \in Q$, vendar $x \notin Q$ in $y \notin Q$. Po definiciji preseka obstajata praideala $P,P' \in C$, da $x \notin P$ in $y \notin P'$. Brez škode za splošnost privzamemo $P \subseteq P'$, saj je poddružina $C$ linearno urejena. Od tod sledi $x,y \notin P'$, vendar pa je $P'$ praideal, zato $xy \notin P'$ in posledično $xy \notin Q$, kar vodi v protislovje.
+	
+	Ker je $Q$ pradideal, ki vsebuje $I$, je $Q \in \Lambda$. Očitno je $Q$ zgornja meja poddružine $C$ glede na obratno urejenost, saj po definiciji preseka za vsak $P \in C$ velja $Q \subseteq P$. Ker je bila poddružina $C$ poljubno izbrana, to velja za vsako linearno urejeno poddružino v $\Lambda$. Po Zornovi lemi $\Lambda$ vsebuje maksimalen element, ki je po definiciji obratne vsebovanosti minimalni praideal nad $I$.
+	\item Pri iskanju minimalnih praidealov nad $I = (x^2y, xy^2) \subideal \Q[x,y]$ si bomo spet pomagali z okoljem Macaulay 2 - glej priloženo datoteko \textit{nal2b.m2}. Najprej okolju povemo, da bomo delali s kolobarjem racionalnih polinomov v dveh spremenljivkah in definiramo ideal $I$. Nato nam ukaz $\texttt{minimalPrimes I}$ vrne seznam dveh minimalnih praidealov nad $I$:  $(x) $ in $(y)$.
+	
+	\textbf{Opomba:} V tem primeru lahko minimalne praideale najdemo hitro tudi brez računalnika. Ker smo v kolobarju polinomov z racionalnimi koeficienti, so edini pravi ideali, ki vsebujejo ideal $I$, naslednji: $(x), (y), (x,y), (xy)$ (jasno je, da $(x,xy) = (x)$, $(ax) = (x)$ ipd.). Po inkluziji preverimo od najmanjših do največjih. Ideal $(xy)$ ne more biti praideal, saj $xy \in (xy)$, vendar $x,y \notin (xy)$. Ideal $(x)$ je praideal, saj če $fg \in (x)$, polinom $fg$ nujno v vseh členih vsebuje spremenljivko $x$, torej jo mora vsebovati tudi najmanj eden od polinomov $f$ in $g$. Podoben premislek velja za $(y)$. Jasno je $(x), (y) \subset (x,y)$, zato nas ideal $(x, y)$ ne zanima. Dobili smo isti rezultat kot zgoraj.
+\end{enumerate}
+
+\end{document}

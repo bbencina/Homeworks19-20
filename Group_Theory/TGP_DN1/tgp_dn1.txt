@@ -1,0 +1,58 @@
+x:=70;;
+l:=AllSmallGroups(Size,96,IsAbelian,false);;
+G:=l[x];;
+Print("we see that G is ", StructureDescription(G));
+
+Print("1. exercise");
+Print("Pick a random 2-Sylow subgroup of G:");
+S:=SylowSubgroup(G,2);;
+Print(S);
+Print("How many 2-Sylow subgroups are there?");
+num_2syl:=Index(G,Normalizer(G,S));;
+Print(num_2syl);
+Print("All of them are: ");
+ccs:=ConjugacyClassSubgroups(G,S);;
+all_2syl:=Elements(ccs);;
+Print(all_2syl);
+
+Print("2. exercise");
+Print("We calculate the composition series of G: ");
+cs:=CompositionSeries(G);;
+Print(cs);
+Print("To get all composition factors and prettify the result: ");
+Print(List([1..Length(cs)-1], i -> StructureDescription(cs[i]/cs[i+1])));
+
+Print("3. exercise");
+N:=AbelianGroup([2,2]);;
+Print("N = ", StructureDescription(N));
+Print("All homomorphisms G -> Aut(N): ");
+homos:=AllHomomorphisms(G,AutomorphismGroup(N));;
+Print(homos);
+Print("We now use the semidirect product to construct the following groups: ");
+sdp_grp_lst:=List([1..Length(homos)], i -> IdGroup(SemidirectProduct(G, homos[i], N)));;
+Print(sdp_grp_lst);;
+Print("There are: ", Length(sdp_grp_lst));
+Print("There may be some isomorphic.");
+non_iso:=Set(sdp_grp_lst);;
+Print("These are non-isomorphic groups: ");
+Print(non_iso);
+Print("There are: " , Length(non_iso));
+Print("For better visualization one can again use StructureDescription.");
+
+Print("4. exercise");
+Print("Get all groups of size 64 (surpress the output)");
+grp_64:=AllSmallGroups(64);;
+Print("Let's now inspect the size of the minimal generating set and index of Frattini's subgroup");
+Print(List([1..Length(grp_64)], i -> [Size(MinimalGeneratingSet(grp_64[i])),Index(grp_64[i],FrattiniSubgroup(grp_64[i]))]));
+Print("What we see are pairs of numbers [n, 2^n], starting at n = 1");
+Print("Does something similar hold for groups of order 192?");
+Print("Get all groups of size 192 (surpress the output)");
+grp_192:=AllSmallGroups(192);;
+Print(List([1..Length(grp_192)], i -> [Size(MinimalGeneratingSet(grp_192[i])),Index(grp_192[i],FrattiniSubgroup(grp_192[i]))]));
+Print("We notice a couple of things:");
+Print("Firstly, index of Frattini's subgroup is always 3*2^k for some k,");
+Print("secondly, the k is more often than not the same as the minimal generator set size.");
+Print("That is, in most cases the pairs look like [k, 3*2^k].");
+Print("HOWEVER, there exist border cases and not so few of them.");
+Print("We see pairs such as [2, 48], [3, 48], [2, 24], [2, 6].");
+Print("We now conclude that all pairs are of form [j, 3*2^k] for some j <= k with one exception of [2, 6].");

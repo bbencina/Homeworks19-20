@@ -1,0 +1,235 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+\usepackage[margin=0.5in]{geometry}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+
+\title{Analysis on Manifolds - $1^{\text{st}}$ homework}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Ex. 1:}}
+We want to find explicit smooth charts for the special linear group $SL_2(\R)$ of real matrices with determinant equal to $1$. For the remainder of this exercise we will make the identification
+\[
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\longleftrightarrow (a, b, c, d)
+\]
+for ease of writing. Now we have $SL_2(\R) = \lbrace (a, b, c, d) ; \; ad-bc=1\rbrace$.
+
+Firstly, $SL_2(\R)$ is obviously a Hausdorff and $2^{nd}$-countable space, since $SL_2(\R) \subset \R^4$ is a topological subspace with the standard topology, and hence inherits these properties.
+
+Secondly, it is clear that if $SL_2(\R)$ is a manifold, its dimension is $3$, since one coordinate can be expressed with the other three. So, the principal idea is that if $a \neq 0$, we have $ad-bc = 1 \iff d = \frac{1+bc}{a}$. Take the set $U_a = \lbrace (a, b, c, d) \in SL_2(\R) ; \; a \neq 0 \rbrace = \lbrace (a, b, c, d) \in \R^4 ; \; a \neq 0 \rbrace \cap SL_2(\R)$, which is an open set in $SL_2(\R)$, since the set $\lbrace (a, b, c, d) \in \R^4 ; \; a \neq 0\rbrace$ is open in $\R^4$. On $U_a$ we now have points of form $(a, b, c, \frac{1+bc}{a})$. By denoting $d = d(a, b, c) = \frac{1+bc}{a}$, it is clear that the points $(a, b, c, d(a, b, c))$ form a graph of function $d$ above $\R_{a, b, c}^3\setminus\lbrace a = 0\rbrace$. Thus, the mapping $\varphi_a(a, b, c, d) = (a, b, c)$ constitutes a chart $(U_a, \varphi_a)$.
+Note that for connected charts we simply split the two cases $a > 0$ and $a < 0$.
+
+Next, we take the open set $U_b = \lbrace (a, b, c, d) \in SL_2(\R);\; b \neq 0\rbrace$. By denoting $c = c(a, b, d) = \frac{ad-1}{b}$ on $U_b$ it is again clear that the points $(a, b, c(a, b, d), d)$ form a graph of function $c$ above $\R_{a, b, d}^3\setminus\lbrace b = 0 \rbrace$. Thus, the mapping $\varphi_b(a, b, c, d) = (a, b, d)$ constitutes a chart $(U_b, \varphi_b)$.
+
+We see that $U_a$ and $U_b$ cover $SL_2(\R)$, since the remaining case is one where $a = b = 0$, making the determinant equal to $0$. We only need to verify that both transition functions are smooth:
+\begin{align*}
+(\varphi_a\circ\varphi_b^{-1})(a, b, d) &= \varphi_a(a, b, \frac{ad-1}{b}, d) = (a, b, \frac{ad-1}{b}),\\
+(\varphi_b\circ\varphi_a^{-1})(a, b, c) &= \varphi_b(a, b, c, \frac{1+bc}{a}) = (a, b, \frac{1+bc}{a}).
+\end{align*}
+Both are clearly smooth maps and well-defined on $\R^3\setminus\lbrace a = b = 0\rbrace$. We have verified that $SL_2(\R)$ is indeed a smooth $3$-dimensional real manifold.
+\newline
+
+\underline{\textbf{Ex. 2:}}
+For each $n \in \N$, consider the map $\varphi_n\colon \R \to \R$ given by
+\[
+\varphi_n(t) = \begin{cases}
+t; \; t \leq 0 \\
+t^n; \; t > 0
+\end{cases}
+\]
+\begin{enumerate}[label=(\alph*)]
+\item
+We want to prove that for every $n \in \N$ the map $\varphi_n$ is a homeomorphism. Bijectivity of $\varphi_n$ is clear, since $t \mapsto t$ is bijective on $\R_{-}\cup\lbrace 0 \rbrace$, $t \mapsto t^n$ is bijective on $\R_{+}$ and they concatenate at $0$. We repeat the same argument for continuity and continuity of the inverse
+\[
+\varphi_n^{-1}(t) = \begin{cases}
+t; \; t \leq 0 \\
+\sqrt[n]{t}; \; t > 0
+\end{cases}.
+\]
+It is worth noting that this would be even more topologically obvious if we define the mappings equivalently as follows:
+\[
+\varphi_n(t) = \begin{cases}
+t;\; t \leq 0 \\
+t^n; \; t \geq 0
+\end{cases}
+\]
+\item
+We now want to determine which values $m,n \in \N$ are such that $\lbrace(\varphi_n, \R), (\varphi_m, \R)\rbrace$ is a smooth atlas for $\R$. We suppose that $n \neq m$, otherwise we really only have one chart. Let's calculate the transition maps:
+\[
+\varphi_{n,m}(t) = (\varphi_n\circ\varphi_m^{-1})(t) = \begin{cases}
+t; \; t \leq 0 \\
+t^{\frac{n}{m}}; \; t > 0
+\end{cases}
+\]
+Since they are defined on the whole of $\R$, the problem is of course smoothness at $t = 0$. We calculate the left and right derivatives at $0$:
+\begin{align*}
+t \leq 0:& \lim_{t \to 0^{-}} \varphi_{n,m}'(t) = \lim_{t \to 0^{-}} 1 = 1 \\
+t > 0:& \lim_{t \to 0^{+}} \varphi_{n,m}'(t) = \lim_{t \to 0^{+}} \frac{n}{m}t^{\frac{n}{m}-1} = \begin{cases}
+0; \; \frac{n}{m} > 1 \\
+\infty; \; \frac{n}{m} < 1
+\end{cases}
+\neq 1
+\end{align*}
+Hence, $n=m$ is the only case where the above atlas is a smooth atlas for $\R$.
+\item
+Let $\R_n = \lbrace (\varphi_n, \R) \rbrace$ be a smooth manifold. For which $n, m \in \N$ are $\R_n$ and $\R_m$ diffeomorphic? Again we suppose $n \neq m$, since $n=m$ is the trivial case.
+Consider the following diagram:
+\adjustbox{scale=1, center}{
+\begin{tikzcd}
+\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+\R \arrow[r, "\widetilde{\Phi}"] & \R
+\end{tikzcd}
+}
+By definition, the map $\Phi \colon \R_n \to \R_m$ will be a differentiable precisely when the map $\widetilde{\Phi} = \varphi_m \circ \Phi \circ \varphi_n^{-1} \colon \R \to \R$ is a differentiable map. With this in mind, we can simply choose a diffeomorphism $\widetilde{\Phi}$ and the corresponding map $\Phi = \varphi_m^{-1} \circ \widetilde{\Phi} \circ \varphi_n$ will be a diffeomorphism between manifolds. We will of course check the necessary properties.
+
+Choose $\widetilde{\Phi} = id_\R$, an obvious diffeomorphism of the real line. Thus, we have
+\[
+\Phi = \varphi_m^{-1} \circ id_\R \circ \varphi_n = \varphi_m^{-1} \circ \varphi_n = \begin{cases}
+t^{\frac{n}{m}} ; \; t > 0 \\
+t ; \; t \leq 0
+\end{cases}
+\]
+Indeed, by the argument from (a), it is bijective, and differentiable in the sense of manifolds, since $\widetilde{\Phi}$ is differentiable. Same holds for the inverse:
+\[
+\Phi^{-1} = \begin{cases}
+t^{\frac{m}{n}} ; \; t > 0 \\
+t ; \; t \leq 0
+\end{cases}
+\]
+We have found a diffeomorphism between $\R_n$ and $\R_m$ for all $n, m \in \N$.
+\end{enumerate}
+
+\underline{\textbf{Ex. 3:}}
+Let $n \in \N$ be a natural number and let $SO(n)$ be a special orthogonal group of $n \times n$ matrices. Consider the map given by
+\[
+\varphi\colon SO(n+1) \times \R^{n+1} \to \R^{n+1}, \; (A, x) \mapsto Ax.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item
+To prove that $\varphi$ is a group action is trivial, since it is merely matrix multiplication.
+Indeed, for every vector $x \in \R^{n+1}$ we have $I x = x$, matrix $I$ being the identity matrix, and because matrix multiplication is associative, for every $A, B \in SO(n+1)$ and $x \in \R^{n+1}$ we have $A(Bx) = (AB)x$.
+\item
+Next, we wish to see that $\varphi$ restricts to a well-defined action on the sphere $S^n \subset \R^{n+1}$. We have already seen that it is indeed an action, all that remains is to show that $\varphi(SO(n+1), S^n) \subseteq S^n$. But this is easy taking into account a well-known fact from algebra that special orthogonal matrices preserve the scalar product, and hence the norm (or length) of vector. That is, for every $A \in SO(n+1)$ and $x, y \in \R^{n+1}$ we have that $Ax \cdot Ay = x \cdot y$. Now, by definition, $||Ax||^2 = Ax \cdot Ax = x \cdot x = ||x||^2$. Since elements of $S^n$ are precisely vectors with unitary norm, the conclusion follows.
+\item
+To determine the isotropy group $G$ of $\varphi$ at the vector $(1, 0, \dots, 0) \in S^n$, all we need to do is remember that matrix columns are images of base vectors:
+\[
+G = \lbrace A \in SO(n+1) ; \; A(1, 0, \dots 0) = (1, 0, \dots, 0) \rbrace = \lbrace A \in SO(n+1) ; \; A^{(1)} = (1, 0, \dots, 0) \rbrace.
+\]
+\item
+Finally, we want to prove that the group quotient $SO(n+1)/G$ is a smooth manifold diffeomorphic to $S^n$. Denote by $\pi \colon SO(n+1) \to SO(n+1)/G$ a quotient map, defined by $A \mapsto AG$.
+
+Firstly, $2^{\text{nd}}$-countability is obvious, since it is a quotient property.
+
+Secondly, to prove that $SO(n+1)/G$ is Hausdorff, we first need to see that the quotient map $\pi$ is open. Take an open set $V \subset SO(n+1)$. The image $\pi(V)$ will be open in the quotient precisely when the set $\pi^{-1}(\pi(V))$ is open in $SO(n+1)$. Let's calculate:
+\[
+\pi^{-1}(\pi(V)) = \pi^{-1}(VG) = \pi^{-1}(\lbrace AG ; \; A \in V \rbrace) = \lbrace AB ; \; A \in V, \; B \in G \rbrace = VG.
+\]
+Since $SO(n+1)$ is a topological group and $V$ is an open set, $VG$ is open in $SO(n+1)$.
+Now, Hausdorffness is equivalent to the quotient relation being closed, that is, we want the set $\Delta = \lbrace (A, B) ; \; AG = BG \rbrace$ to be closed in $SO(n+1) \times SO(n+1)$. Let's calculate again:
+\[
+\Delta = \lbrace (A, B) ; \; AG = BG \rbrace = \lbrace (A, B) ; \; B^{-1}A \in G \rbrace = F^{-1}(G),
+\]
+where $F(A, B) = B^{-1}A$ is a continuous function. Since $G$ is closed in $SO(n+1)$ (we merely fixed some components) and $F$ is continuous, $\Delta$ is closed in $SO(n+1) \times SO(n+1)$.
+
+Thirdly, let's further inspect cosets in $SO(n+1)/G$.
+\begin{align*}
+AG = BG &\iff B^{-1}A \in G \iff B^{-1}A (1, 0, \dots 0) = (1, 0, \dots, 0)\\
+ &\iff A(1, 0, \dots, 0) = B(1, 0, \dots, 0) \iff A^{(1)} = B^{(1)}
+\end{align*}
+Cosets are thus uniquely determined by where they send the vector $(1, 0, \dots, 0)$, that is, by their first column. But our matrices are in $SO(n+1)$, meaning their columns are orthonormal, and hence of unitary norm. In other words, for every $A \in SO(n+1)$ the vector $A^{(1)}$ lies in $S^n$.
+We now define an identification map
+\[
+\psi\colon SO(n+1)/G \to S^n, \; AG \mapsto A^{(1)} =: v_A.
+\] By previous calculation, this is a well-defined bijection (that it is truly surjective is clear, since every vector of unitary norm gives a family of special orthogonal matrices composed by this vector in the first column and the orthonormal basis of its orthogonal complement space in the other columns).
+
+We will now show that $\psi$ is in fact a homeomorphism. Since it is a bijection and clearly continuous (one way to look at it is as a projection to the first column), it is enough to show that it is an open map. We verify this on basic open sets in $SO(n+1)$, which we get by taking open balls in $SO(n+1)$ and mapping them by $\pi$. That is, take a matrix $A \in SO(n+1)$ and an open ball $\mathbb{B}(A, \epsilon)$ of radius $\epsilon$ around $A$. In particular, projecting $\mathbb{B}(A, \epsilon)$ to the first column (really just intersecting with $\R^{n+1}$ at the first column) we clearly see that this is also a ball around $A^{(1)}$ of radius $\epsilon$ (as an example of this thought exercise imagine intersecting $\mathbb{B}^2$ with the real line and getting $\mathbb{B}^1$). Now, since $\pi$ is an open and continuous mapping, it is clear that $\pi(\mathbb{B}(A, \epsilon))$ is an open ball of radius $\epsilon$ around the coset $AG$. Mapping this ball with our identification map $\psi$ gives us an open ball or radius $\epsilon$ around $v_A = A^{(1)} \in S^n$. The map $\psi$ is therefore a homeomorphism, and hence $SO(n+1)/G$ is a topological manifold with charts from $S^n$ mapped back by $\psi^{-1}$, that is, if $\lbrace (U_i, \varphi_i) \rbrace$ is an atlas on $S^n$, we define $\lbrace (\psi^{-1}(U_i), \phi_i = \varphi_i\circ\psi)\rbrace$ to be an atlas on $SO(n+1)/G$.
+
+The last step is smoothness. Let's take a smooth atlas $\lbrace (U_i, \varphi_i) \rbrace$ on $S^n$. Its transition maps are the following:
+\[
+\varphi_{i,j} = \varphi_i\circ\varphi_j^{-1}.
+\]
+Now, let's inspect the transition maps of the same atlas mapped back to $SO(n+1)/G$:
+\[
+\phi_{i,j} = \phi_i\circ\phi_j^{-1} = \varphi_i\circ\psi\circ\psi^{-1}\circ\varphi_j^{-1} = \varphi_i\circ\varphi_j^{-1}.
+\]
+We observe that the transition maps of both atlases are in fact the same and differentiable, in particular is $SO(n+1)/G$ a smooth manifold. Let's prove that $\psi$ is not merely a homeomorphism but a diffeomorphism as well.
+Consider the following diagram:
+
+\adjustbox{scale=1, center}{
+	\begin{tikzcd}
+	SO(n+1)/G \arrow[d, "\varphi_i\circ\psi"] \arrow[r, "\psi"] & S^n \arrow[d, "\varphi_j"] \\
+	\R^n \arrow[r, "\Phi"] & \R^n
+	\end{tikzcd}
+}
+For every two chart maps $\varphi_i$ and $\varphi_j$ we have that
+\[
+\Phi = \varphi_j\circ\psi\circ\psi^{-1}\circ\varphi_i^{-1} = \varphi_j\varphi_i^{-1},
+\]
+which is a transition chart of $S^n$, and hence differentiable. Same obviously holds for the inverse (switch $j$ and $i$). Since the chart maps were arbitrary and $\psi$ is a bijective map, $\psi$ is a diffeomorphism.
+%If we take $\widetilde{\Phi} = id_{\R^n}$, we by definition get that $\Phi = \varphi_j^{-1}\circ\varphi_i\circ\psi$ is a diffeomorphism. In particular, for $i = j$, we get that $\psi$ is a diffeomorphism on every chart neighbourhood.
+%Even more, taking $\widetilde{\Phi} = \varphi_j\circ\varphi_i^{-1}$ (the transition maps are differentiable and their inverses are transition maps), we see that $\phi$ is a diffeomorphism on all intersections of charts as well.
+%Hence, $\psi$ is a diffeomorphism everywhere and $SO(n+1)/G$ is diffeomorphic to $S^n$.
+
+Comment: We now see that we didn't need to check $2^{\text{nd}}$-countability and Hausdorffness, since we proved this by finding a homeomorphism.
+\end{enumerate}
+
+\underline{\textbf{Ex. 4:}}
+Let $M$ be a smooth manifold of dimension $n$. We want to prove that its tangent bundle $TM$ is as orientable manifold.
+Since we already know that $TM$ is a manifold (later we offer generic charts), we will concentrate on oriantability. Let $\mathcal{U} = \lbrace (U_\lambda, \varphi_\lambda) \rbrace$ be a smooth atlas for $M$. Then $T\mathcal{U} = \lbrace (TU_\lambda, T\varphi_\lambda) \rbrace$ is an atlas for $TM$. We are primarily interested in transition maps.
+Take two charts $(U, \varphi), (V, \psi)$ where $U \cap V \neq \emptyset$. Then, by the functorial properties of $T$, we have
+\[
+T\varphi\circ (T\psi)^{-1} = T(\varphi\circ\psi) \colon \psi(U\cap V) \times \R^n \to \varphi(U \cap V) \times \R^n.
+\]
+Here is $\varphi\circ\psi^{-1}$ a differentiable transition map on $X$. Explicitly, we have
+\[
+T(\varphi\circ\psi^{-1})(x, v) = (\varphi\circ\psi^{-1}(x), D(\varphi\circ\psi^{-1})(x)v),
+\]
+where $x, v \in \R^n$ and $D(\varphi\circ\psi^{-1})(x)$ is the Jacobian of the transition map $\varphi\circ\psi^{-1}$ calculated at $x$.
+Now we simply calculate the Jacobian of the tangent transition maps by components $(x, v) = (x_1, \dots, x_n, v_1, \dots, v_n)$. Since the first $n$ components of $T(\varphi\circ\psi^{-1})(x, v)$ are independent of $v$ and the last $n$ components are linear in $v$, we get by definition of $D(\varphi\circ\psi^{-1})(x)$ the following (simplified into $n\times n$ blocks):
+\[
+D(T(\varphi\circ\psi^{-1}))(x, v) =
+\begin{bmatrix}
+D(\varphi\circ\psi^{-1})(x) & 0 \\
+D(\varphi\circ\psi^{-1})(x)_x & D(\varphi\circ\psi^{-1})(x)
+\end{bmatrix}
+\]
+Since $\det D(\varphi\circ\psi^{-1})(x) \neq 0$, the Jacobian determinant (of a lower-triangular matrix) is now
+\[
+\det D(T(\varphi\circ\psi^{-1}))(x, v) = \det D(\varphi\circ\psi^{-1})(x) \cdot \det D(\varphi\circ\psi^{-1})(x) = (\det D(\varphi\circ\psi^{-1})(x))^2 > 0
+\]
+Here, $(U, \varphi)$ and $(V, \psi)$ are arbitrary charts, so for every transition map its Jacobian determinant is greater than $0$. By definition, $TM$ is an orientable manifold, since we have just found an oriented atlas.
+\end{document}

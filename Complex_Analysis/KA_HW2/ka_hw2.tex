@@ -1,0 +1,177 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\usepackage[margin=0.5in]{geometry}
+
+\DeclareMathOperator{\diam}{diam}
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+
+\title{Complex Analysis - $2^{\text{st}}$ homework}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Ex. 1:}}
+Let $\Omega$ be an open subset of $\C$ and let $\mathcal{F}$ be a family of holomorphic functions from $\Omega$ to $\C$.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us show that $\mathcal{F}$ is a normal family if and only if $\mathcal{F}|_D = \lbrace f|_D ; \; f \in \mathcal{F} \rbrace$ is a normal family for every disc $D \subset \Omega$.
+	
+	From left hand side to right hand side, the statement is obvious. If every sequence of functions in $\mathcal{F}$ has a subsequence converging uniformly on all compact subsets of $\Omega$, that of course includes all compact subsets of any given disc $D \in \Omega$.
+	
+	Conversely, take a compact subset $K \subset \Omega$. By compactness, we can cover $K$ with finitely many open discs $D_i \subset \Omega$, $i = 1,\dots, n$.
+	%(also suppose that $i > 1$ and that $K$ is connected, otherwise do the following on each component of $K$ separately). Note that since these discs are open and $K$ is connected, every disc intersects at least one other. By assumption, for every $i = 1,\dots, n$, the sequence $\lbrace f_j|_{D_i} \rbrace_{j \in \N}$ gives a convergent subsequence. Let's look at the intersection of two intersecting discs, without loss of generality take $D_1$ and $D_2$. The subsequence of $\lbrace f_j|_{D_1} \rbrace_{j \in \N}$ converges to $g_1$ and the subsequence of $\lbrace f_j|_{D_2} \rbrace_{j \in \N}$ converges to $g_2$. On the intersection they are the same, and hence by open mapping theorem, $g_1 = g_2$. By finite induction, all these subsequences converge to the same function $g$. SOMETHING WRONG HERE.
+	Because $\Omega$ is a normal space, it is in particular Hausdorff, discs $D_i$ can be chosen in such a way that some smaller discs $E_i \subset D_i$ also cover $K$ (this is really needed only if we chose some $D_i$ that shares a piece of its boundary with the boundary of $\Omega$ - this argument states that we need not choose such discs, but rather smaller, which we can later close in some slightly larger disc). Note that the sets $\closure{E_i} \subset D_i$ are compact in $D_i$ for every $i=1,\dots,n$. By the converse to Montel's theorem, the family $\mathcal{F}$ is equibounded on $\closure{E_i}$ by $M_i \in \R$. Clearly, the family $\mathcal{F}$ is equibounded on $K$ by $\max_{i=1,\dots,n}M_i$. By Montel's theorem, $\mathcal{F}$ is a normal family.
+	
+	\item Assume now these exists a point $a \in \Omega$ such that the sequence $\lbrace f(a) ; \; f \in \mathcal{F} \rbrace$ is bounded. Suppose as well that the family $\mathcal{F}' = \lbrace f' ; \; f \in \mathcal{F} \rbrace$ is equibounded and that $\Omega$ is connected. Let us prove that $\mathcal{F}$ is a normal family.
+	
+	Firstly, let us prove the statement in the case where $\Omega$ is an open disc containing $a$ (or in the case of a disc in $\Omega$ containing $a$). Let $\lbrace f_j\rbrace_{j \in \N}$ be a sequence in $\mathcal{F}$. By assumption, there exists a subsequence $\lbrace f_{j_k}\rbrace_{k \in \N}$ such that the sequence $\lbrace f'_{j_k}\rbrace_{k \in \N}$ converges uniformly on compact subsets. Denote $f'_{j_k} \to g$ and $f_{j_k}(a) \to \omega$. Now, define a new function for every $z \in \Omega$
+	\[
+	G(z) = \omega + \int_{[a, z]}g(t)dt,
+	\]
+	where $[a, z]$ is a straight line segment from $a$ to $z$. The function $G$ is holomorphic on the disc $\Omega$ and $G' = g$, so we have
+	\[
+	f_{j_k}(z)-G(z) = f_{j_k}(a) - \omega + \int_{[a, z]}(f'_{j_k}(z)-g(t))dt.
+	\]
+	Next, take a compact $K$ in $\Omega$ and a closed disc $B$ such that $a \in B$ and $K \subset B \subset \Omega$. By convexity, $[a, z] \subset B$ for every $z \in K$ and we have
+	\[
+	|f_{j_k}(z)-G(z)| \leq |f_{j_k}(a) - \omega| + \diam(\Omega)\cdot\sup_{t \in B}|f'_{j_k}(z)-g(t)|,
+	\]
+	which goes to $0$ uniformly on $K$.
+	
+	Secondly, in order to generalize to the whole set $\Omega$, define the set
+	\[A = \lbrace z \in \Omega ; \; \mathcal{F} \text{ is a normal family on a neighbourhood of } z\rbrace.
+	\]
+	The set $A$ is clearly open, since it is defined with an open condition. It is also not empty, since $a \in A$. We will show that $\Omega\setminus A$ is also open in $\Omega$. Assume there exists $b \in \Omega \setminus A$. Let $D\subset\Omega$ be a disc centered in $b$. We will show that $D \subset \Omega \setminus A$. Assume there exists a point $c \in D \cap A$. Then, $\mathcal{F}$ is normal in a neighbourhood of $c$, which implies the set $\lbrace f(c) ; \; f \in \mathcal{F}\rbrace$ is bounded. From the previous argument, $\mathcal{F}$ is normal in $D$, which is a contradiction. By connectedness of $\Omega$, $A = \Omega$.
+	
+	Finally, every point in $\Omega$ has a neighbourhood in which $\mathcal{F}$ is a normal family. Without loss of generality we can take these neighbourhoods to be discs in $\Omega$. Now, simply apply (a).
+\end{enumerate}
+
+\underline{\textbf{Ex. 2:}}
+Let $n \in \N$ and $a_n, b_n \in \R$ such that $0 < b_n < a_n < n$.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us show that there exists a polynomial $p_n$ such that $|p_n(z)| > n$ for $z \in B_n = \D(o, n) \cap \lbrace\Im(z) = b_n\rbrace$ and $|p_n(z)| < \frac{1}{n}$ for $z \in A_n = \D(o, n) \cap (\lbrace\Im(z) > a_n \text{ or } \Im(z) < 0 \rbrace)$.
+	
+	Observe that $\closure{A_n}$ and $\closure{B_n}$ are disjoint compact sets, so $K = \closure{A_n} \cup \closure{B_n}$ is a compact set with no holes, that is, $\C\setminus K$ is connected. By Runge's theorem, there exists a sequence of holomorphic polynomials approximating the holomorphic function
+	\[
+	f(z) = \begin{cases}
+	n+1 ; \; z \in \closure{B_n}, \\
+	0 ; \; z \in \closure{A_n},
+	\end{cases}
+	\]
+	that is, for every $\epsilon > 0$ there exists a polynomial $P(z)$ such that $\max_{z \in K}|f(z)-P(z)| < \epsilon$. For $\epsilon < \frac{1}{n}$ polynomial $P(z)$ satisfies our conditions.
+	
+	\item We would like to construct a sequence of polynomials that is pointwise converging to $0$ on $\C$ such that the convergence is uniform on compact subsets of $\C \setminus \R$, but not in any neighbourhood of a real point.
+	
+	We will use polynomials from (a). Take the sequence $\mathcal{P} = \lbrace p_{n}\rbrace_{n \in \N}$ for $a_{n} = \frac{1}{n}$ and $b_n < a_n$ arbitrary. The sequence $\mathcal{P}$ is obviously converging pointwise to $0$ on $\C$, even on $\R$ because of continuity and by construction (consult (a), we closed the condition sets). Now, take a compact set $K \in \C\setminus\R$. We can assume $K$ is connected, otherwise do the following on every connected component. Since $K$ is bounded, there exists $n_0 \in \N$ such that $K \in \D(0, n_0)$.
+	If $K$ is located in the upper halfplane, we can also suppose that $a_{n_0} < \Im(z)$ for every $z \in K$. Now we see, that $p_{n} \to 0$ uniformly on $K$ by Runge's theorem from (a).
+	Next, take a real point $a \in \R$ and a neighbourhood $U$ around it. Without loss of generality suppose $U = \D(a, r)$, for some $r > 0$. There exists $n_0 \in \N$ such that $b_{n_0} < r$. Since for every $n \in \N$ we have $|p_{n}| > n$, the sequence is unbounded, and hence convergence cannot be uniform there.
+	
+	\item We would like to constructa sequence of polynomials that is pointwise converging to $0$ on $\R$ and to $1$ on $\C \setminus \R$.
+	
+	Let $n \in \N$ and $0 < a_n < n$. By the same argument from (a) there exists a polynomial $q_n$ so that $|q_n| < \frac{1}{n}$ on $\D(0, n)\cap\lbrace\Im(z) = 0\rbrace$ and $1 + \frac{1}{n} > |q_n| > 1 - \frac{1}{n}$ on $\D(0, n)\cap\lbrace|\Im(z)| > a_n \rbrace$ (we approximate the constant function $0$ on the first set and $1$ on the second).
+	%Note that on $\D(0,n)$, the polynom $q_n$ is bounded, even more, on $\closure{\D(0, n)}$ it has a maximum. Let that maximum be $M_n$.
+	Now, simply take the sequence of polynomials $\mathcal{Q} = \lbrace q_n\rbrace$ with $a_n = \frac{1}{n}$.
+\end{enumerate}
+
+\underline{\textbf{Ex. 3:}}
+Let $f, g, h \colon \C \to \C$ be holomorphic functions satisfying $h = e^f + e^g$.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us prove that the equation $h(z) = 0$ has either infinitely many solutions or none at all.
+	
+	We are solving the equivalent equation $e^f = -e^g$. This solution will rely heavily on the Picard's Little Theorem and the notion of entire functions. We will separate certain cases.
+	
+	Firstly, if $f$ and $g$ are both constant, then we have a solution precisely when $f = 2\pi i k + g$ for some $k \in \Z$. In that case, we obviously have a solution for every $z \in \C$.
+	
+	Secondly, if $f$ is constant, but $g$ is not, we have $e^{g(z)} = -e^f$. Since $g$ is entire, it omits at most one value $a$. Therefore $e^g$ omits at most $0$ and $e^a$. But if it omits both, $e^g$ will be constant and by extension $g$, which means $e^g$ omits only $0 \neq -e^f$. That means there is a solution $z_0$ and by extension infinetely many of them, since $g$ takes values $2\pi i k + g(z_0)$ for every $k \in \Z$.
+	
+	Finally, let $f \neq g$ be non-constant entire functions. Since the function $e^z$ has no zeros, we are solving $e^{f-g} = -1$. Since $f-g$ is an entire function, it omits at most one value $a$, so $e^{f-g}$ omits at most $0$ and $e^a$. If it omits both, we have that $e^{f-g}$ is constant, by extension is $f-g$ constant. By the argument above, if we have a solution, we have infinitely many of them. So, suppose $e^{f-g}$ omits merely $0$. Then by entirety, we have a solution and by the argument above infinitely many of them.
+	
+	\item We will prove that the equation $e^z = p(z)$ has a solution for any non-constant polynomial $p$.
+	
+	We will forget the zeros of $p$, since there can be no solutions there for any polynomial. Let us look at the following equation
+	\[
+	\frac{e^z}{p(z)} = 1.
+	\]
+	Let us switch the variable $\omega \longleftrightarrow \frac{1}{z}$ and limit the domain to $\D(0, r)$, where $r > 0$ is such that no zeros of $p$ (except maybe $0$) lie in the domain.
+	We now have the equivalent problem
+	\[
+	f(z) = \frac{e^{\frac{1}{z}}}{p(\frac{1}{z})} = 1.
+	\]
+	Note that $f$ has an essential singularity in $z = 0$ and is holomorphic on $\D(0, r)\setminus\lbrace 0 \rbrace$. By Picard's Big Theorem, $f$ omits at most one value, and it certainly omits $0$. Therefore there must exist such $z_0$ so that $f(z_0) = 1$. Our solution is $\frac{1}{z_0}$.
+\end{enumerate}
+
+\underline{\textbf{Ex. 4:}}
+Let $f \colon \D \to \C$ be schlicht, that is, an injective holomorphic function with $f(0) = 0$ and $f'(0) = 1$. Assume $D = f(\D)$ is a convex set and let $r \in (0, 1)$ and $e^{i\theta} \in \partial\D$.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us directly calculate
+	\begin{align*}
+	&\frac{1}{2\pi i} \int_{|z| = r}f(z)\left( 1 + \frac{z}{2re^{i\theta}} + \frac{re^{i\theta}}{2z}\right)\frac{dz}{z} =
+	\frac{1}{2\pi i} \left( \int_{|z| = r}\frac{f(z)}{z - 0}dz + \frac{1}{2re^{i\theta}} \int_{|z| = r}f(z)dz + \int_{|z| = r}f(z) \frac{re^{i\theta}}{2z^2} \right)dz = \\
+	&=\frac{1}{2\pi i} \left( 2\pi i f(0) + 0 + \frac{1}{2}re^{i\theta}\cdot 2\pi i f'(0) \right) = \frac{1}{2}re^{i\theta}
+	\end{align*}
+	
+	\item We continue from (a) by changing integral variables
+	\begin{align*}
+	&\frac{1}{2}re^{i\theta} = \frac{1}{2\pi i} \int_{|z| = r}f(z)\left( 1 + \frac{z}{2re^{i\theta}} + \frac{re^{i\theta}}{2z}\right)\frac{dz}{z} =
+	\frac{1}{2\pi i} \int_{-\pi}^{\pi}f(re^{i\phi}) \left( 1 + \frac{re^{i\phi}}{2re^{i\theta}} + \frac{re^{i\theta}}{2re^{i\phi}} \right) \frac{rie^{i\phi}d\phi}{re^{i\phi}} = \\
+	& =\frac{1}{2\pi} \int_{-\pi}^{\pi}f(re^{i\phi}) \left( 1 + \frac{e^{i(\theta - \phi)} + e^{-i(\theta - \phi)}}{2} \right) d\phi =
+	\frac{1}{\pi} \int_{-\pi}^{\pi}f(re^{i\phi}) \left( 1 + \left(\frac{e^{i\frac{\theta - \phi}{2}} + e^{-i\frac{\theta - \phi}{2}}}{2}\right)^2 - \frac{2e^0}{2} \right) d\phi = \\
+	& = \frac{1}{\pi} \int_{-\pi}^{\pi}f(re^{i\phi}) \cos^2\left( \frac{\theta - \phi}{2} \right) d\phi
+	\end{align*}
+	
+	\item Next we will show that $\frac{1}{2}re^{i\theta} \in D$, hence it will follow that $\D(0, \frac{1}{2}) \subset D$, once we send $r \to 1$.
+	
+	There are various ways to approach this, we chose a measure theoretic one. Recall, firstly, that $D$ is convex and then observe that $\frac{1}{\pi} \int_{-\pi}^{\pi}\cos^2\left(\frac{\phi}{2}\right)d\phi = 1$. By change of variables $t \leftrightarrow \frac{\theta - \phi}{2}$, we also see the same is true in our case, that is, $\frac{1}{\pi} \int_{-\pi}^{\pi}\cos^2\left(\frac{\theta - \phi}{2}\right)d\phi = 1$.
+	
+	Let $a(x)$ be a continuous mapping (it can be vector valued, in this case complex). Denote by $\Lambda = \lbrace \int a(x)\omega(x)dx ;$ $\omega(x)$ is a measurable function with $\int \omega(x)dx = 1$ $\rbrace$ the set of all \textit{continuous convex combinations} of $a(x)$ and denote by $\Gamma$ the set of all convex combinations of values of $a(x)$. We will prove that these two sets are in fact the same.
+	
+	The inclusion $\Gamma \subseteq \Lambda$ follows from the fact that a convex combination $\Sigma_{i=1}^{k}a(x_i)\omega(x_i)$ is equal to $\int a(x)\omega(x)dx$ with $\omega(x) = \Sigma_{i=1}^k\omega(x_i)\delta_{a(x_i)}$, where $\delta_{a(x_i)}$ is a Dirac delta concentrated at $a(x_i)$.
+	
+	The opposite inclusion will follow from Jensen's inequality. Consider the following indicator (or characteristic) function
+	\[
+	1_\Gamma(x) = \begin{cases}
+	0 ; \; x \in \Gamma \\
+	\infty ; \; x \notin \Gamma
+	\end{cases}
+	\]
+	This function is convex and by definition $\Gamma = \lbrace x ; \; 1_\Gamma(x) = 0 \rbrace$. Now, take $\lambda = \int a(x)\omega(x)dx \in \Lambda$. By Jensen's inequality, it holds that
+	\[
+	1_\Gamma(\lambda) \leq \int 1_\Gamma(a(x))\omega(x)dx = \int 0\cdot\omega(x) = 0.
+	\]
+	So, $1_\Gamma(\lambda) = 0$, meaning $\lambda \in \Gamma$. With this we conclude the general proof.
+	
+	Take now the measurable space $(-\pi, \pi)$ and the function $f(re^{i\phi})$. The integral \\ $\frac{1}{\pi} \int_{-\pi}^{\pi}f(re^{i\phi}) \cos^2\left( \frac{\theta - \phi}{2} \right) d\phi$ is by our observation a continuous convex combination of the function $f(re^{i\phi})$, and hence lies in $D$. The conclusion follows.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,115 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+\DeclareMathOperator{\Ass}{Ass}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $7.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $R$ cel Noetherski kolobar.
+\begin{enumerate}[label=(\alph*)]
+	\item Pokažimo, da je $R$ kolobar z enolično faktorizacijo (UFD) natanko tedaj, ko so vsi minimalni praideali nad glavnimi ideali spet glavni ideali.
+	
+	Privzemimo najprej, da je $R$ UFD in vzemimo poljuben glavni ideal $(a)$. Ker je $R$ Noetherski kolobar, so po posledici 7.20 s predavanj minimalni praideali nad $(a)$ točno izolirani praideali ideala $(a)$, torej minimalni elementi množice $\Ass((a))$. Ker je $R$ Noetherski, ima vsak ideal minimalno primarno dekompozicijo, zato naj bo $\lbrace Q_1, \dots, Q_n\rbrace$ minimalna primarna dekompozicija za ideal $(a)$. Po izreku 7.19 velja $\Ass((a)) = \lbrace P_1, \dots, P_n \rbrace$, kjer je $P_i = \sqrt{Q_i}$.
+	Ker je $R$ UFD, naj bo $a = p_1^{k_1}\cdots p_m^{k_m}$ do vrstnega reda in asociacije enoličen zapis elementa $a$ kot produkt praelementov. Ker je $a \in \bigcap_{i=1}^m Q_i \subseteq \bigcap_{i=1}^m P_i$, vsak od idealov $P_i$ vsebuje vsaj eno potenco nekega praelementa $p_j$. Ker smo dobili ideale $P_i$ iz minimalne dekompozicije in ker je radikal preseka enak preseku radikalov, je $n=m$ in (po preindeksiranju) zaradi minimalnosti praidealov velja $P_i = (p_i)$.
+	
+	Obratno, naj bo vsak minimalni praideal nad glavnim idealom tudi glavni. Uporabili bomo dejstvo (izrek Kaplanskega), da je cel kolobar UFD natanko tedaj, ko vsak praideal vsebuje praelement. Naj bo $Q$ nek praideal. Vzemimo poljuben neničelen element $a \in Q$ in si oglejmo glavni ideal $(a)$. Na isti način kot zgoraj dobimo (končno) množico minimalnih praidealov nad $(a)$. Ker je $Q$ praideal, ki vsebuje $(a)$, mora obstajati nek minimalni praideal $P_i$ nad $(a)$, da velja $(a) \subseteq P_i \subseteq Q$. Po predpostavki je $P_i = (p)$, kjer pa je $p$ praelement v $R$, ker je $R$ domena. Očitno torej $Q$ vsebuje neničelen praelement.
+	
+	\item Dokažimo še, da če je $R$ UFD, potem je vsak minimalni praideal glavni. To seveda sledi direktno iz prejšnje točke, saj je ideal $(0)$ glavni na trivialen način (ta točka je na nek način poseben primer prejšnje). 
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+Naj bo $P$ praideal komutativnega kolobarja $R$ in naj bo $\varphi\colon R \to R_P$ standarden lokalizacijski homomorfizem, definiran s predpisom $r \mapsto \frac{r}{1}$. Označimo $S_P(0) = \ker \varphi$.
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da je $S_P(0)$ vsebovan v vsakem $P$-primarnem idealu.
+	
+	Najprej pokažimo vsebovanost $S_P(0) \subseteq P$. Naj bo $a \in S_P(0)$, torej $\frac{a}{1} = 0$. Potem obstaja element $u \in R\setminus P$, da je $ua = 0.$ Ker očitno $u \notin P$, velja $a \in P$, saj je $P$ praideal.
+	
+	Sedaj vzemimo poljuben $P$-primaren ideal $Q$, torej $P = \sqrt{Q}$. Posebej velja $Q \subseteq P$. Po lemi 7.21 s predavanj velja $(Q^e)^c = Q$ in $(S_P(0)^e)^c = S_P(0)$. Potem pa velja
+	\[
+	S_P(0) = (0)^c \subseteq (Q^e)^c = Q.
+	\]
+	\item Dokažimo še, da je ideal $S_P(0)$ $P$-primaren natanko tedaj, ko je $P$ minimalni praideal.
+	
+	Recimo, da je $S_P(0)$ $P$-primaren, torej naj bo $\sqrt{S_P(0)} = P$ in vzemimo poljuben $x \in P^e \subideal R_P$. Potem je $x = \frac{p}{s}$ za neka elementa $p \in P$ in $s \in R\setminus P$. Po predpostavki obstaja $n \in \N$, da je $p^n \in S_P(0) = \ker\varphi$, torej $x^n = \frac{p^n}{s^n} = 0$. Sledi, da je $P^e$ vsebovan v nilradikalu kolobarja $R_P$, ki pa je presek vseh praidealov v kolobarju $R_P$, torej je $R_P$ minimalni praideal. Hkrati pa so praideali v $R_P$ v bijekciji s praideali v $R$, ki so vsebovani v $P$, torej je $P^e$ tudi maksimalen ideal v $R_P$. Od tod sledi, da je $P^e$ edini praideal v $R_P$, torej je $P$ minimalni ideal v $R$.
+	
+	Obratno privzemimo, da je $P$ minimalni praideal v $R$. Potem ima $R_P$ natanko en praideal $P^e$. Od tod sledi, da je nilradikal kolobarja $R_P$ kar enak idealu $P^e$. Torej za vsak $p\in P$ obstaja tak $n\in\N$, da je $\left(\frac{p}{1}\right)^n = 0$. Od tod sledi, da je $p^n \in S_P(0)$, torej $P \subseteq \sqrt{S_P(0)}$. Obratna inkluzija sledi direktno iz $S_P(0) \subseteq P$ (dokaz v prejšnji točki).
+	
+	Zakaj je $S_P(0)$ primaren? Naj bo $ab \in S_P(0) \subseteq P$. Ker je $P$ praideal, je vsaj eden od njiju gotovo v $P$, naj bo to na primer $b$. Če tudi $a \in P$, je dokaz končan, zato privzemimo $a \notin P$. Ker $ab \in S_P(0)$, obstaja $u \in R\setminus P$, da $uab = 0$, vendar je $a \in R\setminus P$, zato $vb = 0$ za $v = ua \in R\setminus P$. Torej $b \in S_P(0)$, kar pokrije še drugo možnost. S tem je dokaz končan. 
+	
+	\textbf{Opomba:} Zakaj je nilradikal komutativnega kolobarja enak preseku njegovih praidealov?
+	 Naj bo $r$ element nilradikala kolobarja $R$ in naj bo $P \in \Spec R$. Potem $r^n = 0$ za neko število $n \in \N$. Potem je $r \cdot r^{n-1} = 0 \in P$ in sledi $r \in P$ ali $r^{n-1} \in P$, saj je $P$ praideal. Po indukciji na $m \leq n-1$ s ponavljanjem tega postopka za drugi primer dobimo $r^m \in P$ za vsak $m = 1,\dots, n-1$, v posebnem primeru $r \in P$. Ker je bil praideal izbran poljubno, je $r \in P$ za vsak $P \in \Spec R$, torej je nilradikal kolobarja $R$ vsebovan v preseku vseh praidealov.
+	 Obratno privzemimo, da $x$ ni element nilradikala kolobarja $R$. Oglejmo si množico
+	 \[
+	 A = \lbrace J \subideal R ;\; \forall m \in \N\colon x^m \notin J\rbrace
+	 \]
+	 Ta množica ni prazna, saj $(0) \in A$. Delno jo uredimo z običajno inkluzijo. Vsaka veriga $J_1\subseteq J_2 \subseteq \cdots$ ima naravno zgornjo mejo $J = \bigcup_{j\geq 0} J_j \in A$. Po Zornovi lemi obstaja maksimalen element $M \in A$. Dokažimo, da je $M$ praideal. Naj velja $ab\in M$, vendar $a, b \notin M$. Potem je $M$ strogo vsebovan v $M + (a)$ in $M + (b)$, nobeden od teh dveh idealov pa ni v množici $A$, saj je $M$ njen maksimalni element. Torej obstajata $r, s \in \N$, da je $x^r \in M + (a)$ in $x^s \in M + (b)$. Vendar pa je potem $x^{r+s} = x^rx^s \in M + (ab) = M \in A$, kar je protislovje. Od tod sledi, da če $x$ ni v nilradikalu kolobarja $R$, potem $x$ ni vsebovan v nobenem praidealu. Ekvivalentno je presek vseh praidealov vsebovan v nilradikalu kolobarja $R$.
+\end{enumerate}
+
+
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}

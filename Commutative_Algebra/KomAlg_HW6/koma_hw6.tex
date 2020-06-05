@@ -1,0 +1,84 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $6.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $M$ $R$-modul in $\lbrace m_\lambda ; \; \lambda \in \Lambda\rbrace \subset M$ neka podmnožica.
+Pokažimo, da ta množica generira modul $M$ natanko tedaj, ko njena slika $\lbrace \frac{m_\lambda}{1} ;\; \lambda \in \Lambda\rbrace$ generira $R_\mathbf{m}$-modul $M_\mathbf{m}$ za vsak $\mathbf{m} \in \mSpec R$. 
+
+Najprej privzemimo $m = \Sigma_{i=1}^{n}r_im_i$ in računajmo
+\[
+\frac{m}{s} = \frac{\Sigma_{i=1}^{n}r_im_i}{s} = \frac{s^{n-1}}{s^{n-1}} \frac{\Sigma_{i=1}^{n}r_im_i}{s} = \frac{\Sigma_{i=1}^{n}s^{n-1}r_im_i}{s^n} = \Sigma_{i=1}^n \frac{r_im_i}{s} = \Sigma_{i=1}^n \frac{r_i}{s}\frac{m_i}{1}.
+\]
+Ta stranski račun nam je že pokaza implikacijo iz leve v desno.
+Sedaj pokažimo ekvivalenco. Modul, generiran z množico $A$, bo označen z $\Lin A$.
+
+Ker je $\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace \leq M$, bo enakost veljala natanko tedaj, ko bo kvocient $M/\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace = 0$. Po trditvi 5.16 iz predavanj, je to res natanko tedaj, ko za vsak $\mathbf{m} \in \mSpec R$ velja $\left(M/\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace\right)_\mathbf{m} = 0$. Seveda pa je lokalizacija kvocienta kar kvocient lokalizacij, zato bo to veljalo natanko tedaj, ko bo $M_\mathbf{m} = (\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace)_\mathbf{m}$. Množica na desni, je po prejšnjem stranskem računu enaka $\Lin\lbrace \frac{m_\lambda}{1} ;\; \lambda \in \Lambda\rbrace$ (stranski račun pokaže vsebovanost v desno, druga vsebovanost je trivialna). S tem je trditev dokazana.
+
+\underline{\textbf{Nal. 2:}}
+Naj bo $M$ Noetherski $R$-modul. Pokažimo, ekvivalence.
+
+Privzemimo (a). Ker je $M$ Noetherski s končno dolžino, je po trditvi 6.7 Artiniski. Modul $R/\Ann M$ je njegov podmodul, zato je po ekzaktnosti tudi Artiniski. S tem smo dokazali točko (d). Od tukaj nadaljujemo. Ker je $R/\Ann M$ Artiniski, po trditvi 6.11a iz predavanj obstajajo $P_1,\dots,P_n \in \mSpec (R/\Ann M)$, da je produkt $P_1\cdots P_n = (0)$. Ko naredimo kontrakcijo s kvocientno preslikavo $q\colon R \to R/\Ann M$, dobimo končen produkt maksimalnih idealov $q^{-1}(P_1)\cdot q^{-1}(P_n) \subseteq \Ann M$. S tem smo dokazali točko (b). Sedaj smo spomnimo, da smo pri dokazu trditve 6.11b zares potrebovali le trditev 6.11a Torej iz (b) sledi, da $\Spec (R/\Ann M) = \mSpec (R/\Ann M)$. Kontrakcija s kvocientno preslikavo $q$ dokaže še točko (c).
+(Trenutno shema je (a) $\implies$ (d) $\implies$ (b) $\implies$ (c)). Ker je $R/\Ann M$ Noetherski kot podmodul v $M$, po 6.12 (Hopkinsov izrek) iz (c) sledi (d).
+(Trenutno shema je (a) $\implies$ (d) $\iff$ (b) $\iff$ (c))
+
+ Dokazati moramo le še, da iz katerekoli izmed drugih točk sledi (a). Najlažje bo, če privzamemo (d). Ker je $M$ Noetherski, je po trditvi 6.3c tudi končno generiran $R$-modul, jasno pa ga lahko ekvivalentno vidimo kot končno generiran $R/\Ann M$ (saj smo le faktorizirali elemente, ki uničijo $M$). Potem pa je $M$ nek kvocient modula $\left( R/\Ann M\right)^n$ za nek $n \in \N$, ki pa je Artinski, saj je Artinski tudi modul $\left(R/\Ann M\right)^n$ kot končna vsota po predpostavki Artinskih modulov (trditev 6.6a).
+ Modul $M$ je torej Artinski in po predpostavki Noetherski, zato ima po trditvi 6.7 končno dolžino. To zaključi dokaz ekvivalenc.
+
+\end{document}
+
+%% TEMPLATES
+%\begin{enumerate}[label=(\alph*)]

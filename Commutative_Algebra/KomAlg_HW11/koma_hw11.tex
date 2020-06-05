@@ -1,0 +1,121 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+\DeclareMathOperator{\Quot}{Quot}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math relations
+\newcommand{\iso}{\cong}
+\newcommand{\homeo}{\approx}
+\newcommand{\htpeq}{\simeq}
+\newcommand{\hlgeq}{\sim}
+\newcommand{\idtfy}{\longleftrightarrow}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $11.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bosta $R \subseteq R'$ cela kolobarja (torej domeni) in naj bo $R'$ končno generirana $R$-algebra. Pokažimo, da obstajajo $y_1, \dots, y_n \in R'$, ki so algebraično neodvisni nad $R$ in neničelen element $s \in R$, da je $R'_s$ celosten nad $R[y_1,\dots,y_n]_s$.
+
+Najprej opazimo, da je trditev skoraj identična Noetherski normalizaciji, le da imamo tukaj namesto polja domeno in da smo tukaj primorani lokalizirati. Spomnimo se, da lokalizacija z elementom $s$ pomeni le lokalizacijo z množico $\lbrace s^n ; \; n \in \N_0\rbrace$. Ker je $R$ domena in kot taka nima deliteljev niča, $s^n \neq 0$ za noben $n \in \N_0$ in ta lokalizacija je dobro definirana (oz. ni ničelna).
+Naj bo $V$ množica vseh neničelnih elementov kolobarja $R$. Ker je $R$ domena, je $V$ očitno multiplikativna množica, ki ne vsebuje elementa $0$. Ker je $V$ multiplikativna v $R$, je seveda tudi v $R'$, zato si oglejmo obe lokalizaciji po $V$. Jasno je $V^{-1}R'$ končno generirana $V^{-1}R$-algebra, saj je $R'$ končno generirana $R$-algebra. Ker $V$ vsebuje vse neničelne elemente kolobarja $R$, ti pa se slikajo v obrnljive elemente v lokalizaciji $V^{-1}R$, so zato vsi neničelni elementi v $V^{-1}R$ obrnljivi, torej je $K = V^{-1}R$ polje. Z drugimi besedami, kolobar $V^{-1}R'$ je končno generirana $K$-algebra (z generatorji $x_1,\dots, x_n$), kjer je $K$ polje. Uporabimo klasično Noethersko normalizacijo (izrek 11.4), ki nam da $r \in \N$ in injektiven homomorfizem $\varphi\colon K[z_1, \dots, z_r] \to V^{-1}R'$, da je $V^{-1}R'$ končna razširitev polinomskega kolobarja $K' = K[z_1, \dots, z_r]$.
+
+V naslednjem koraku si podrobneje oglejmo generatorje obeh algeber. Naj bo $x_j$ eden od generatorjev $R$-algebre $R'$. Po konstrukciji je $\frac{x_j}{1} \in V^{-1}R'$ celosten nad $K'$, zato obstaja moničen polinom $p_j$ s koeficienti v $K'$, ki uniči $x_j$. Seveda pa je vsak od teh koeficienov že sam polinom v spremenljivkah $z_1,\dots, z_r$ s koeficienti v $K = V^{-1}R$ (koeficienti so torej ulomki). Sedaj definiramo $s \in R$ kot produkt imenovalcev vseh koeficientov vseh polinomov $p_j$ (če sta dva ulomka ekvivalentna, si imenovalec izberemo). Ker so bili v imenovalcih ravno neničelni elementi domene $R$, velja $s \neq 0$.
+
+Sedaj lahko dobimo elemente $y_j$ tako, da vzamemo generatorje $z_j$ in jih pomnožimo z elementom $s$ (s tem se znebimo vseh imenovalcev). Ker so bili generatorji $z_j$ algebraično neodvnisni nad $K$, so neodvisni tudi, če jih omejimo le na $R$. Potem so neodvisni tudi elementi $y_j$, saj so le "raztegi" elementov $z_j$. Naj bo torej $R'' = R[y_1,\dots,y_r]$ razširitev kolobarja $R$.
+
+Oglejmo si še enkrat generatorje $x_1,\dots,x_n$ $R$-algebre $R'$. Spomnimo se, da je za generator $x_j$ moničen polinom $p_j$ v spremenljivkah $z_1,\dots,z_r$ s koeficienti v $K$. Če si ogledamo posamezen člen tega polinoma, vidimo, da lahko ta člen pomnožimo s primerno potenco elementa $s$, da se vsi $z_j$ spremenijo v $y_j$ (vseh je končno). Po konstrukciji $s$ lahko nato še enkrat množimo in delimo s potencami $s$, da se izničijo vsi imenovalci vseh členov (ki jih je tudi končno) in hkrati polinom ostane moničen. V imenovalcu nam lahko ostanejo le potence števila $s$ (lahko tudi le $1$). Nov polinom označimo s $p'_j$. Jasno so koeficienti polinoma $p'_j$ sedaj vsi v kolobarji $R''_s$. Ker je vsak $x_j$ celosten nad $R''_s$, je tudi $R'$ celosten nad $R''_s$. Ker $s \in R$, je po trditvi 9.5b (lokalizacija ohranja celost) $R'_s$ celostna razširitev kolobarja $R''_s = R[y_1,\dots,y_n]_s$.
+\newline
+
+\underline{\textbf{Nal. 2:}}
+Naj bosta $R \subseteq R'$ domeni, $R$ celostno zaprt v svojem polju ulomkov (tj. normalen) in $R'$ celosten nad $R$. Naj bo $M \subideal R'$ maksimalen ideal. Pokažimo, da je $N = R \cap M \subideal R$ maksimalen in $\dim(R_N) = \dim(R'_M)$.
+
+Recimo, da $N$ ni maksimalen ideal (vendar še vedno praideal). Naj bo $Q$ nek maksimalen ideal v $R$, ki strogo vsebuje $N$. Po 9.16 (going up) obstaja $Q'$, ki leži nad $Q$, torej $Q' \cap R = Q$ in $M \subseteq Q'$. Vendar pa je $M$ maksimalen ideal, zato bodisi $Q' = R'$ bodisi $Q' = M$, kar oboje vodi v protislovje, saj $Q \neq R, N$ (ta trditev sledi tudi iz posledice 9.14b).
+
+Spomnimo se, da je za poljuben praideal $P$ kolobarja $S$ dimenzija lokalizacije $S_P$ enaka dolžini najdaljše verige praidealov v $S$, ki so vsebovani v $P$. S tem v mislih predpostavimo $\dim R_N, \dim R'_M < \infty$ in vzemimo neko najdaljšo verigo praidealov $P_j$ v $R$, ki so vsebovani v $N$. Predpostavimo lahko, da se ta veriga začne z $(0)$ in konča z $N$ (ki je kot maksimalen ideal tudi praideal), torej
+\[
+(0) \subset P_1 \subset P_2 \subset \cdots \subset P_n = N.
+\]
+Vemo že, da $M$ leži nad idealom $N = P_n$. Ker so izpolnjene predpostavke izreka 9.18 (going down), obstaja praideal $P' \subset M$, ki leži nad $P_{n-1}$. Ker so vsebovanosti v zgornji verigi stroge, je tudi tukaj stroga vsebovanost. Induktivno dobimo verigo praidealov dolžine $n$ v $R'$, ki cela leži v $M$, torej velja $\dim R_n \leq \dim R'_M$.
+Obratno, vzemimo najdaljšo verigo praidealov v $R'$, ki so vsebovani v $M$, torej
+\[
+(0) \subset Q_1 \subset Q_2 \subset \cdots \subset Q_m = M.
+\]
+Jasno z operatorjem $. \cap R$ dobimo naraščujočo verigo praidealov v $R$, ki so vsebovani v $N$. Po izreku 9.13 (incomparability) so te vsebovanosti stroge, ker so stroge tudi vsebovanosti v zgornji verigi. Dobili smo torej verigo praidealov dolžine $m$ v $R$, ki cela leži v $N$, torej $\dim R'_M \leq \dim R_N$. Dokazali smo obe neenakosti.
+
+Iz zgornjega argumenta je razvidno, da postopek potrdi enačbo tudi v primeru, ko je ena od dimenzij neskončna (in s tem tudi druga).
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}
+% figure
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.4]{fig}
+%	\caption{caption}
+%	\label{fig:label}
+%\end{figure}

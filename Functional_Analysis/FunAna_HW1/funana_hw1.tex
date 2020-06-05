@@ -1,0 +1,242 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Funkcionalna analiza - $1.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $e = (1, 1, 1,\dots)$ vektor samih enic.
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da velja $c = c_0 \oplus \F e$. Vzemimo poljubno konvergentno zaporedje $(a_n)_{n \in \N} \in c$ in naj bo $a = \lim_{n \to \infty}a_n$. Potem je zaporedje $(a_n - a)_{n\in\N}$ jasno konvergentno z limito $0$ in je zato v prostoru $c_0$. Obratno, iz poljubnega elementa $((a_n)_{n\in\N}, ae)$, kjer je $(a_n)_{n\in\N} \in c_0$ in $a \in \F$ s seštevanjem po komponentah dobimo zaporedje $(a_n + a)_{n\in\N}$, ki je jasno konvergentno z limito $a$. Na naraven način zato identificiramo
+	\[
+	(a_n)_{n\in\N} \leftrightarrow ((b_n)_{n\in\N} = (a_n - a)_{n\in\N}, ae),
+	\]
+	kjer je $a = \lim_{n\to\infty}a_n$.
+	\item Zgornji prostor opremimo z normo $||x \oplus \lambda e|| := \max\lbrace||x||_\infty, |\lambda|\rbrace$. Dokažimo, da je s to normo zgornji prostor Banachov in topološko izomorfen $(c, ||.||_\infty)$.
+	\begin{itemize}
+		\item $||.||$ je norma:
+		Seveda je ta preslikava vedno pozitivna, saj sta oba elementa maksimuma pozitivna. Za definitnost preverimo
+		\begin{align*}
+		&||((0)_{n\in\N}, 0e)|| = \max\lbrace 0, 0\rbrace = 0 \\
+		&\max\lbrace ||x||_\infty, |\lambda|\rbrace = 0 \implies ||x||_\infty = 0 \land |\lambda| = 0 \implies x = (0)_{n\in\N} \land \lambda = 0
+		\end{align*}
+		Preslikava je homogena (z absolutnimi vrednostmi), saj sta obe preslikavi znotraj maksimuma normi, maksimum pa je homogen za pozitivna realna števila. Trikotniška neenakost prav tako sledi iz tega, da sta obe preslikavi znotraj maksimuma normi in zanju velja trikotniška neenakost.
+		\item polnost:
+		Naj bo $(x_n, \lambda_n e)_{n\in\N}$ Cauchyjevo zaporedje v $c_0 \oplus \F e$, tj. za vsak $\epsilon > 0$ obstaja tak $n_0 \in \N$, da za vsaka dva indeksa $m,n > n_0$ velja $||(x_n, \lambda_n e) - (x_m, \lambda_m e)|| = ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$.
+		
+		Po definiciji zgornje norme je $||x_n - x_m||_\infty < ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$,
+		torej je zaporednje $(x_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(c_0, ||.||_\infty)$. Zato je konvergentno, torej obstaja limita $x = \lim_{n \to \infty} x_n$ v prostoru $c_0$.
+		
+		Po definiciji zgornje norme je $||\lambda_n - \lambda_m||_\infty < ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$,
+		torej je zaporednje $(\lambda_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(\F, |.|)$. Zato je konvergentno, torej obstaja limita $\lambda = \lim_{n \to \infty} \lambda_n$ v prostoru $\F$.
+		
+		V pogoju za Cauchyjevo zaporedje $(x_n, \lambda_n e)_{n\in\N}$ (zgoraj) sedaj lahko pošljemo $m \to \infty$ in dobimo pogoj, da za vsak $\epsilon > 0$ obstaja tak $n_0 \in \N$, da za vsak $n > n_0$ velja $||(x_n, \lambda_n e) - (x, \lambda e) || < \epsilon$. Z drugimi besedami, zaporedje $(x_n, \lambda_n e)_{n\in\N}$ v tej normi konvergira.
+		\item topološka izomorfnost:
+		Zgornja identifikacija je že linearna bijekcija (saj je operator limite linearen, preslikava pa je definirana preko seštevanja/odštevanja), torej (algebraični) izomorfizem. Dokazati moramo le še, da sta normi $||.||_\infty$ in $||.||$ (zadnja na novem prostoru) ekvivalentni ali pa najti elegantnejšo pot.
+		Podrobneje si oglejmo novo definirano normo.
+		\[
+		||(x, \lambda e)|| = \max\lbrace ||x||_\infty, |\lambda| \rbrace = \max\lbrace \sup_{n\in\N}\lbrace |x_n| \rbrace, |\lambda| \rbrace
+		\]
+		Vzemimo poljubno konvergentno zaporedje $x \in c$ z limito $\lambda$ in računam
+		\begin{align*}
+		||x|| &:= ||((x_n-\lambda)_{n\in\N}, \lambda)|| := \max\lbrace ||(x_n - \lambda)_{n\in\N}||_\infty, |\lambda|\rbrace \\ 
+		&\leq \max\lbrace ||x||_\infty + |\lambda|, |\lambda|\rbrace = \max\lbrace ||x||_\infty + |\lambda|\rbrace \\
+		& = ||x||_\infty + |\lambda| \leq 2 ||x||_\infty,
+		\end{align*}
+		saj je $\lambda$ limita zaporedja $x$, torej $||x||_\infty \geq |\lambda|$.
+		Od tod sledi, da je identifikacija zvezna kot preslikava Banachovih prostorov $(c = c_0 \oplus \F e, ||.||) \to (c, ||.||_\infty)$, videli pa smo že, da je linearna bijekcija. Po posledici izreka o odprti preslikavi je zato topološki izomorfizem.
+	\end{itemize}
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+Za vse $f \in C[0, 1]$ in $x \in [0, 1]$ definiramo
+\[
+(Tf)(x) = f(0) + \int_{0}^{x}f(t)dt.
+\]
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da je $T$ omejen linearen operator in izračunajmo njegovo normo.
+	Da je $T$ linearen operator, je očitno, saj sta tako integral kot seštevanje linearni operaciji.
+	Za omejenost računamo
+	\begin{align*}
+	||Tf||_\infty &= \sup_{x \in [0,1]}|Tf(x)| = \sup_{x \in [0,1]}|f(0) + \int_{0}^{x}f(t)dt| \leq \sup_{x \in [0,1]}\lbrace|f(0)| + \int_{0}^{x}|f(t)|dt\rbrace \\
+	&= |f(0)| + \sup_{x \in [0,1]}\int_{0}^{x}|f(t)|dt \leq |f(0)| + \sup_{x \in [0,1]}\int_{0}^{x}\max_{t\in[0,x]}|f(t)|dt \\ 
+	&= |f(0)| + \max_{x\in[0,1]}|f(x)| \leq 2||f||_\infty
+	\end{align*}
+	Torej je operator $T$ omejen. Ali je njegova norma kar enaka $2$? Najdimo primerno zvezno funkcijo. Če vzamemo $f \equiv 1$, potem je $(Tf)(x) = 1 + x$ in $||Tf||_\infty = \max_{x\in[0,1]}\lbrace 1 + x \rbrace = 2$.
+	\item Naj bo $Y = \lbrace g \in C^1[0, 1] ; \; g'(0) = g(0) \rbrace$. Pokažimo $\im T = Y$. Dokazali bomo obe vsebovanosti. Vzemimo $g \in Y$. Potem je $g' \in C[0,1]$ in
+	\[
+	(Tg')(x) = g'(0) + \int_{0}^{x}g'(t)dt = g(0) + \int_{0}^{x}g'(t)dt = g(x)
+	\]
+	po osnovnem izreku analize. Torej $g \in \im T$.
+	Obratno, vzemimo $g \in \im T$. Potem obstaja $f \in C[0,1]$, da je $g(x) = f(0) + \int_{0}^{x}f(t)dt$.
+	Naj bo $F$ neka primitivna funkcija funkcije $f$. Potem
+	\[
+	g(x) = f(0) - F(0) + F(0) + \int_{0}^{x}f(t)dt = f(0) - F(0) + F(x).
+	\]
+	Po osnovnem izreku analize je $g \in C^1[0, 1]$ in $g'(0) = f(0) = g(0)$.
+	\item Ali je prostor $(Y, ||.||_\infty)$ Banachov?
+	Normiran seveda je, saj $C^1 \subset C$, poln pa ni. Zaporedje $(x^{n+1})_{n \in \N} \subset Y$ je Cauchyjevo, konvergentno pa ni niti v $C[0, 1]$ (prav tako z $||.||_\infty$).
+	\item Dokažimo, da je prostor $Y$ neskončno razsežen. Recimo, da je $\lbrace g_i \rbrace_{i=1}^n$ neka končna baza za prostor $Y$. Potem vsako funkcijo $g \in Y$ lahko zapišemo kot končno vsoto $g = \Sigma_{i=1}^n\lambda_i g_i$. Po točki (b) obstajajo funkcije $\lbrace f_i \rbrace_{i=1}^n$ (vsaka v prasliki $T$, po indeksih), da je $g = \Sigma_{i=1}^n \lambda_i f_i(0) + \int_{0}^{x}\Sigma_{i=1}^n \lambda_i f_i(t)dt$. Vendar pa $C[0, 1]$ ni končno razsežen, zato obstaja funkcija $f$, ki je ne moremo zapisati kot končno linearno kombinacijo funkcij $\lbrace f_i \rbrace_{i=1}^n$. Potem pa tudi funkcije $Tf$ ne moremo zapisati kot linearno kombinacijo funkcij $\lbrace g_i \rbrace_{i=1}^n$, kar je protislovje. Prostor $Y$ je torej neskončno razsežen.
+	\item Določimo lastne vrednosti operatorja $T$. Recimo, da imamo $Tf = af$. To se zgodi nadanko tedaj, ko $af(x) = f(0) + \int_{0}^x f(t)dt$. Po premisleku iz točke (b) je $f \in C^1[0,1]$ in velja $af' = f$. Imamo natanko dve možnosti, bodisi $f \equiv 0$, kar nas ne zanima, bodisi $f(x) = e^{ax}$. Potem pa imamo
+	\[
+	ae^{ax} = 1 + \int_{0}^x e^{at}dt = 1 + \frac{1}{a}e^{ax} - \frac{1}{a}.
+	\]
+	Enačbo pomnožimo z $a$ (tukaj $a \neq 0$)
+	\begin{align*}
+	a^2e^{ax} &= a + e^{ax} - 1\\
+	(a^2 - 1)e^{ax} &= a - 1 \text{\quad/ naj $a \neq 1$}\\
+	(a + 1)e^{ax} &= 1 \text{\ \ \quad\quad/ naj $a \neq -1$}\\
+	e^{ax} &= \frac{1}{a + 1}
+	\end{align*}
+	to pa je protislovje, saj $e^.$ ni konstantna funkcija.
+	Vidimo, da $a = 1$ reši enačbo. Če $a = -1$, potem $e^{-x} = 2 - e^{-x}$, kar seveda ni enako, saj $e^.$ ni konstantna funkcija. Torej so lastne vrednosti samo $a = 1$.
+\end{enumerate}
+
+\underline{\textbf{Nal. 3:}}
+Naj bo $X$ normiran prostor in $Y$ zaprt podprostor končne kodimenzije.
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da obstaja tak zaprt podprostor $Z \leq X$, da je $X = Y \oplus Z$.
+	Privzemimo še, da $Y \neq X$ (oz. kodimenzije $0$), saj je sicer $Z = \lbrace 0 \rbrace$. Naj bo $Y$ torej pravi zaprt podprostor kodimenzije $n$. Po Rieszevi lemi o pravokotnici obstaja $z_1 \in X\setminus Y$. Po trditvi iz predavanj je $Y \oplus \Lin\lbrace z_1 \rbrace$ zaprt podprostor v $X$. Ker je $Y$ v $Y \oplus \Lin\lbrace z_1 \rbrace$ pravi podprostor, ima $Y \oplus \Lin\lbrace z_1 \rbrace$ manjšo kodimenzijo, konkretno $n-1$.
+	Sedaj lahko postopek ponavljamo in dobimo vektorje $z_1, z_2, \dots, z_n$. Po konstrukciji je $X = Y \oplus \Lin\lbrace z_1 \rbrace \oplus \cdots \oplus \Lin\lbrace z_n \rbrace = Y \oplus \Lin\lbrace z_1, \dots, z_n \rbrace$.
+	Postopek se seveda ustavi s kodimenzijo $0$, saj jo v vsakem koraku po zgornjem argumentu gotovo zmanjšamo. Označimo $Z = \Lin \lbrace z_1, \dots, z_n \rbrace$.
+	\item Dokažimo še, da sta normirana prostora $X/Y$ in $Z$ topološko izomorfna.
+	Ker imata vektorska prostora $Z$ in $X/Y$ oba dimenzijo $n$ in ker so vektorji $z_1, \dots, z_n$ linearno neodvisni ter generirajo prostor $Z$, vektorji $z_1 + Y, \dots, z_n + Y$ generirajo vektorski prostor $X/Y$.
+	Zato vzemimo izomorfizem vektorskih prostorov $\varphi\colon Z \to X/Y$, definiran na generatorjih s predpisom $z_i \mapsto z_i + Y$ (opazimo, da ta preslikava sovpada s kvocientno preslikavo $X \to X/Y$).
+	Dokazujemo le še ekvivalenco norm.
+	
+	Spomnimo se definicije kvocientne norme, tj. $||x + Y|| := \inf_{y \in Y}||x - y||$, na $Z$ pa imamo normo, ki jo dobi kot podprostor v $X$.
+	Jasno je $||z + Y|| := \inf_{y \in Y}||z - y|| \leq ||z - 0|| = ||z||$, kar dokaže eno neenakost.
+	Druga neenakost je težja, zato raje uporabimo posledico iz predavanj. Če sta $A$ in $B$ normirana prostora, kjer je $A$ končno razsežen, potem je vsak linearen operator $T\colon A \to B$ zvezen. V našem primeru sta oba normirana prostora $Z$ in $X/Y$ končno razsežna. Posebej sta zvezni obe preslikavi $\varphi$ in $\varphi^{-1}$, ki pa sta algebraična izomorfizma. Sledi, da je $\varphi$ homeomorfizem in posledično topološki izomorfizem.
+\end{enumerate}
+
+\textbf{Opomba:} Točki (a) in (b) lahko dokažemo tudi hkrati z uporabo injekcije $X/Y \to X$, definirane na generatorjih $x_i + Y \mapsto x_i$ (vzamemo nekega predstavnika) za $i = 1,\dots, n$. Dobljeni vektorji so linearno neodvisni (sicer pridemo v protislovje z neodvisnotjo v kvocientu). Na njih napet podprostor $\Lin\lbrace x_i\rbrace_{i=1}^n$ je dimenzije $n$ in velja $\Lin\lbrace x_i\rbrace_{i=1}^n \cap Y = \lbrace 0 \rbrace$.\\
+\newline
+\underline{\textbf{Nal. 4:}}
+Naj bo $Y$ zaprt podprostor normiranega prostora $X$ in naj bo $\pi\colon X \to X/Y$ kvocientna projekcija.
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da je preslikava $\Phi\colon (X/Y)^* \to Y^\bot$, podana s predpisom $f \mapsto f \circ \pi$, izometrični izomorfizem.
+	Spomnimo se, da je anihilator podprostora $Y^\bot = \lbrace f \in X^* ; \; Y \subseteq \ker f \rbrace$.
+	Dodatno privzemimo, da $Y \neq X$, sicer je $X/Y = \lbrace 0 \rbrace$ in $Y^\bot = \lbrace f \equiv 0 \rbrace$.
+	
+	Preslikava $\Phi$ je linearna, ker je kompozitum dveh linearnih preslikav. Za injektivnost poglejmo $\ker\Phi = \lbrace f \in (X/Y)^* ; \; f \circ \pi \equiv 0\rbrace$. Ker je $\pi$ surjektivna, je $f \circ \pi \equiv 0 \iff f \equiv 0$. Torej je $\Phi$ injektivna. Za surjektivnost bomo uporabili izrek o izomorfizmih. Naj bo $g \in Y^\bot$. Potem je $\ker g \supseteq Y$. Oglejmo si diagram
+	
+	\adjustbox{scale=1, center}{
+		\begin{tikzcd}
+			X \arrow[d, "\pi"] \arrow[r, "g"] & \F \\
+			\R \arrow[ru, "f"] &
+		\end{tikzcd}
+	}
+	Po prvem izreku o izomorfizmih namreč obstaja natanko ena preslikava $f$, da velja $g = f \circ \pi$.
+	Od tod sledi, da je $\Phi$ surjektivna in posledično izomorfizem.
+	
+	Da je $||f|| = ||f\circ\pi||$ je očitno, ker je $\pi$ surjektivna in $f(x + Y) = f(\pi(x))$.
+	
+	\item Najprej utemeljivo, da sta $Y^{**}$ in $Y^{\bot\bot}$ Banachova prostora, nato pa pokažimo, da sta izometrično izomorfna.
+	\begin{itemize}
+		\item Dual vsakega normirane prostora $X$ je Banachov prostor, konkretno tudi $Y^{**} = (Y^*)^*$, saj je $X^* = \mathcal{B}(X, \F)$, kjer je $\F$ jasno Banachov prostor (to smo dokazali že na predavanjih).
+		\item Vemo, da je anihilator prostora $X^\bot$ zaprt v Banachovem prostoru $X^*$ in zato Banachov. Potem je tudi $Y^{\bot\bot}$ zaprt v $X^{**}$ in zato Banachov.
+		\item Spomnimo se trditve iz predavanj in vaj, ki pravi, da sta prostora $X^*/Y^\bot$ in $Y^*$ izometrično izomorfna. Po eni strani je potem prostor $(X^*/Y^\bot)^*$ izometrično izomorfen $Y^{**}$, po drugi strani pa iz točke (a), uporabljeni na paru $Y^\bot \leq X^*$, sledi, da je izometrično izomorfen prostoru $Y^{\bot\bot}$.
+		\item \textbf{Alternativna rešitev:} Oglejmo si, kaj se sploh nahaja v drugem anihilatorju podprostora $Y$.
+		\begin{align*}
+		Y^{\bot\bot}  &= \lbrace F_x \in X^{**} ; \;  Y^\bot \subseteq \ker F_x \rbrace =  \lbrace f \in X^{**} ; \; \forall f \in Y^\bot\colon F_x(f) = 0\rbrace\\
+		&= \lbrace F_x \in X^{**} ; \; \forall f \in Y^\bot\colon f(x) = 0\rbrace = \lbrace F_x \in X^{**} ; \; x \in Y\rbrace\\
+		&= Y^{**}
+		\end{align*}
+		Zakaj velja predzadnji enačaj? V točki (a) smo posredno dokazali, da obstaja funkcional $F$, za katerega velja $\ker F = Y$. Konkretno, če vzamemo $f\colon (X/Y) \to \F$ projekcijo na $\F$ (kjer polje naravno gledamo kot neki $1$-dimenzionalen podprostor), je $\Phi(f)$ tak funkcional, ki pa je seveda v $Y^\bot$.
+	\end{itemize}
+\end{enumerate}
+
+\underline{\textbf{Nal. 5:}}
+Naj bo $X$ Banachov prostor in $\Phi\colon X \to X^*$ taka linearna preslikava, da za vsak $x \in X$ velja $\Phi(x)(x) = 0$.
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo najprej, da za vse $x, y \in X$ velja $\Phi(x)(y) = -\Phi(y)(x)$.
+	Zaporedoma upoštevamo predpostavko in linearnost preslikav $\Phi(x)$, $\Phi(y)$ in $\Phi$ ter računamo
+	\[
+	\Phi(x)(y) + \Phi(y)(x) = \Phi(x)(x+y) + \Phi(y)(x+y) = \Phi(x+y)(x+y) = 0.
+	\]
+	\item Dokažimo, da je $\Phi$ omejena preslikava.
+	Ker imamo preslikavo med dvema Banachovima prostoroma, poskusimo z izrekom o zaprtem grafu. Radi bi videli, da za poljubno konvergentno zaporedje $(x_n)_{n\in\N}$ z limito $0$ in $(\Phi(x_n))_{n\in\N}$ z limito $f$ velja $f = 0$.
+	Računamo
+	\[
+	||\Phi(x_n)|| = \sup_{||y||\leq 1}||\Phi(x_n)(y)|| = \sup_{||y||\leq 1}||\Phi(y)(x_n)|| \longrightarrow_n \sup_{||y||\leq 1} ||\Phi(y)(0)|| = 0,
+	\]
+	kjer upoštevamo zveznost (omejenost) funkcionalov $\Phi(y)$.
+\end{enumerate}
+
+\underline{\textbf{Nal. 6:}}
+Naj zaporedje $(x_n)_{n\in\N}$ v Banachovem prostoru $X$ konvergira proti $x$, zaporedje omejenih linearnih funkcionalov $(f_n)_{n\in\N}$ v $X^*$ pa naj $w^*$-konvergira proti funkcionalu $f$ ($X^*$ je prav tako Banachov prostor). Dokažimo, da zaporedje $(f_n(x_n))_{n\in\N}$ konvergira proti $f(x)$.
+
+Spomnimo se, da $f_n \to f$ šibko$^*$ natanko tedaj, ko za vsako podbazno okolico $U = U(f; x, \epsilon)$ točke $f \in X^*$ obstaja $n_0 \in \N$, tako da za vsak $n > n_0$ velja $f_n \in U$, tj. $|f_n(x)-f(x)| < \epsilon$. To je torej natanko tedaj, ko za vsak $x \in X$ velja $\lim_{n \to \infty}f_n(x) = f(x)$\footnote{Povzeto pa zapiskih prof. Drnovška.}. Spomnimo se še, da je $(f_n)_{n\in\N}$ omejeno zaporedje, $f, (f_n)_{n\in\N}$ pa so linearni in zvezni (posledično omejeni) funkcionali. Računamo
+\begin{align*}
+|| f_n(x_n) - f(x) || &= || f_n(x_n) - f_n(x) + f_n(x) - f(x) || \leq || f_n(x_n - x) || + ||f_n(x) - f(x) || \leq \\
+&\leq ||f_n||\cdot||x_n - x || + ||f_n(x) - f(x)|| \longrightarrow_n a\cdot 0 + 0 = 0
+\end{align*}
+
+\end{document}
+
+%%%  TEMPLATES %%%
+%% Lists:
+%\begin{enumerate}[label=(\alph*)]
+%
+%% Diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}

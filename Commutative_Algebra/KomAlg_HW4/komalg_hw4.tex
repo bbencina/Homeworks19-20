@@ -1,0 +1,124 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+
+% title data - MODIFY
+\title{Komutativna algebra - $4.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $S$ multiplikativna množica v komutativnem kolobarju $R$.
+\begin{enumerate}[label=(\alph*)]
+	\item Pokažimo, da za vsak ideal $I \subideal R$ velja enakost $\sqrt{(S^{-1}I)} = S^{-1}\sqrt{I}$.
+	Inkluzija iz leve v desno je očitna. Element je $\frac{a}{s} \in \sqrt{(S^{-1}I)}$ natanko tedaj, ko  obstaja tako naravno število $n$, da je $\left( \frac{a}{s} \right)^n \in S^{-1}I$. Ker pa je $S$ multiplikativna množica in je $s^n \in S$, je to natanko tedaj, ko je $a^n \in I$, oziroma $a \in \sqrt{I}$. Imamo torej $\frac{a}{s} \in S^{-1}\sqrt{I}$.
+	Obratno, naj bo $\frac{a}{s} \in S^{-1}\sqrt{I}$. To se zgodi natanko tedaj, ko obstaja neko naravno število $n$, da je $a^n \in I$. Vendar pa je $S$ multiplikativna množica in od tod sledi, da je $\left( \frac{a}{s} \right)^n \in S^{-1}I$. Po definiciji je $\frac{a}{s} \in \sqrt{(S^{-1}I)}$.
+	
+	\item Z indukcijo na število generatorjev bomo pokazali, da za poljuben končno generiran $R$-modul $M$ velja $\Ann(S^{-1}M) = S^{-1}\Ann M$.
+	Naj bo $M = (m_1)$ modul, generiran z enim elementom. Potem $M$ izomorfen $R/\Ann M$ kot $R$-modul. Po posledici 5.14b iz predavanj lokalizacija spoštuje kvociente, torej iz prejšnje enačbe sledi
+	\[
+	S^{-1}M \cong S^{-1}\left( R/\Ann M \right) \cong (S^{-1}R)/(S^{-1}\Ann M). 
+	\]
+	Potem pa je po definiciji anihilatorja $\Ann(S^{-1}M) = S^{-1}\Ann M$.
+	Pred indukcijskim korakom moramo dokazati še nekaj stranskih trditev:
+	\begin{itemize}
+		\item $\Ann (M + N) = \Ann M \cap \Ann N$: Vsak element $r \in R$, ki uniči elemente vsote modulov $M + N$ uniči tudi elemente vsakega modula posebej, vsak element $r \in R$, ki uniči vsak elemente vsakega modula posebej, pa seveda uniči tudi elemente vsote.
+		\item lokalizacija spoštuje vsote modulov: Posledica 5.14c iz predavanj.
+		\item lokalizacija spoštuje preseke modulov, tj. $S^{-1}(M \cap N) = S^-1M \cap S^{-1}N$: Inkluzija iz leve v desno je očitna iz lasnosti preseka. Za inkluzijo iz desne v levo naj velja $\frac{y}{s} = \frac{z}{t}$ za neke elemente $y \in M$, $z \in N$ in $s, t \in S$. Potem obstaja element $u \in S$, da velja $u(ty - sz) = 0$, torej $w = uty = usz \in M \cap N$. Od tod sledi, da je $\frac{y}{s} = \frac{w}{stu} \in S^{-1}(M \cap N)$. Torej desna inkluzija res velja.
+	\end{itemize}
+	Končno nadaljujemo z indukcijskim korakom. Naj trditev velja za vse končno generirane module, ki imajo število generatorjev manjše ali enako $n$ in naj bo $M = (m_1, m_2, \dots, m_{n+1})$ modul, generiran z $n+1$ elementi. Potem je $M = M_0 + N$, kjer je $M_0 = (m_1, \dots, m_n)$ in $N = (m_{n+1})$. Z upoštevanjem zgornjih ugotovitev računamo
+	\begin{align*}
+		S^{-1}\Ann M &= S^{-1}\Ann (M_0 + N) = S^{-1}(\Ann M_0 \cap \Ann N) \\
+		&= S^{-1}\Ann M_0 \cap S^{-1}\Ann N = \Ann(S^{-1}M_0) \cap \Ann(S^{-1}N) \\
+		&= \Ann(S^{-1}M_0 + S^{-1}N) = \Ann(S^{-1}(M_0 + N))\\
+		&= \Ann(S^{-1}M)
+	\end{align*}
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+Pokažimo, da je $l(X \otimes Y) \leq l(X)l(Y)$. Ločimo nekaj posebnih primerov:
+\begin{itemize}
+	\item Eden ali oba od modulov $X, Y$ imata dolžino $0$. Brez škode za splošnost $l(X) = 0$. Potem po definiciji $X = 0$ in $0 \otimes Y = 0$. Enačba velja, saj $0 \leq 0$.
+	\item Če nobeden od modulov $X, Y$ nima dolžine $0$ in katerikoli od njiju ima dolžino $\infty$, potem enačba avtomatično velja, saj je v posplošenem smislu karkoli manjše ali enako $\infty$, tudi $\infty$.
+	\item Če ima $X \otimes Y$ dolžino $0$, enačba avtomatično velja.
+	\item To je prvi netrivialni primer. Recimo, da $l(X), l(Y) < \infty$. Trditev bomo dokazali z indukcijo na dolžino modulov. Najprej naredimo indukcijski korak, da vidimo, kaj bo začetni primer, saj imamo dva modula.
+	
+	Oglejmo si poljubno eksaktno zaporedje
+	\[
+	0 \to X' \to X \to X'' \to 0.
+	\]
+	Za $X'$ in $X''$ si lahko izberemo na primer jedro in sliko poljubnega neničelnega in neinjektivnega homomorfizma kolobarjev $\varphi$ z domeno $X$. Po posledici 4.35 iz predavanj vemo, da je tenzoriranje desno-eksaktno, torej
+	\[
+	X' \otimes Y \to X \otimes Y \to x'' \otimes Y \to 0.
+	\]
+	Po aditivnosti dolžine $l$ je $l(X) = l(X') + l(X'')$, konkretno je $l(X'), l(X'') < l(X)$. Po indukciji (na dolžino $X$) je $l(X' \otimes Y) \leq l(X')l(Y)$ in $l(X'' \otimes Y) \leq l(X'')l(Y)$. Na levi strani zaporedja ni $0$, torej $X' \otimes Y \to X \otimes Y$ v splošnem ni injektivna, torej
+	\[
+	l(X \otimes Y) \leq l(X' \otimes Y) + l(X'' \otimes Y) \leq l(X')l(Y) + l(X'')l(Y) = (l(X') + l(X''))l(Y) = l(X)l(Y).
+	\]
+	Opazimo, da enak indukcijski korak deluje tudi, če začnemo z modulom $Y$. Naš osnovni primer je torej $l(X) = l(Y) = 1$.
+	Naj bo $l(X) = l(Y) = 1$, z drugimi besedami sta $X$ in $Y$ preprosta modula. Najprej trdimo, da je vsak preprost $R$-modul izomorfen $R/M$, kjer je $M$ maksimalen ideal. Res, izberimo poljuben neničelen element $m \in M$ in si oglejmo homomorfizem modulov $\phi\colon R \to M$ s predpisom $r \to mr$. Upoštevamo izrek o izomorfizmih za module. Ker je $\im\phi$ podmodul v $M$ in je $M$ preprost, je $im\phi = M$ (očitno $\phi$ ni ničelen homomorfizem). Po izreku o izomorfizmu je $R/\ker\phi \cong \im\phi = M$. Po korespondenčnem izreku za podmodule ni nobenega podmodula (tukaj ideala) med $\ker\phi$ in $R$, torej je $\ker\phi$ maksimalen ideal.
+	
+	Od tod sledi, da je $X \cong R/M$ in $Y \cong R/N$ za maksimalna ideala $M$ in $N$. Sedaj trdimo, da je $R/M \otimes_R/N \cong R/(M+N)$. Dokazali bomo s konstrukcijo izomorfizma. Naj bo na osnovnih tenzorjih definirana preslikava modulov $\varphi\colon R/M \otimes_R R/N \to R/(M+N)$ s predpisom
+	\[
+	(r + M)\otimes(q + N) \mapsto rq + M+N.
+	\]
+	Predpis je tako definiran, ker lahko $q$ iz desnega oklepaja prestavimo v levega. Težava je le dobra definiranost preslikave. Zato naj bo $r + M = r' + M$ in $q + N = q' + N$. Zanima nas, ali $rq + M+N = r'q' + M+N$. Računamo
+	\[
+	rq - r'q' + M+N = rq - r'q + r'q - r'q' + M+N = (r - r')q + r'(q - q') + M+N = 0 + M+N.
+	\]
+	To preslikavo razširimo do homomorfizma modulov. Njej inverz je očitno $rq + M+N \mapsto (rq + M)\otimes(1 + N)$.
+	
+	Imamo torej $X \otimes Y \cong R/M \otimes R/N \cong R/(M+N)$. Upoštevamo, da sta $M$ in $N$ maksimalna ideala, ki sta seveda vsebovana v $M+N$, torej $M+N \in \lbrace M, N, R \rbrace$, od tod pa sledi $X \otimes Y \in \lbrace X, Y, 0 \rbrace$. Želena neenačba sledi.
+	
+	\item Edini preostali primer je $l(X \otimes Y) = \infty$ in $0 < l(X), l(Y) < \infty$, ki pa je v protislovju s prejšnjo točko, saj smo posredno dokazali implikacijo $l(X), l(Y) <  \infty \implies l(X \otimes Y) \leq l(X)l(Y) < \infty$.
+\end{itemize}
+
+\end{document}
+
+%% TEMPLATES
+%\begin{enumerate}[label=(\alph*)]

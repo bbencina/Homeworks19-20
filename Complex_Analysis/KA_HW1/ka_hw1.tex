@@ -1,0 +1,138 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\usepackage[margin=0.5in]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+
+\title{Complex Analysis - $1^{\text{st}}$ homework}
+\author{Benjamin Benčina}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Ex. 1:}}
+Let $\Omega$ be an open and connected subset of $\C$ and let $f\colon\Omega\to\C$ be a holomorphic function. Suppose $(\Re f(z))^2 + (\Im f(z))^2 = 3$ for all $z \in \Omega$.
+
+We first notice that
+\[
+(\Re f)^2 + (\Im f)^2 \equiv 3 \iff |f|^2 \equiv 3 \iff |f| \equiv \sqrt{3}.
+\]
+In other words, $f(\Omega) \subseteq \partial\mathbf{\Delta}(0, \sqrt{3})$ and is therefore not an open set. Indeed, for every point $x \in \partial\mathbf{\Delta}(0, \sqrt{3})$ and every neighbourhood $A$ of $x$ it holds that $A$ intersects both $\partial\mathbf{\Delta}(0, \sqrt{3})$ and its complement non-trivially, meaning no subset of $\partial\mathbf{\Delta}(0, \sqrt{3})$ is open. By open mapping theorem, a non-constant holomorphic function is an open function. Since $f$ is holomorphic, $\Omega$ is an open set, and $f(\Omega)$ is not open, $f$ must be a constant function.
+\newline
+
+\underline{\textbf{Ex. 2:}}
+Let $\omega_1,\dots, \omega_n$ be distinct complex numbers of unitary norm, i. e., for every $i = 1, \dots, n$ let $\omega_i \subset \partial\mathbf{\Delta}$ and  $\omega_i \neq \omega_j$for each $i \neq j$. We are looking for a point $z_0 \in \partial\mathbf{\Delta}$ such that $|(\omega_1 - z_0)|\cdots|(\omega_n - z_0)| = 1$.
+
+Consider the function $f(z) = (z - \omega_1)\cdots(z - \omega_n)$. To rephrase the objective, we are looking for a point $z_0 \in \partial\mathbf{\Delta}$ such that $|f(z_0)| = 1$.
+
+Firstly, for any continuous function $g$ the function $|g|$ is also continuous. Indeed, denoting $g = u + iv$ (where $u$ and $v$ are real continuous functions), we have $|g| = \sqrt{u u + v v}$.
+
+Secondly, since $f$ is a polynomial, it is a holomorphic function. It follows that $f := f|_{\closure{\mathbf{\Delta}}}$ is continuous on $\closure{\mathbf{\Delta}}$ and holomorphic on $\mathbf{\Delta}$. Now, take $z = 0$ and calculate
+\[
+f(0) = (-\omega_1)\cdots(-\omega_n) \implies |f(0)| = 1.
+\]
+
+By maximum principle for holomorphic functions, there exists a point $z_1 \in \partial\mathbf{\Delta}$ such that $|f(z_1)| = \delta \geq 1$. Note also that $\partial\mathbf{\Delta}$ and $\closure{\mathbf{\Delta}}$ are compact sets, so the maximum value is in fact achieved. Pick such index $i \in \lbrace 1, \dots, n\rbrace$ so that $\omega_i$ is arcwise the closest to $z_1$, i.e., we can reach $z_1$ from $w_i$ traveling arcwise on the $\partial\mathbf{\Delta}$ without crossing any other $\omega_j$ for $i \neq j$. In general, there are two such points - pick either if they are of same arcwise distance from $z_1$.
+
+Now we have $|f(\omega_i)| = 0$, $|f(z_1)| = \delta \geq 1$. Since $|f|$ is continuous on the compact arc-interval $[\omega_i, z_1]$, it takes all values between $0$ and $\delta$, meaning there exists a point $z_0 \in \partial\mathbf{\Delta}$ in between such that $|f(z_0)| = 1$.
+\newline
+
+\underline{\textbf{Ex. 3:}}
+Let $f\colon\closure{\mathbf{\Delta}}\to\closure{\mathbf{\Delta}}$ be a continuous function which is holomorphic on the unit disc $\mathbf{\Delta}$ such that $f(\partial\mathbf{\Delta}) \subseteq \partial\mathbf{\Delta}$. We are looking for a unique holomorphic extension of $f$ to $\C$ with finitely many points removed. For the remainder of this exercise suppose $f$ is non-constant (if $f$ is constant, the extension is just this same constant).
+
+Uniqueness is straight-forward. If functions $F$ and $G$ both extend $f$ to $\C$, they must be the same on the unit disc $\mathbf{\Delta}$ (any open subset of $\closure{\mathbf{\Delta}}$ will do) and are therefore the same everywhere by the identity theorem. Now, to find the extension.
+
+Firstly, we need to state some elementary facts:
+\begin{itemize}
+\item the function $z \mapsto \frac{1}{z}$ is a holomorphic function on $\C\setminus\lbrace 0 \rbrace$,
+\item if $f(z)$ is a holomorphic function, then, by the additivity of conjugation, $\overline{f(\overline{z})}$ is also holomorphic,
+\item compositions and products of holomorphic functions are also holomorphic as long as they are well-defined.
+\end{itemize}
+Secondly, we would like to see that $f$ has finitely many zeros. Suppose that $f$ has an infinite number of zeros. Since $\closure{\mathbf{\Delta}}$ is bounded, at least one of them has to be an accumulation point. But, that zero is then not isolated, leading to a contradiction. Alternatively, we could use the version of the identity theorem for sets with accumulation points and show that $f$ must be zero everywhere. The set $Z_1(f) = \lbrace z \in \closure{\mathbf{\Delta}} ;\; f(z) = 0\rbrace$ is hence finite. Likewise, the set $Z(f) = \lbrace z \in \C\setminus\mathbf{\Delta} ;\; f(\frac{1}{\overline{z}}) = 0 \rbrace$ is finite.
+We can now define a new function
+\[
+g(z) = \frac{1}{\overline{f(\frac{1}{\overline{z}})}},
+\]
+which is by previous properties obviously well-defined and holomorphic on $\C\setminus(\closure{\mathbf{\Delta}}\cup Z(f))$ and continuous on $\C\setminus(\mathbf{\Delta} \cup Z(f))$.
+To check compatibility with the function $f$, we need to look at values on $\partial\mathbf{\Delta}$, i.e., $|z| = 1$. Using the formula $\frac{1}{\overline{z}} = \frac{z}{|z|^2}$ twice we get:
+\[
+g(z) = \frac{1}{\overline{f(\frac{1}{\overline{z}})}} = \frac{1}{\overline{f(z)}} = f(z).
+\]
+We hypothesise that
+\[
+h(z) =
+\begin{cases}
+f(z);\; z \in \closure{\mathbf{\Delta}},\\
+g(z);\; z \in \C\setminus(\mathbf{\Delta} \cup Z(f)),
+\end{cases}
+\]
+is our extension. The way we defined it, $h$ is a continuous function that is holomorphic on $\C\setminus(\partial\mathbf{\Delta}\cup Z(f))$. Our final task is to extend the holomorphicity of $h$ to $\partial\mathbf{\Delta}$. We will show this in two ways, directly and using the Riemann sphere.
+\begin{enumerate}
+\item
+In the direct proof we will use Morera's theorem in a similar fashion to the tutorials. Take $z \in \partial\mathbf{\Delta}$ and an arbitrary closed curve $\gamma$ binding an open set containing $z$ and intersecting $\partial\mathbf{\Delta}$. We firstly need to see that $\gamma$ intersects $\partial\mathbf{\Delta}$ finitely many times. If $\gamma$ intersects $\partial\mathbf{\Delta}$ infinitely many times, then one of the intersections must be an accumulation point, since $\partial\mathbf{\Delta}$ is bounded. That is, however, in contradiction with $\gamma$ being a path by the Topologist's Sine curve counterexample (also known as The Warsaw arc). We now denote by $\gamma_1$ parts of $\gamma$ contained in $\mathbf{\Delta}$ connected together by correctly oriented arcs from $\partial\mathbf{\Delta}$ and forming a piecewise smooth curve. By $\gamma_2$ we denote parts of $\gamma$ contained in $\C\setminus\closure{\mathbf{\Delta}}$ (because we plan to integrate, we can forget the removed points, since they have Lebesque meassure equal to $0$) and again connect them together by correctly oriented arcs from $\partial\mathbf{\Delta}$ forming finitely many piecewise smooth curves. The important thing to notice is that the arcs added are the same in $\gamma_1$ and $\gamma_2$, they are oriented in the opposite direction (integrals cancel out) and there is finitely many of them, so there is no need to worry about combining integrals with infinite sums.
+We now integrate:
+\[
+\int_\gamma h(\zeta) d\zeta = \int_{\gamma_1} h(\zeta) d\zeta + \int_{\gamma_2} h(\zeta) d\zeta = \int_{\gamma_1} f(\zeta) d\zeta + \int_{\gamma_2} g(\zeta) d\zeta = 0 + 0  = 0
+\]
+Since the point $z \in \partial\mathbf{\Delta}$ and the curve $\gamma$ were arbitrary and $h$ is a countinuous function, $h$ is now holomorphic everywhere on its domain. Since holomorphicity is a local property, it would be enough to look at arbitrarily small circles (direct consequence of the Cauchy-Greene integral formula) around every point $z \in \partial\mathbf{\Delta}$ and the procedure would be identical.
+\item
+The other proof requires merely a change of perspective and the notion that holomorphicity is a local property. Instead of looking at $h$ as a function defined on a domain $\C$, we will look at it as a function defined on a domain in the Riemann sphere. Using M\"obius transformations we can map the unit disc to the upper half-plane, its boundary to the real line and consequently the interior of its complement to the lower half-plane. We even get to choose which point we send to $\infty$, giving as total local control. Also note that M\"obius transformations map circles to circles, provided we don't cross the point we send to infinity (in which case the circle gets mapped to some line). Here we will do the example where $z = -1 \in \partial\mathbf{\Delta}$, the other cases are completely analogue.
+
+Take $z = -1$ and the circle $K = \partial\mathbf{\Delta}(z, r)$ where $r < 2$ (so we don't cross or go around the point $1$ which we are sending to $\infty$). Use the M\"obius transformation that maps $(-1, 0, 1) \mapsto (0, i, \infty)$, that is $\varphi(z) = \frac{zi + i}{1 - z}$. Note it is a biholomorphism of the Riemann sphere, so if we prove that $\varphi\circ h$ is holomorphic, so is $\varphi^{-1}\circ\varphi\circ h = h$. But, now we are in the exact case from the tutorials, extending holomorphicity to the segment of the real line around $0$ that is encapsulated by arbitrary circles $\varphi(K)$ (they grow to infinity as we send $r \to 2$). We have translated the problem to a known one and can now use the exercise from tutorials. To prove the same at other points of $\partial\mathbf{\Delta}$ simply take the M\"obius transformation that maps $(z, 0, -z) \mapsto (0, i, \infty)$.
+\end{enumerate}
+This proves that $h$ is really a holomorphic extention of $f$ to the entire $\C$ with finitely many points removed - those points are precisely zeros of $f$ and the 
+
+\underline{\textbf{Ex. 4:}}
+Let $f\colon\mathbf{\Delta}\to\mathbf{\Delta}$ be a holomorphic function such that there exists a point $a \in \mathbf{\Delta}\setminus\lbrace 0 \rbrace$ satisfying $f(a) = f(-a) = 0$. For the remainder of this exercise suppose $f$ is non-constant.
+\begin{enumerate}[label=(\alph*)]
+\item The automorphism of the unit disc that sends the point $a$ to $0$ is $\varphi_a(z) = \frac{z-a}{1 - \overline{a}z}$. Note that $e^{i\theta}\cdot \varphi_a(z)$ is also an appropriate automorphism for every $\theta \in [0, 2\pi)$.
+\item We now want to prove that the function $g(z) = \frac{f(z)}{\varphi_a(z)\cdot\varphi_{-a}(z)}$ is a well-defined holomorphic function mapping the unit disc $\mathbf{\Delta}$ back to itself.
+Function $g$ is clearly holomorphic on the entire disc $\mathbf{\Delta}$, except maybe at the points $a$ and $-a$, where poles lie. However, holomorphic functions have isolated zeros, meaning we can write the component functions as follows: $f(z) = (z-a)\cdot(z+a)\cdot h(z)$, $\varphi_a(z) = (z-a)\cdot \psi_a(z)$, and $\varphi_{-a}(z) = (z+a)\cdot \psi_a{-a}(z)$, where $h(z), \psi_a, \psi_{-a}$ are holomorphic functions and $\psi_a, \psi_{-a}$ don't have zeros at $a$ or $-a$ (since biholomorphisms are by definition bijective). We have
+\[
+g(z) = \frac{f(z)}{\varphi_a(z)\cdot\varphi_{-a}(z)} = \frac{h(z)}{\psi_a(z)\cdot\psi_{-a}(a)} = h(z)(1 - \overline{a}^2z^2).
+\]
+It is now clear that $g$ is a holomorphic function everywhere on $\mathbf{\Delta}$.
+Since $g$ is a non-constant holomorphic function, its maximum (or rather supremum) will be achieved on $\partial\mathbf{\Delta}$. So we look at values of $|g|$ when we send $|z| \to 1$. Note that automorphisms of the disc map the boundary to the boundary and the interior to the interior, so we have:
+\[
+|g| = \frac{|f|}{|\varphi_a||\varphi_{-a}|} \xrightarrow{|z| \to 1} \frac{|f|}{1\cdot 1} = |f| \leq 1.
+\]
+%Since $|h(z)| \leq 1$, we simply calculate:
+%\[
+%|g(z)| = \frac{|h(z)|}{\frac{1}{(1-\overline{a}z)(1+\overline{a}z)}} = |h(z)||1-\overline{a}^2z^2| \leq 1.
+%\]
+%Since $g$ is non-constant and holomorphic, it is an open function, and hence maps $\mathbf{\Delta}$ to a connected domain in $\C$. Now, send $|z| \to 1$ and observe the following limit:
+%\[
+%\lim_{|z| \to 1}g(z) = \lim_{|z| \to 1}\frac{f(z)}{\varphi_a(z)\cdot\varphi_{-a}(z)} = \frac{\lim_{|z| \to 1}f(z)}{1\cdot 1} \leq 1.
+%\]
+
+\item Proving that $|f(0)| \leq |a|^2$ is a matter of a simple calculation. Take into account that $\varphi_a(0) = -a$ and $\varphi_{-a}(0) = a$. Now use (b):
+\[
+|f(0)| = |g(0)|\cdot|\varphi_a(0)|\cdot|\varphi_{-a}(0)| \leq 1 \cdot |-a| \cdot |a| = |a|^2.
+\]
+\item Suppose $|f(0)| = |a|^2$. It follows that $|g(0)| = 1$. We see that $g$ reaches its maximum in the interior, so by maximum principle $g \equiv \omega$ where $\omega$ is a complex number of unitary norm. Now clearly $f = \omega\cdot\varphi_a\cdot\varphi_{-a}$. Using (a), we can hide $\omega$ into one of the automorphisms, so equivalently $f = \varphi_a\cdot\varphi_{-a}$.
+\end{enumerate}
+All that remains is to comment on the case where $f$ is a constant function. If $f$ is constant, it is clearly $f \equiv 0$, since $f(a) = 0$. It immediately follows that $g \equiv 0$, and is hence a well-defined holomorphic function mapping the unit disc $\mathbf{\Delta}$ back to itself. Since $|f(0)| = 0$, (c) is obviously true and there is no need to comment on (d), since $a \neq 0$.
+\end{document}

@@ -1,0 +1,88 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Spec}{Spec}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+
+% title data - MODIFY
+\title{Komutativna algebra - $5.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $R_2$ podkolobar kolobarja $R_1$.
+\begin{enumerate}[label=(\alph*)]
+	\item Naj ima $R_2$ samo en praideal $P_2$. Privzemimo, da $P_2$ ni ideal v $R_1$, saj v nasprotnem primeru lahko vzamemo $P_1 = P_2$. Množica $P_2$ je vsebovana v nekem maksimalnem idealu v $R_1$, torej tudi praidealu. Definiramo množico $\mathcal{A} = \lbrace I \in \Spec R_1 ; \; P_2 \subseteq I \rbrace$ in jo uredimo z obratno inkluzijo. Množica $\mathcal{A}$ ni prazna, saj vsebuje zgornji praideal. Po klasičnem dokazu z Zornovo lemo za praideale dobimo maksimalni element množice $\mathcal{A}$ in ga označimo s $P_1$. Vemo, da je $P_1 \cap R_2$ praideal v $R_2$. Če slučajno $P_1 \cap R_2 = R_2$, potem $1 \in P_1$, kar vodi v protislovje. Zato je po predpostavki edina možnost $P_1 \cap R_2 = P_2$. Ali je $P_1$ minimalni praideal (nad $(0)$)? Da, ker smo privzeli, da $P_2$ ni ideal v $R_1$.
+	\item Oglejmo si kolobarja $R_2$ in $R_1$ kot $R_2$-modula na naraven način. Potem je $S = R_2 \setminus P_2$ multiplikativna množica v $R_2$ in $R_1$, zato oba modula (v resnici kar kolobarja) lokaliziramo po $S$. Spomnimo se, da so praideali v $R_{2P_2}$ v bijektivni korespondenci s praideali v $R_2$, ki ne sekajo množice $S$. Ker je $P_2$ minimalni praideal, ima $R_{2P_2}$ samo en praideal. Seveda je $R_{2P_2} \leq R_{1P_2}$ po trditvi iz predavanj. Sedaj smo v situaciji iz točke $(a)$. V $R_{1P_2}$ torej obstaja minimalni praideal $P_1'$ z lastnostjo $P_1' \cap R_{2P_2} = S^{-1}P_2$. Iskani praideal $P_1$ je kontrakcija tega ideala glede na standardni homomorfizem $R_1 \to R_{1P_2}$ in ima želeno lastnost, saj se vsi elementi iz $S$ slikajo v obrnljive elemente. Res, če je $s \in R_2 \setminus P_2$, potem je $\left(\frac{s}{1}\right)^{-1} = \frac{1}{s}$ (do ekvivalenčnega razreda natančno). Pravi ideali seveda ne vsebujejo obrnljivih elementov, saj potem vsebujejo tudi $1$ in so enaki celemu kolobarju, zato praslik teh elementov ni v kontrakciji.
+\end{enumerate}
+
+\underline{\textit{Alternativna rešitev:}} Nalogo lahko rešimo tudi v drugo smer.
+\begin{enumerate}[label=(\alph*)]
+	\item Predpostavimo, da ima $R_2$ samo en praideal $P_2$. Pokažimo,da obstaja minimalni praideal $P_1 \subideal R_1$, za katerega je $R_2 \cap P_1 = P_2$. Ker je $P_2$ edini praideal, je seveda tudi minimalni, zato ta točka sledi iz naslednje.
+	\item Pokažimo, da za vsak minimalni praideal $P_2 \subideal R_2$ obstaja minimalni praideal $P_1 \subideal R_1$, za katerega velja $R_2 \cap P_1 = P_2$.
+	
+	Privzemimo, da $P_2$ ni ideal v $R_1$, saj v nasprotnem primeru lahko vzamemo $P_1 = P_2$. Dovolj je najti nek praideal v $R_1$, ki ustreza pogoju, saj zaradi minimalnosti $P_2$ ustreza tudi vsak manjši, minimalni pa bo obstajal po Zornovi lemi.
+	Oglejmo si $R_1$ kot $R_2$-modul na običajen način (delovanje je kar množenje). Spomnimo se, da potem za poljubno multiplikativno množico $S \subseteq R_2$ lahko tvorimo lokalizacijo modula $S^{-1}R_1$ (v resnici je $S$ multiplikativna tudi v $R_1$, zato je to tudi lokalizacija kolobarja). Zato tvorimo lokalizacijo $R_{1 P_2} = (R_2 \setminus P_2)^{-1}R_1$. Ta lokalizacija ni ničelna, zato vsebuje nek ideal in posledično nek praideal. Kontrakcija tega ideala glede na standarden homomorfizem $R_1 \to R_{1 P_2}$ je praideal (kontrakcija praideala je očitno praideal, sicer pridemo v takojšnje protislovje), ki ustraza pogoju, saj se vsi elementi iz $R_2 \setminus P_2$ slikajo v obrnljive.
+\end{enumerate}
+
+
+\underline{\textbf{Nal. 2:}}
+Naj bo $M$ $R$-modul in $N_1$ in $N_2$ taka podmodula, da sta $M/N_1$ in $M/N_2$ Noetherska. Pokažimo, da je tudi $M/(N_1 \cap N_2)$ Noetherski modul.
+
+Najprej nalogo poenostavimo. Označimo $M' = M/(N_1 \cap N_2)$, $N_1' = N_1/(N_1 \cap N_2)$ in $N_2' = N_2/(N_1 \cap N_2)$. Po tretjem izreku o izmomorfizmih sta modula $M/N_1$ in $M/N_2$ Noetherska natanko tedaj, ko sta Noetherska modula $M'/N_1'$ in $M'/N_2'$. Radi bi pokazali, da je Notherski tudi modul $M'$.  Pokazali smo, da lahko predpostavimo $N_1 \cap N_2 = \lbrace 0 \rbrace$. V nadaljevanju bomo uporabljali staro notacijo (brez črtic).
+
+Vzemimo različna elementa $u,v \in N_1$, ki sta v istem odseku po $N_2$. Potem je razlika $u-v \in N_1 \cap N_2$, torej $u=v$, kar je protislovje. Vsak element iz $N_1$ torej predstavlja svoj odsek po $N_2$. Seveda velja tudi obratno.
+
+Privzemimo sedaj, da modul $M$ ni Noetherski. Naj bo $C$ poljubna neskončna strogo naraščujoča veriga podmodulov v $M$. Če $C$ delimo z $N_1$, dobimo verigo v $M/N_1$, ki se po predpostavki nekje ustavi. Enako velja za $N_2$. Obstaja torej indeks $j \in \N$ (kar maksimum prejšnjih dveh indeksov), da velja $C_j/N_1 = C_{j+1}/N_1$ in $C_j/N_2 = C_{j+1}/N_2$. Vzemimo sedaj poljuben $x \in C_{j+1}\setminus C_j$. Element $x$ nam ne more dati nobenega novega odseka v $M/N_1$, torej obstaja element $y \in C_j$, da je $x + N_1 = y + N_1$. Potem $z = y - x \in N_1$. Ker je bil $x$ nov element iz verige, je nujno tudi $z$, saj verigo tvorijo podmoduli. Od tod $z \in C_{j+1} \cap N_1$. V vsakem naslednjem koraku, če $j$ povečamo, dobimo večji podmodul v $N_1$, torej modul $N_1$ ni Noetherski.
+
+Označimo nove podmodule $T_j = C_j \cap N_1$. Pokazali smo, da je $T$ neskončna veriga podmodulov v $N_1$. Vendar pa $T$ inducira neskončno naraščujočo verigo podmodulov v $M/N_2$, saj vsak $x \in T_j$ predstavlja svoj odsek po $N_2$ za vsak $j \in \N$.
+Sledi, da $M/N_2$ ni Noetherski modul, kar je v protislovju s predpostavko. Taka veriga $C$ torej ne obstaja, zato je $M$ Noetherski modul.
+
+\end{document}
+
+%% TEMPLATES
+%\begin{enumerate}[label=(\alph*)]

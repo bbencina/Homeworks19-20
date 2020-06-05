@@ -1,0 +1,116 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+\DeclareMathOperator{\Quot}{Quot}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math relations
+\newcommand{\iso}{\cong}
+\newcommand{\homeo}{\approx}
+\newcommand{\htpeq}{\simeq}
+\newcommand{\hlgeq}{\sim}
+\newcommand{\idtfy}{\longleftrightarrow}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $10.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Pokažimo, da je $R \subseteq R'$ celostna razširitev natanko tedaj, ko je $R[x] \subseteq R'[x]$ celostna razširitev.
+
+Za implikacijo iz leve v desno predpostavimo, da je $R'$ celosten nad $R$. Potem je $R'$ celosten tudi nad $R[x]$ na naraven način. Prav tako je polinom $x \in R[x]$ celosten nad $R[x]$ trivialno. Ker so vsote in produkti celostnih elementov spet celostni (spomnimo se, da vsi celostni elementi tvorijo kolobar) in ker so vsi elementi iz $R'[x]$ $R'$-linearne kombinacije polinoma $x$ in njegovih potenc (vštevši ničelno potenco), implikacija sledi.
+
+Za obratno implikacijo privzemimo, da je $R'[x]$ celosten nad $R[x]$, in vzemimo $a \in R'$. Iščemo moničen polinom iz $R[x]$, ki uniči $a$. Ker je $a \in R' \subseteq R'[x]$, obstaja moničen polinom $p \in R[x][y]$, ki uniči $a$. Ta polinom (dveh spremenljivk) združimo po potencah $x$ in dobimo
+\[
+p_0(y) + x p_1(y) + \cdots + x^np_n(y),
+\]
+ki je še vedno isti polinom, ki uniči $a$ (torej, če vstavimo $y = a$, dobimo $0$). Vendar, če vstavimo $y = a$, dobimo polinomsko enačbo oblike $P(x) = 0$. Ker je polinom ničelen natanko tedaj, ko ima ničelne vse koeficiente, ima $P(x)$ ničelen konkretno tudi konstantni člen. Torej že polinom $p_0(y) \in R[y] \iso R[x]$ uniči $a$ in tudi druga implikacija sledi.
+\newline
+
+\underline{\textbf{Nal. 2:}}
+Razširitev $R \subseteq R'$ zadošča lastnosti gor grede, če zanjo zadošča zaključek gor grede izreka (9.16), torej če za vsaka dva praideala $P \in \Spec R$ in $P' \in \Spec R'$, kjer $P = P' \cap R$, ter praideal $Q \in \Spec R$, kjer $P \subseteq Q$, obstaja praideal $Q' \in \Spec R'$, da je $P' \subseteq Q'$ in $Q = Q' \cap R$.
+Pokažimo, da razširitev $R \subseteq R'$ zadošča lastnosti gor grede natanko tedaj, ko je za vsaka dva praideala $P \in \Spec R$ in $P' \in \Spec R'$, kjer $P = P' \cap R$, naravna preslikava $\varphi \colon \Spec (R'/P') \to \Spec (R/P)$ surjektivna.
+
+Podrobneje si oglejmo naravno preslikavo $\varphi$. Ker je $R\subseteq R'$, je $\varphi$ definirana s predpisom
+\[
+Q' + P' \mapsto (Q' + P') \cap R = \underbrace{Q' \cap R}_{Q \subideal R} + \underbrace{P' \cap R}_P,
+\]
+kjer je s $Q' + P'$ označen praideal $Q'/P'$.
+Surjektivnost preslikave $\varphi$ torej pomeni, da za vsak praideal $Q + P$ obstaja praideal $Q' + P'$, da $\varphi(Q' + P') = Q + P$.
+Tukaj se spomnimo, da so praideali v kvocientnem kolobarju $R/P$ točno praideali v $R$, ki vsebujejo $P$ (in analogno za $R'/P'$).
+Surjektivnost preslikave $\varphi$ torej pomeni, da za vsak praideal $Q \supseteq P$ obstaja praideal $Q' \supseteq P'$, za katerega (po definiciji $\varphi$) velja $Q' \cap R = Q$, kar je očitno ekvivaletna izjava definiciji lastnosti gor grede.
+
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}
+% figure
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.4]{fig}
+%	\caption{caption}
+%	\label{fig:label}
+%\end{figure}

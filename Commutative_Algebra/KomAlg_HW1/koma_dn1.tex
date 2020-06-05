@@ -1,0 +1,117 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\usepackage[margin=0.5in]{geometry}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newcommand{\closure}[1]{\overline{#1}}
+
+\title{Komutativna algebra - $1.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Element $e \in R$ je idempotent, če je $e^2 = e$, ideal $I$ pa je idempotenten, če je $I^2=I$.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Dokažimo, da je glavni ideal idempotenten natanko tedaj, ko je generiran z idempotentom.
+	
+	Za implikacijo v desno preprosto uporabimo dejstvo, da je produkt idealov generiran s produkti generatorjev. Če je $I = (e)$, kjer je $e^2 = e$, imamo \[I^2 = I\cdot I = (e\cdot e) = (e^2) = (e) = I.\]
+	
+	Za implikacijo v levo privzemimo $I^2 = I$ in označimo $I = (a)$. Iz idempotentnosti ideala $I$ sledi enačba $(a^2) = (a)$, iz katere dobimo $a = ra^2$ za neki $r \in R$. Sedaj moramo dokazati naslednje:
+	\begin{itemize}
+		\item $(a) = (ra)$: Iz $ra \in (a)$ sledi $(ra) \subseteq (a)$. Za nasprotno inkluzijo uporabimo zgoraj dobljeno enačbo.
+		\[
+		a = ra^2 \implies a = a(ra) \implies a \in (ra) \implies (a) \subseteq (ra).
+		\]
+		\item $ra$ je idempotent: Zopet uporabimo zgoraj dobljeno enačbo.
+		\[
+		(ra)^2 = r(ra^2) = ra
+		\]
+	\end{itemize}
+	Iz zgornjega sledi, da je $I = (ra)$ generiran z idempotentom.
+	\item Dokažimo še, da je ideal, generiran s končno idempotenti, glavni in idempotente. Po točki (a) moramo pokazati, da je tak ideal glavni ter da je generiran z idempotentom. Dokazujemo z indukcijo na število generatorjev $n$:
+	\begin{itemize}
+		\item $n = 1$: Sledi direktno iz točke (a).
+		\item $n = 2$: Naj bo $I = (e, f)$ generiran z dvema nilpotentoma.
+		Pokažimo najprej, da je element $e + f - ef$ tudi nilpotent. Res,
+		\begin{align*}
+		(e+f-ef)^2 
+		&= e^2 + ef - e^2f + fe + f^2 - ef^2 - e^2f - ef^2 + e^2f^2 \\
+		&= e + ef - ef + ef + f - ef - ef - ef + ef \\ 
+		&= e + f - ef.
+		\end{align*}
+		Domnevamo, da je $I = (e, f) = (e + f - ef)$. Dovolj je izraziti le generatorja:
+		\begin{align*}
+		e &:= e(e + f - ef) = e^2 + ef - ef = e, \\
+		f &:= f(e + f - ef) = fe + f^2 - ef = f.
+		\end{align*}
+		\item $n \to n+1$: Naj bo $I = (e_1,\dots, e_n, e_{n+1})$. Uporabimo indukcijsko predpostavko, da zreduciramo prvih $n$ generatorjev v generator $e_0$, torej $I = (e_0, e_{n+1})$. Po primeru $n = 2$ željeno sledi.
+	\end{itemize}
+\end{enumerate}
+
+\underline{\textbf{Nal. 2:}}
+Naj bo ideal $\sqrt{I}$ končno generiran. Pokažimo, da obstaja število $n_0$, za katerefa je $\sqrt{I}^{n_0} \subset I$.
+
+Konkretno označimo $\sqrt{I} = (x_1, \dots, x_N)$, kjer naj velja $x_i^{n_i} \in I$ za neka naravna števila $n_i$ in $i = 1,\dots,N$. Poljuben element $a \in \sqrt{I}$ lahko zapišemo kot
+\[
+a = \Sigma_{i = 1}^{N}a_ix_i.
+\]
+Po multinomski formuli sedaj sledi $a^{n_1 + \cdots + n_N} \in I$. Res, označimo $n_0 = n_1 + \cdots n_N$ in si oglejmo
+\[
+a^{n_0} = \Sigma_{k_1+\cdots k_N = n_0} m_{1,\dots,N}\Pi_{i=1}^N x^{k_i},
+\]
+kjer je $m_{1,\dots,N}$ primeren multinomski koeficient. Opazimo, da v primeru $k_i < n_i$ za neki $i \in \lbrace 1, \dots, N\rbrace$ mora obstajati $j \in \lbrace 1,\dots,N\rbrace$, da je $k_j >= n_j$, saj je vsota potenc $\lbrace k_i \rbrace_{i = 1}^N$ konstantna. Od tod sledi, da so vsi členi zgornje vsote vsebovani v $I$ in posledično tudi $a^{n_0}$ vsota. 
+Zato vzamemo $n_0 = n_1 + \cdots n_N$, saj je $\sqrt{I}^{n_0}$ generiran s produkti elementov iz $\sqrt{I}$.
+
+Zakaj je potrebno, da je $\sqrt{I}$ končno generiran?
+
+Vzemimo kolobar $\R$ in si nad njim oglejmo kolobar polinomov s števno spremenljivkami (in seveda še vedno le s končno členi) $\R[x_1,x_2,\dots]$.
+Naj bo $\lbrace n_i \rbrace_{i \in \N}$ poljubno strogo naraščujoče zaporedje naravnih števil. Oglejmo si ideal $I = (\lbrace x_i^{n_i} ; \; i \in \N\rbrace)$. Za vsako naravno število $n_0$ obstaja tak indeks $i \in \N$, da je $n_i > n_0$, iz česar sledi, da $\sqrt{I}^{n_0}$ ni podmnožica $I$, saj $x_i \in \sqrt{I}$ in $x_i^{n_0} \notin I$.
+\newline
+
+\underline{\textbf{Nal. 3:}}
+\begin{itemize}
+	\item Množica $X_1 = \lbrace(t^3, t^4, t^5) ; \; t \in K\rbrace \subset \mathbb{A}_K^3$ je očitno definirana s polinomskima enačbama $y^3 - x^4 = 0$ in $z^3 - x^5 = 0$ iz $K[x,y,z]$, zato je $X_1 = V(y^3-x^4, z^3-x^5)$.
+	\item Množica $X_2 = \lbrace(\cos x, \sin x), x \in \R \rbrace \subset \mathbb{A}_\R^2$ je enaka $\S^1$ in zato $X_2 = V(x^2 + y^2 -1)$.
+	\item Množica $X_3 = \lbrace (\cos x, x), x \in \R \rbrace  \subset \mathbb{A}_\R^2$ ni algebraična množica. Res, privzemimo, da je $X_3$ algebraična množica, in vzemimo poljuben polinom $f \in I(X_3)$, torej z ničlami v $X_3$. Upoštevajmo $2\pi$-periodičnost:
+	\[
+	f(\cos(x + 2\pi k), x + 2\pi k) = f(\cos x, x + 2\pi k) = 0
+	\]
+	za vsako celo število $k$. Za vsak $x \in [0, 2\pi)$ (ali celo $\R$) ima torej polinom $f(\cos x, t) \in \R[t]$ neskončno mnogo ničel in je zato po osnovnem izreku algebre ničelni polinom. Od tod sledi $f \equiv 0$. Ker je $f \in I(X_3)$ poljubno izbrana funkcija, nas to vodi v protislovje, saj $X_3 \neq \R^2$.
+	\item Množica $X_4 = \lbrace (e^x, x), x \in \C \rbrace  \subset \mathbb{A}_\C^2$ ni algebraična množica po enakem argumentu kot v prejšnji točki. Upoštevamo le $2\pi i$-periodičnost kompleksne eksponentne funkcije, preostanek argumenta je identičen. Protislovje tukaj dobimo zaradi dejstva, da $X_4 \neq \C^2$, saj eksponentna funkcija izpusti kompleksno število $0$.
+\end{itemize}
+
+\end{document}

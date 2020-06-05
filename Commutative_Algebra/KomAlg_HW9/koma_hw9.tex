@@ -1,0 +1,128 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+\DeclareMathOperator{\Quot}{Quot}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math relations
+\newcommand{\iso}{\cong}
+\newcommand{\homeo}{\approx}
+\newcommand{\htpeq}{\simeq}
+\newcommand{\hlgeq}{\sim}
+\newcommand{\idtfy}{\longleftrightarrow}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Komutativna algebra - $9.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Nal. 1:}}
+Naj bo $m = k^2n \in \Z$, kjer $k, n \in \Z$ in $n$ brez kvadratnih faktorjev. Pokažimo, da je celostno zaprtje $\Z[\sqrt{m}]$ v svojem obsegu ulomkov enako $\Z[\frac{1 + \sqrt{n}}{2}]$, če je $n \equiv 1$ in $\Z[\sqrt{n}]$ sicer. Dodatno lahko predpostavimo $k \in \N$.
+
+Polje ulomkov v našem primeru je $\Q(\sqrt{m})$, seveda pa velja $\Q(\sqrt{m}) = \Q(k\sqrt{n}) = \Q(\sqrt{n})$. Zanimajo nas celostni elementi oblike $a + b \sqrt{m} = a + bk\sqrt{n}$, kjer $a, b \in \Q$. Tak element seveda zadošča polinomu $(x - a - bk\sqrt{n})(x - a + bk\sqrt{n}) = x^2 - 2ax + a^2 - nk^2b^2$. Hočemo, da $-2a, a^2 - nk^2b^2 \in \Z$. Če to velja, potem seveda tudi $4(a^2 - nk^2b^2) = (2a)^2 - n(2kb)^2 \in \Z$ in deljivo s $4$. Ker je $n$ brez kvadratnih faktorjev, sledi $2kb \in \Z$. Prestavimo se v kolobar $\Z_4$. Zgornji izraz je tam enak $0$, edina kvadrata pa sta $0$ in $1$. Ločimo primere:
+\begin{itemize}
+	\item $n \equiv 2$: V tem primeru iz $(2a)^2 \equiv 2(2kb)^2$ sledi $(2a)^2 \equiv 0$ in $(2kb)^2 \equiv 0$, saj sta $0$ in $1$ edina kvadrata. Če $a \notin \Z$, vemo pa $2a \in \Z$, potem $(2a)^2 \equiv 1$, kar je protislovje, torej $a \in \Z$. Z enakim premislekom dobimo $kb \in \Z$. Od tod torej $\closure{\Z[\sqrt{m}]} = \Z[\sqrt{n}]$.
+	\item $n \equiv 3$: Isti premislek kot $n \equiv 2$.
+	\item $n \equiv 0$: Z drugimi besedami, $4 = 2^2 | n$. V tem primeru je $n = 0$, sicer pridemo v protislovje s predpostavko, da $n$ nima kvadratnih faktorjev. Potem je tudi $m = 0$ in izjava je trivialno resnična.
+	\item $n \equiv 1$: Tukaj je edina možnost, ko lahko $(2a)^2 \equiv 1$ in $(2kb)^2 \equiv 1$. To se na primer lahko zgodi v primeru $a = \frac{1}{2}, b = \frac{1}{2}$ za primerne $k$. Problem je seveda, da pokrajšamo število $2$ znotraj oklepaja. Ker je $2$ praštevilo, to tudi edini način, da lahko število $2$ pokrajšamo, torej $\closure{\Z[\sqrt{m}]} = \Z[\frac{1}{2} + \frac{\sqrt{n}}{2}] = \Z[\frac{1 + \sqrt{n}}{2}]$.
+\end{itemize}
+
+Hkrati smo tudi videli, da sta dobljena kolobarja res algebraično zaprta in da je bistveno, da je $n$ brez kvadratnih faktorjev (oz. kvadratne faktorje smo primorani pridružiti številu $k^2$).
+\newline
+
+\underline{\textbf{Nal. 2:}}
+Naj bo $R \subseteq S$ celostna razširitev, $K$ algebraično zaprto polje in $f \colon R \to K$ homomorfizem. Pokažimo, da obstaja razširitev $F\colon S \to K$, torej $F|_R = f$.
+
+Najprej opazimo, da je $\ker f$ praideal v kolobarju $R$, saj je $K$ polje. Označimo $P = \ker f$. Po izreku 9.11 s predavanj (lying over) obstaja praideal $Q \subideal S$, ki leži nad $P$, saj je $R \subseteq S$ celostna razširitev. Če pogledamo kompozitum $R \to S \to S/Q$, kjer je prva preslikava inkluzija, druga pa kvocientni homomorfizem, vidimo, da je jedro tega homomorfizma točno $P$ (po definiciji ideala $Q$). Prvi izrek o izomorfizmih nam da injektiven homomorfizem $\varphi\colon R/P \to S/Q$, kjer je $S/Q$ celosten nad $R/P$. Če si sedaj ogledamo polji ulomkov, je $\Quot(S/Q)$ algebraična razširitev $\Quot(R/P)$ (spomnimo se, da je pojem celostne razširitve le posplošitev pojma algebraične razširitve na kolobarje, v poljih pa sta pojma enaka).
+
+Oglejmo si diagram
+
+\adjustbox{scale=1, center}{
+	\begin{tikzcd}
+		R \arrow[d, "q_R"] \arrow[r, "f"] & K \\
+		R/P \arrow[r, "i_R"]\arrow[ru, "f'"] & \Quot(R/P)\arrow[u, "f''"]
+	\end{tikzcd}
+}
+
+Začnemo s homomorfizmom $f$. Po prvem izreku o izomorfizmih obstaja homomorfizem $f'$. Potem obstaja tudi njegova razširitev v polju ulomkov $f''$. Radi bi, da analogen diagram velja za kolobar $S$. Po premisleku zgoraj seveda obstajata homomorfizma $q_S$ in $i_S$. Razvijmo zgornji diagram in si oglejmo
+
+\adjustbox{scale=1, center}{
+	\begin{tikzcd}
+		R \arrow[d, "q_R"] \arrow[r, "i"] & S \arrow[d, "q_S"] \\
+		R/P \arrow[r, "\varphi"]\arrow[d, "i_R"] & S/Q\arrow[d, "i_S"] \\
+		\Quot(R/P)\arrow[r, "\overline{\varphi}"]\arrow[d, "f''"] & \Quot(S/Q)\arrow[ld, "g"] \\
+		K
+	\end{tikzcd}
+}
+
+Iz teorije razširitev polj se spomnimo, da če imamo $F \subseteq E$ algebraično razširitev, lahko vsak homomorfizem polj $F \to K$ razširimo do homomorfizma polj $E \to K$ ($K$ je še vedno algebraično zaprto polje). Tako dobimo homomorfizem $g\colon \Quot(S/Q) \to K$, ki razširja homomorfizem $f''$. Iskana razširitev je potem očitno $F = g \circ i_S \circ q_S$.
+
+Poskusimo poiskati še kakšen homomorfizem, ki ga ne moremo razširiti, če katera od predpostavk in izpolnjena.
+
+Naj bo $R\subseteq S$ necelostna razširitev, kjer $R = \C[x]$ in $S = \C[x, y]/(xy-1)$, in naj bo $K = \C$ algebraično zaprto polje. Trdimo, da ničelnega homomorfizma $R \to K$ ne moremo razširiti na celoten $S$. Res, enačba $xy - 1 = 0$, ki ji v $S$ nad $R$ zadošča polinom $y$, se spremeni v protislovno enačbo $0 \cdot \overline{y} - 1 = 0$ (saj $x$ slikamo v $0$).
+
+Naj bo $Z \subseteq \Q$ celostna razširitev in naj bo $K = \Z_2$ polje, ki pa ni algebraično zaprto. Potem se kvocientnega homomorfizma $f \colon k \mapsto k \text{ mod } 2$ ne da razširiti na vsa racionalna števila. Res, naj bo $F$ možna razširitev homomorfizma. Potem po eni strani $F(\frac{1}{2} + \frac{1}{2}) = F(1) = 1$, po drugi pa $F(\frac{1}{2} + \frac{1}{2}) = 2F(\frac{1}{2}) = 0$.
+
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}
