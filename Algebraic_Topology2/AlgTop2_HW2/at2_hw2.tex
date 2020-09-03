@@ -1,0 +1,436 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{adjustbox}
+\usepackage{stmaryrd}
+
+% set margin and layout here
+\usepackage[margin=0.5in]{geometry}
+
+% commonly used math operators
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\mSpec}{mSpec}
+\DeclareMathOperator{\Quot}{Quot}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Hom}{Hom}
+
+% commonly used math objects
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+
+% commonly used math relations
+\newcommand{\iso}{\cong}
+\newcommand{\homeo}{\approx}
+\newcommand{\htpeq}{\simeq}
+\newcommand{\hlgeq}{\sim}
+\newcommand{\idtfy}{\longleftrightarrow}
+
+% commonly used math symbols
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\subideal}{\vartriangleleft}
+\newcommand{\supideal}{\vartriangleright}
+
+% title data - MODIFY
+\title{Algebraična topologija 2 - $2.$ domača naloga}
+\author{Benjamin Benčina, 27192018}
+
+\begin{document}
+
+\maketitle
+
+\underline{\textbf{Ex. 1:}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us describe the $\Delta$-structure of the given space $X$. After considering identifications we are left with four $2$-simplices $\sigma_1$, $\sigma_2$, $\sigma_3$ and $\sigma_4$ (as described in the instructions of this exercise), three $1$-simplices, let us denote them with $a = [01]$, $b = [12]$ and $c = [02]$, and a single $0$-simplex $P = [0]$.
+	
+	\item We obtain the following chain complex
+	\[
+	0 \xrightarrow{} \Z(\sigma_1, \sigma_2, \sigma_3, \sigma_4) \xrightarrow{\partial_2} \Z(a, b, c) \xrightarrow{\partial_1} \Z(P) \xrightarrow{} 0
+	\]
+	Firstly, it is obvious that $\partial_1 \equiv 0$, since we only have one $0$-simplex. Secondly, we immediately see
+	\begin{align*}
+	 &\partial_2(\sigma_1) = b + c + a \quad\quad \partial_2(\sigma_2) = a + c + b \\
+	 &\partial_2(\sigma_3) = b + c + a \quad\quad \partial_2(\sigma_4) = a + c + b
+	\end{align*}
+	It follows that the matrix form of $\partial_2$ is
+	\[
+	\sigma_2 =
+	\begin{bmatrix}
+	1 & 1 & 1 & 1\\
+	1 & 1 & 1 & 1\\
+	1 & 1 & 1 & 1
+	\end{bmatrix}
+	\]
+	yielding
+	\begin{align*}
+	\ker\partial_2 &= \Z(\sigma_1 - \sigma_4, \sigma_2 - \sigma_4, \sigma_3 - \sigma_4)\\
+	\im\partial_2 &= \Z(a + b + c)
+	\end{align*}
+	From this we easily calculate
+	\begin{align*}
+	&H_0(X) = \Z(P) / \ker\partial_1 = \Z(P) \iso \Z \\
+	&H_1(X) = \ker\partial_1 / \im\partial_2 = \Z(a, b, c) / \Z(a + b + c) \iso \Z(a, b, a+ b+ c) / \Z(a+b+c) \iso \Z(a, b)  \iso \Z^2 \\
+	&H_2(X) = \ker\partial_2 = \Z(\sigma_1 - \sigma_4, \sigma_2 - \sigma_4, \sigma_3 - \sigma_4) \iso \Z^3
+	\end{align*}
+	
+	\item By the usual procedure we obtain the following cochain complex
+	\[
+	0 \xleftarrow{} \Z(\overline{\sigma_1}, \overline{\sigma_2}, \overline{\sigma_3}, \overline{\sigma_4}) \xleftarrow{d_2} \Z(\overline{a}, \overline{b}, \overline{c}) \xleftarrow{d_1} \Z(\overline{P}) \xleftarrow{} 0
+	\]
+	where by the usual notation $\overline{x}$, where $x \in C_n(X)$ generator, denotes the homomorphism in $\Hom(C_n(X), \Z)$ that takes $x$ to $1$ and the other generators to $0$. Since we have $d_1 = \partial_1^{T} \equiv 0$ and $d_2 = \partial_2^{T}$ (as matrices), we easily obtain
+	\begin{align*}
+	\ker d_2 &= \Z(\overline{a} - \overline{c}, \overline{b} - \overline{c})\\
+	\im d_2 &= \Z(\overline{\sigma_1} + \overline{\sigma_2} + \overline{\sigma_3} + \overline{\sigma_4})
+	\end{align*}
+	We finally calculate
+	\begin{align*}
+	&H^{0}(X) = \ker d_1 = \Z(\overline{P}) \iso \Z \\
+	&H^{1}(X) = \ker d_2 / \im d_1 = \ker d_2 = \Z(\overline{a} - \overline{c}, \overline{b} - \overline{c}) \iso \Z^2\\
+	&H^{2}(X) = \Z(\overline{\sigma_1}, \overline{\sigma_2}, \overline{\sigma_3}, \overline{\sigma_4}) / \im d_2 \iso \Z(\overline{\sigma_1}, \overline{\sigma_2}, \overline{\sigma_3}, \overline{\sigma_1} + \cdots + \overline{\sigma_4}) / \Z(\overline{\sigma_1} + \cdots + \overline{\sigma_4}) = \Z(\overline{\sigma_1}, \overline{\sigma_2}, \overline{\sigma_3}) \iso \Z^3
+	\end{align*}
+	
+	\item Let us compute the cup and cap product on the (co)homology of $X$.
+	\begin{itemize}
+		\item \underline{\textbf{Cup:}} We quickly see, that $\overline{P}$ is the neutral element for the cup product. We are hence only interested in the product of $1$-cocycles. Looking at $1$-front and back faces we quickly obtain (on the level of chains)
+		\[
+		\overline{a} \cup \overline{a} = \overline{b} \cup \overline{b} = \overline{c} \cup \overline{c} = 0
+		\]
+		and
+		\[
+		\overline{a} \cup \overline{c} = \overline{b} \cup \overline{c} = 0 \quad\quad \overline{a} \cup \overline{b} = \overline{\sigma_1} + \overline{\sigma_3} \quad\quad \overline{b} \cup \overline{a} = \overline{\sigma_2} + \overline{\sigma_4}
+		\]
+		which turns out to be correct once we look only at generating cocycles.
+		
+		\item \underline{\textbf{Cap:}} Again, the cochain $\overline{P}$ quickly turns out to be a right unit. Onwards, we calculate
+		\[
+		a \cap \overline{a} = P
+		\]
+		and likewise for $b$ and $c$, while cap products of non-corresponding letters obviously turn out to be trivial.
+		Similarly we get
+		\[
+		\sigma_1 \cap \overline{\sigma_1} = P
+		\]
+		and likewise for $\sigma_2$, $\sigma_3$ and $\sigma_4$. Cap products $\sigma_i \cap \overline{\sigma_j}$ for $i \neq j$ again turn out to be trivial.
+		The remaining combinations are
+		\begin{align*}
+		&\sigma_1 \cap \overline{a} = b \quad\quad \sigma_2 \cap \overline{a} = 0 \quad\quad \sigma_3 \cap \overline{a} = b \quad\quad \sigma_4 \cap \overline{a} = 0 \\
+		&\sigma_1 \cap \overline{b} = 0 \quad\quad \sigma_2 \cap \overline{b} = a \quad\quad \sigma_3 \cap \overline{b} = 0 \quad\quad \sigma_4 \cap \overline{b} = a
+		\end{align*}
+	\end{itemize}
+\end{enumerate}
+
+\underline{\textbf{Ex. 2:}}
+Let $G$ be a topological group and $\pi \colon E \to B$ a principal $G$-bundle.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let $f \colon (\S^n, x_0) \to (B, b_0)$ be a continuous map and $f^*E \to \S^n$ the pullback principal $G$-bundle, where $c\colon \S^{n-1} \to G$ is the transition function of $f^*E$. Let
+	\[
+	\cdots \xrightarrow{} \pi_n(G, 1) \xrightarrow{} \pi_n(E, e_0) \xrightarrow{} \pi_n(B, b_0) \xrightarrow{\partial} \pi_{n-1}(G, 1) \xrightarrow{} \cdots
+	\]
+	be the long exact sequence for the bundle $E$. Let us show $\partial \colon [f] \mapsto [c]$.
+	
+	This will be easy to see once we recall what a pullback bundle along a continuous map is. We define $f^*E = \lbrace (z, e) \in \S^n\times E ; \; f(z) = \pi(e) \rbrace$. The important part for us is that the following is a commutative diagram
+	
+	\adjustbox{scale=1, center}{
+		\begin{tikzcd}
+			f^*E \arrow[d, "\pr_1"] \arrow[r, "\pr_2"] & E \arrow[d, "\pi"] \\
+			\S^n \arrow[r, "f"] & B
+		\end{tikzcd}
+	}
+	
+	Moreover, denoting $U_+$ and $U_-$ to be the upper and lower hemisphere of $\S^n$ respectively, we have $f^*E \homeo U_+\times G \sqcup U_- \times G / \sim$, where $(z, g) \sim (z, c(z)g)$ for $z \in U_+ \cap U_-$, that is, the equator.
+	
+	Now that we have revised what we need, consider the following commutative ladder with exact rows
+	
+	\adjustbox{scale=1, center}{
+		\begin{tikzcd}
+			\cdots \arrow[r, ""] &\pi_n(G, 1) \arrow[d, "id"] \arrow[r, ""] & \pi_n(f^*E, (x_0, e_0)) \arrow[d, "\pr_{2\#}"] \arrow[r, "\pr_{1\#}"] & \pi_n(\S^n, x_0) \arrow[d, "f_\#"] \arrow[r, "\partial_2"] & \pi_{n-1}(G, 1) \arrow[d, "id"] \arrow[r, ""] & \cdots \\
+			\cdots \arrow[r, ""] &\pi_n(G, 1) \arrow[r, ""] & \pi_n(E, e_0) \arrow[r, "\pi_{\#}"] & \pi_n(B, b_0) \arrow[r, "\partial_1"] & \pi_{n-1}(G, 1) \arrow[r, ""] & \cdots
+		\end{tikzcd}
+	}
+	Since the loop $[f] \in \pi_n(B, b_0)$ is actually the image $f(\S^n)$, we have $[f] = f_\#(1)$, where $1$ is the generator of the group $\Z = \pi_n(\S^n)$. Now let us use the commutativity of the above ladder and the relation $\sim$ to get
+	\[
+	\partial_1[f] = \partial_1f_\#(1) = \partial_2(1) = [c]
+	\]
+	by an exercise from tutorials.
+	\item Let $p\colon U(2) \to \S^3$ be a principal $U(1)$-bundle, where $p$ takes a $2\times 2$ matrix and maps it to its first column. Let us calculate $\pi_k(U(2), Id)$ in terms of $\pi_k(U(1), Id)$ and $\pi_k(\S^3, (1, 0))$.
+	
+	We can improve on the instructions. Consider the following
+	\[
+	U(1) = \lbrace a \in \C ; \; a \overline{a} = \overline{a} a = 1 \rbrace = \lbrace a \in \C ; \; \Re(a)^2 + \Im(a)^2 = 1 \rbrace \homeo \S^1 \subset \C
+	\]
+	Now consider the long exact sequence for this bundle
+	\[
+	\cdots \xrightarrow{} \pi_n(\S^1, 1) \xrightarrow{} \pi_n(U(2), Id) \xrightarrow{} \pi_n(\S^3, (1, 0)) \xrightarrow{} \pi_{n-1}(\S^1, 1) \xrightarrow{} \cdots
+	\]
+	Since we know $\pi_n(\S^1) \iso \Z$ precisely when $n = 1$ and is trivial otherwise, exactness of the above sequence gives us the following results:
+	\begin{itemize}
+		\item \underline{$n \geq 3$:} $\pi_n(U(2), Id) \iso \pi_n(\S^3, (1, 0))$,
+		\item \underline{$n = 2$:} Since $\pi_2(\S^3) \iso \pi_2(\S^1) \iso 0$, we get $\pi_2(U(2), (1, 0)) = 0$,
+		\item \underline{$n = 1$:} Since $\pi_1(\S^3) \iso 0$ and $\pi_1(\S^1) \iso \Z$, we get $\pi_1(U(2), Id) \iso \pi_1(U(1), Id) \iso \Z$,
+		\item \underline{$k = 0$:} Since both of the other sets are trivial, so is $\pi_0(U(2), Id) = \lbrace 0 \rbrace$, that is $U(2)$ is path-connected.
+	\end{itemize}
+	
+	Is the transition map $c \colon \S^2 \to U(1) \homeo \S^1$ nullhomotopic? Indeed it is; since $\pi_2(\S^1) = 0$, every map $\S^2 \to \S^1$ is homotopic to some constant map, which in particular holds for $c \colon \S^2 \to \S^1$.
+	
+	\item Let us use the principal $U(2)$-bundle $p \colon U(3) \to \S^5$ to calculate $\pi_1(U(3))$, $\pi_2(U(3))$ and $\pi_3(U(3))$.
+	
+	Again we consider the long exact sequence
+	\begin{align*}
+	0 &\xrightarrow{} \pi_3(U(2)) \xrightarrow{} \pi_3(U(3)) \xrightarrow{} \pi_3(\S^5) \xrightarrow{} \pi_2(U(2)) \xrightarrow{} \pi_2(U(3)) \xrightarrow{} \pi_2(\S^5) \xrightarrow{} \\
+	&\xrightarrow{} \pi_1(U(2)) \xrightarrow{} \pi_1(U(3)) \xrightarrow{} \pi_1(\S^5) \xrightarrow{} 0
+	\end{align*}
+	Since we know $\pi_n(\S^5) \iso 0$ for $n<5$, by exactness we get:
+	\begin{align*}
+	&\pi_3(U(3)) \iso \pi_3(U(2)) \iso \pi_3(\S^3) \iso \Z \\
+	&\pi_2(U(3)) \iso \pi_2(U(2)) \iso 0 \\
+	&\pi_1(U(3)) \iso \pi_1(U(2)) \iso \Z
+	\end{align*}
+	
+	\item Let us show that the principal $SO(3)$-bundle $p \colon SO(4) \to \S^3$ is a trivial bundle and calculate $\pi_n(SO(4))$ in terms of $\pi_n(SO(3))$ and $\pi_n(\S^3)$.
+	
+	From the subject Analysis on manifolds we know that $\S^3 \to \R\P^3$ is a universal covering space, so by a theorem from lectures $\pi_n(\S^3) \iso \pi_n(\R\P^3)$ for each $n \geq 2$. Moreover, we also know $\R\P^3 \homeo SO(3)$ and obtain
+	\[
+	\pi_2(SO(3)) \iso \pi_2(\R\P^3) \iso \pi_2(\S^3) = 0.
+	\]
+	By the same argument from (b) it now follows that the transition map $c \colon  \S^2 \to SO(3)$ is trivial, hence the the bundle is trivial, that is $SO(4) \homeo \S^3 \times SO(3)$. This is easily seen either from the relation we were looking at in (a).
+	It follows that for each $n \in \N$ we now have $\pi_n(SO(4)) \iso \pi_n(\S^3) \oplus \pi_n(SO(3))$.
+\end{enumerate}
+
+\underline{\textbf{Ex. 3:}}
+Let $X$ be a compact orientable $n$-manifold, let $Y = \partial X$ and $R$ a ring. Suppose $X$ is an $R$-homology ball, that is $H_*(X ; \; R) \iso H_*(\B^n ; \; R)$.
+\begin{enumerate}[label=(\alph*)]
+	\item Let us compute $H_*(Y ; \; R)$. We first notice the following
+	\[
+	H_k(X; \; R) \iso H_k(\B^n ; \; R) \iso (H_k(\B^n ; \; \Z) \otimes R) \oplus \Tor(H_{k-1}(\B^n ; \; \Z), R) =
+	\begin{cases}
+	0 ; &\quad k > 0 \\
+	R ; &\quad k = 0
+	\end{cases}
+	\]
+	since the torsion parts always vanish here. Furthermore, in order for us to be able to use the Poincar\'e-Lefschetz duality later, we need $X$ to also be $R$-orientable. By assumption $X$ is $\Z$-orientable, that is the double manifold $DX = X \sqcup_{\partial X} X$ is orientable and so $H_n(DX) \iso \Z$. It follows that $H_{n-1}(DX)$ is torsion-free, and hence by universal coefficient theorem
+	\[
+	H_n(DX;\; R) \iso (H_n(DX) \otimes R) \oplus \Tor(H_{n-1}(DX), R) \iso \Z \otimes R \iso R.
+	\]
+	With that in mind we consider the long exact homology sequence
+	\[
+	\cdots \xrightarrow{} H_k(Y ; \; R) \xrightarrow{} H_k(X ; \; R) \xrightarrow{} H_k(X, Y ; \; R) 
+	\xrightarrow{} H_{k-1}(Y ; \; R) \xrightarrow{} H_{k-1}(X ; \; R) \xrightarrow{} \cdots
+	\]
+	We look at parts of the sequence as follows
+	\begin{itemize}
+		\item \underline{\textbf{$1 < k < n$:}} We of course have $H_k(X ; \; R) \iso H_{k-1}(X ; \; R) \iso 0$ and by the Poincar\'e-Lefschetz duality we have $H_k(X, Y ; \; R) \iso H^{n-k}(\B^n ; \; R) \iso 0$, where the last equality trivially follows from the universal coefficient theorem for cohomology. From the long exact sequence above it now clearly follows that $H_{k-1}(Y ; \; R) \iso 0$. Shifting the index we read $H_k(Y; \; R) \iso 0$ for all $1 \leq k < n-1$.
+		\item \underline{\textbf{$k = n$:}} By the P-L duality we again get
+		\[
+		H_{n-1}(Y ; \; R) \iso H_n(X, Y ; \; R) \iso H^{0}(\B^n ; \; R) \iso R
+		\]
+		\item \underline{\textbf{$k = 1$:}} By the exactness of the above sequence we get
+		\[
+		H_0(Y ; \; R) \iso H_0(X ; \; R) \iso R
+		\]
+		\item Since $Y$ is a $(n-1)$-manifold, we need not compute the $n$-th homology group as we know it to be trivial, but we can mention that this fact follows from the above sequence as well.
+	\end{itemize}
+	Here we comment that the obtained results are in line with our intuition, that is if $X$ is an $R$-homology $n$-ball, we can reasonably expect $\partial X$ to be an $R$-homology $(n-1)$-sphere.
+	
+	\item Now suppose $n=4$ and $R = \Q$. Let us show that the order of $H_1(Y ; \; \Z)$ is a square, denote it $a^2$. We will also describe $a$ in terms of homology of $X$.
+	
+	By the universal coefficient theorem for homology we have
+	\[
+	(H_1(Y) \otimes \Q) \oplus \Tor(H_0(Y), \Q) \iso H_1(Y ; \; \Q) \iso 0
+	\]
+	Consequently, each of the summands must be trivial, in particular $H_1(Y) \otimes \Q \iso 0$ (in general, if $R$ is a field, torsion vanishes). Note that $H_k(X)$ and $H_k(Y)$ are finitely generated Abelian groups and hence of the form $\Z^p \oplus \Z_{p_1} \oplus \cdots \oplus \Z_{p_m}$ (free part plus torsion). Since $\Z \otimes \Q \iso \Q$ and obviously $\Q \otimes \Q \iso \Q$, we see that our group $H_1(Y ; \; \Z)$ is composed solely from the torsion part, since for all $m \in \N$ clearly $\Z_m \otimes \Q \iso 0$. Here we see that we nowhere used that our index is $1$ except at $H_1(Y; \; \Q) \iso 0$. It follows that the same holds for $H_2(Y)$ and $H_3(Y)$.
+	
+	On the other hand, since $Y$ is closed and orientable, we have
+	\[
+	(H_3(Y) \otimes \Z) \oplus \Tor(H_2(Y), \Z) \iso H_3(Y) \iso \Z
+	\]
+	so $\Tor(H_2(Y), \Z) = 0$ and $H_2(Y)$ is torsion free. From the above it follows that $H_2(Y)$ is trivial.
+	We can now look at the part of the long exact sequence for the pair $(X,Y)$ that interests us:
+	\[
+	0 \xrightarrow{} H_2(X) \xrightarrow{} H_2(X, Y) \xrightarrow{} H_1(Y) \xrightarrow{} H_1(X) \xrightarrow{} H_1(X, Y) \xrightarrow{} 0
+	\]
+	since $H_0(Y) \iso H_0(X)$.
+	
+	By the P-L duality and the universal coefficient theorem for cohomology we have
+	\[
+	H_1(X, Y) \iso H^3(X) \iso \Hom(H_3(X), \Z) \oplus \Ext(H_2(X), \Z) \iso \Ext(H_2(X), \Z) \iso H_2(X)
+	\]
+	and similarly
+	\[
+	H_2(X, Y) \iso H^2(X) \iso \Hom(H_2(X), \Z) \oplus \Ext(H_1(X), \Z) \iso \Ext(H_1(X), \Z) \iso H_1(X)
+	\]
+	since both groups are solely composed of the torsion part.
+	
+	Finally, let $r = |H_2(X)|$. Then since by exactness of the above sequence $H_2(X) \to H_2(X, Y)$ is injective and we are dealing with finite groups, there exists $k \in \N$, so that $|H_2(X, Y)| = kr$. Again by exactness of the above sequence, using the fact that the arrows are homomorphisms, $|\im H_1(Y)| = \frac{|H_1(Y)|}{k}$. Using the two isomorphisms we obtained above and surjectivity of $H_1(X) \to H_1(X, Y)$ we get
+	\[
+	r = |H_2(X)| = |H_1(X, Y)| = \frac{|H_1(X)|}{|\im H_1(Y)|} = k \frac{|H_2(X, Y)|}{|H_1(Y)|} = \frac{rk^2}{|H_1(Y)|}
+	\]
+	It now follows that $|H_1(Y)| = k^2$, where clearly $k = \frac{|H_1(X)|}{|H_2(X)|}$ (again using one of the above isomorphisms).
+\end{enumerate}
+
+\underline{\textbf{Ex. 4:}}
+Let $X$ be a closed, connected, orientable smooth $n$-manifold and let $Y \subset X$ be a smooth closed submanifold.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let us express the homology of the complement $H_*(X \setminus Y)$ in terms of the (co)homology of the pair $(X, Y)$. We will use the fact that $Y$ has a closed tubular neighbourhood $N$ in $X$ which is diffeomorphic to the unit disc bundle (($n-m$)-dimensional) of the normal bundle of $Y$ in $X$.
+	
+	Let $\tau$ be the tubular neighbourhood for $Y$ that is diffeomorphic to the unit disc bundle of the normal bundle $NY \subset TX|_Y$. Notice we can take away the zero level of $\tau$ (which is a natural representation of $Y$ in $\tau$) to get $\tau \setminus Y$ that now strongly deformationally retracts to the unit sphere bundle ($(n-m-1)$-dimensional) of the normal bundle $NY \subset TX|_Y$. Denote this sphere bundle $\S Y = \partial \tau = \B Y$. Now denote $\widetilde{X} = X \setminus \tau$ and notice that by assumption this bundle is a strong deformation retract of $X \setminus Y$. Using the P-L duality we get
+	\[
+	H_k(\widetilde{X}) \iso H^{n-k}(\widetilde{X}, \partial\widetilde{X})
+	\]
+	Now by assumption and the above arguments the right-hand-side pair is a strong deformation retract of the pair $(X \setminus Y, \tau\setminus Y)$, but since of course $\closure{Y} \subset \mathring{\tau}$, by excision and homotopy we have
+	\[
+	H^{n-k}(X \setminus Y, \tau \setminus Y) \iso H^{n-k}(X, \tau) \iso H^{n-k}(X, Y).
+	\]
+	It follows that for all $k$ we have $H_k(X\setminus Y) \iso H^{n-k}(X, Y)$.
+	
+	\item When $m = n-1$ we wish to compute $H_0(X \setminus Y)$.
+	
+	By (a) we have that $H_0(X\setminus Y) \iso H^{n}(X, Y)$. To compute this we consider the cohomology long exact sequence for the pair $(X, Y)$
+	\[
+	\cdots \xrightarrow{} H^{n-1}(Y) \xrightarrow{} H^{n}(X, Y) \xrightarrow{} H^{n}(X) \xrightarrow{} H^{n}(Y) \xrightarrow{} 0
+	\]
+	Since $Y$ is a manifold of dimension $m = n-1$ and $X$ is orientable, this turns into
+	\[
+	\cdots \xrightarrow{} H^{n-1}(Y) \xrightarrow{} H^{n}(X, Y) \xrightarrow{} \Z \xrightarrow{} 0
+	\]
+	We can now say by exactness $H_0(X \setminus Y) \iso \im H^{n-1}(Y) \oplus \Z$, where the first summand depends on the number of path-components of $Y$ and their orientability.
+	
+	\item Suppose $X$ has the integral homology of a sphere. Let us express $H_*(X \setminus Y)$ in terms of (co)homology of $Y$.
+	
+	By assumption $H_*(X) \iso H_*(\S^n)$, that is $H_k(X) \iso \Z$ precisely when $k = 0, n$ and trivial otherwise. We know from (a) that $H_k(X \setminus Y) = H^{n-k}(X, Y)$. To further calculate this, consider the long exact cohomology sequence for the pair $(X, Y)$
+	\[
+	\cdots \xrightarrow{} H^{k}(X, Y) \xrightarrow{} H^{k}(X) \xrightarrow{} H^{k}(Y) \xrightarrow{} H^{k+1}(X, Y) \xrightarrow{} \cdots
+	\]
+	We consider parts of the sequence for calculating the desired homology groups
+	\begin{itemize}
+		\item \underline{\textbf{$0 < k < n$:}} Here $H^{k}(X) = $ so we get isomorphisms $H^{k}(Y) \iso H^{k+1}(X, Y)$. So now we extend (a) to $H_k(X \setminus Y) \iso H^{n-k}(X, Y) \iso H^{n-k-1}(Y)$, which is good enough for us.
+		\item \underline{\textbf{$k = 0$:}} We are looking at the very end of the cohomology exact sequence
+		\[
+		0 \xrightarrow{}H^{n-1}(Y) \xrightarrow{} H^{n}(X, Y) \xrightarrow{} \Z \xrightarrow{} H^{n}(Y) \xrightarrow{} 0
+		\]
+		If $m \leq n-1$ we necessarily have $H^{n}(Y) = 0$ (since homology is trivial as well) which turns the above into a split short exact sequence, so $H_0(X \setminus Y) \iso H^{n}(X, Y) \iso H^{n-1}\oplus\Z$. If $m = n$, since $Y$ is a manifold, we have $H^{n}(Y) \iso \Z$ or $0$, depending on the orientability. If $H^{n}(Y)$ is trivial, this is clearly the same as the previous case $m \leq n-1$, otherwise since $H^{n}(X) \iso \Z$ we get $H^{n}(X, Y) \iso H^{n-1}(Y)$, so $H_0(X \setminus Y) \iso H^{n-1}(Y)$.
+		\item \underline{\textbf{$k = n$:}} Since $X \setminus Y \htpeq X \setminus \tau$ and $X \setminus \tau$ is a compact orientable manifold with boundary, $H_n(X \setminus Y) =0$.
+	\end{itemize}
+	
+	\item Let $K \subset \S^3$ be a knot, that is the image of an embedding $f \colon \S^1 \to \S^3$. Using (c) we will compute $H_1(\S^3 \setminus K)$.
+	
+	By (c) we see $H_1(\S^3 \setminus K) \iso H^{1}(K) \iso H_1(K)$, where last isomorphism follows from the universal coefficient theorem for cohomology and the fact that all homology groups for a circle are free (concretely, either trivial or $\Z$). It follows that $H_1(\S^3\setminus K) \iso \Z$ for any knot $K$, so this invariant does not distinguish knots.
+	
+	Here we comment that in contrast the first homotopy group $\pi_1(\S^3 \setminus K)$ is very useful for distinguishing knots, which might have something to do with it not being Abelian by construction.
+\end{enumerate}
+
+\underline{\textbf{Ex. 5:}}
+Let $X = T \vee \C\P^2$, where $T$ is the $2$-dimensional torus.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Let s compute $\pi_2(X)$ where the base point $x_0$ is precisely at the concatenation of the two spaces. 
+	Firstly, since $p\colon \R^2 \to T$ is a covering space, by a theorem from lectures we have $\pi_2(T) \iso \pi_2(\R^2) \iso 0$.
+	We also know that $\pi_1(T) \iso \Z \oplus \Z$, where each $\Z$ is generated by one distinguished circle on the torus.
+	Secondly, consider the fiber bundle $\S^1 \hookrightarrow \S^5 \to \C\P^2$. We obtain its long exact homotopy sequence
+	\[
+	\cdots \xrightarrow{} \pi_2(\S^1) \xrightarrow{} \pi_2(\S^5) \xrightarrow{} \pi_2(\C\P^2) \xrightarrow{} \pi_1(\S^1) \xrightarrow{} \pi_1(\S^5) \xrightarrow{} \pi_1(\C\P^2) \xrightarrow{} 0
+	\]
+	that we fill in with known groups to
+	\[
+	0 \xrightarrow{} \pi_2(\C\P^2) \xrightarrow{} \Z \xrightarrow{} 0  \xrightarrow{} \pi_1(\C\P^2) \xrightarrow{} 0
+	\]
+	By exactness we get $\pi_1(\C\P^2) = 0$ and $\pi_2(\C\P^2) \iso \Z$.
+	
+	The idea is to look ahead and realize that while every image of $S^2$ will necessarily (homotopically) lie in $\C\P^2$, every "baloon" we obtain by chaining $1$-loops at the basepoint (the concatenation of the two spaces) to any such image must also lie in $\pi_2(X)$ and there are $(\Z\times\Z)$-many such loops (all coming from $T$). We will therefore construct a universal covering space for $X$ using $\R^2$ (the universal cover for $T$) and $\C\P^2$.
+	
+	Recall that $\R^2 \to T$ is a universal cover by way of the quotient projection $\R^2 \to \R^2/\sim \homeo T$ where $(x, y) \sim (w, z) \iff \exists (m, n) \in \Z\times\Z \colon (w, z) = (x + m, y + n)$. The fundamental cells then become unit squares that are bound by consequtive integer points in $\R^2$. We construct the total space for our cover as follows. Define
+	\[
+	E = \R^2 \sqcup_{\Z\times\Z} (\C\P^2, x_0)
+	\]
+	where at every integer point $(m, n) \in \Z\times\Z$ we glue a copy of $\C\P^2$ with $(m, n) \sim x_0$.
+	By the above arguments $E \to X$ is a covering space via the quotient projection induced by the one from $\R^2  \to T$. Moreover, since $\C\P^2$ and $\R^2$ are both simply connected, so is $E$, which makes $E \to X$ the universal cover over $X$.
+	
+	Using the theorem for covering projections and the Hurewitz theorem, we get
+	\[
+	\pi_2(X) \iso \pi_2(E) \iso H_2(E)
+	\]
+	which is a significant improvement, since homology groups are much easier to compute. Indeed, since $\R^2$ is contractible, by retracting it to a point we get
+	\[
+	\widetilde{E} = \bigvee_{(m, n) \in \Z\times\Z} \C\P^2.
+	\]
+	Of course we now have
+	\[
+	\pi_2(X) \iso \pi_2(E) \iso H_2(E) \iso H_2(\widetilde{E}) \iso \bigoplus_{(m, n) \in \Z\times\Z} \Z
+	\]
+	which is really isomorphic to $\bigoplus_{n \in \N} \Z$.
+	\item We now want to describe the action $\pi_1(X) \times \pi_2(X) \to \pi_2(X)$.
+	
+	We firstly calculate $\pi_1(X) \iso \pi_1(T) * \pi_1(\C\P^2) \iso (\Z \oplus \Z) * 0 \iso \Z \oplus \Z$, where this direct sum is generated by the two distinct circles we can draw on a torus.
+	
+	Let us now look at how $2$-loops behave in $X$ (by the previous point's idea we expect them to look like a $2$-loop from $\C\P^2$ with finitely many $1$-loops from $T$ attached). We'll use out previously constructed universal cover (which we know has isomorphic second homotopy group). We know from Algebraic topology 1, since $\S^2$ is connected and locally path-connected, and both $\S^2$ and $E$ are simply connected, for each $2$-loop $\alpha$ in $Y$ there exists a unique lift $\bar{\alpha}$ as in the following diagram
+	
+	\adjustbox{scale=1, center}{
+		\begin{tikzcd}
+			 & E \arrow[d, "p"] \\
+			\S^2 \arrow[r, "\alpha"] \arrow[ru, "\bar{\alpha}"] & X
+		\end{tikzcd}
+	}	
+	Note that if $\alpha$ maps to $\C\P^2 \subset X$, then $\bar{\alpha}$ maps to copies of $\C\P^2$ upstairs. Furthermore for every $1$-loop $\gamma = (m, n) \in \Z\oplus\Z$ there exists a unique lift $\bar{\gamma}$ which is necessarily homotopic to the concatenation of the line segments $(0, 0)\to(m, 0)$ and $(m, 0)\to(m, n)$ (or appropriate translation) which is indeed a loop downstairs, since all integer points identify after projection.
+	Consequently, the action $\pi_1(X) \times \pi_2(X) \to \pi_2(X)$ corresponds in $E$ to changing the copy of the glued $\C\P^2$ subspace. Concretely, denote by $\Z_{(m, n)}$ the $(m, n)$-th copy of $\Z$ in $\pi_2(X)$, let $\alpha = \alpha_{i_1, j_1} + \cdots + \alpha_{i_k, j_k}$ an arbitrary element of $\pi_2(X)$, where $\alpha_{i_p, j_p} \in \Z_{(i_p, j_p)}$ and let $\gamma = (m, n) \in \pi_1(X)$. Then the action maps as follows
+	\[
+	(\gamma, \alpha) \mapsto \alpha_{i_1 + m, j_1 + n} + \cdots + \alpha_{i_k + m, j_k + n}
+	\]
+	where $|\alpha_{i_p, j_p}| = |\alpha_{i_p + m, j_p + n}|$, it is just in a different copy of $\Z$ (we can think of it as translating the entire loop for the vector $(m, n)$, but it is much more similar to a component shift morphism).
+\end{enumerate}
+
+\end{document}
+
+%% TEMPLATES
+% lists
+%\begin{enumerate}[label=(\alph*)]
+% diagram
+%\adjustbox{scale=1, center}{
+%	\begin{tikzcd}
+%		\R_n \arrow[d, "\varphi_n"] \arrow[r, "\Phi"] & \R_m \arrow[d, "\varphi_m"] \\
+%		\R \arrow[r, "\widetilde{\Phi}"] & \R
+%	\end{tikzcd}
+%}
+% figure
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.4]{fig}
+%	\caption{caption}
+%	\label{fig:label}
+%\end{figure}
