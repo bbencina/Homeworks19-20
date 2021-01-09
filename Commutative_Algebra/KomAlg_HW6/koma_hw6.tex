@@ -63,7 +63,7 @@ Najprej privzemimo $m = \Sigma_{i=1}^{n}r_im_i$ in računajmo
 \[
 \frac{m}{s} = \frac{\Sigma_{i=1}^{n}r_im_i}{s} = \frac{s^{n-1}}{s^{n-1}} \frac{\Sigma_{i=1}^{n}r_im_i}{s} = \frac{\Sigma_{i=1}^{n}s^{n-1}r_im_i}{s^n} = \Sigma_{i=1}^n \frac{r_im_i}{s} = \Sigma_{i=1}^n \frac{r_i}{s}\frac{m_i}{1}.
 \]
-Ta stranski račun nam je že pokaza implikacijo iz leve v desno.
+Ta stranski račun nam je že pokazal implikacijo iz leve v desno.
 Sedaj pokažimo ekvivalenco. Modul, generiran z množico $A$, bo označen z $\Lin A$.
 
 Ker je $\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace \leq M$, bo enakost veljala natanko tedaj, ko bo kvocient $M/\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace = 0$. Po trditvi 5.16 iz predavanj, je to res natanko tedaj, ko za vsak $\mathbf{m} \in \mSpec R$ velja $\left(M/\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace\right)_\mathbf{m} = 0$. Seveda pa je lokalizacija kvocienta kar kvocient lokalizacij, zato bo to veljalo natanko tedaj, ko bo $M_\mathbf{m} = (\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace)_\mathbf{m}$. Množica na desni, je po prejšnjem stranskem računu enaka $\Lin\lbrace \frac{m_\lambda}{1} ;\; \lambda \in \Lambda\rbrace$ (stranski račun pokaže vsebovanost v desno, druga vsebovanost je trivialna). S tem je trditev dokazana.
@@ -71,7 +71,7 @@ Ker je $\Lin\lbrace m_\lambda ;\;\lambda \in \Lambda\rbrace \leq M$, bo enakost 
 \underline{\textbf{Nal. 2:}}
 Naj bo $M$ Noetherski $R$-modul. Pokažimo, ekvivalence.
 
-Privzemimo (a). Ker je $M$ Noetherski s končno dolžino, je po trditvi 6.7 Artiniski. Modul $R/\Ann M$ je njegov podmodul, zato je po ekzaktnosti tudi Artiniski. S tem smo dokazali točko (d). Od tukaj nadaljujemo. Ker je $R/\Ann M$ Artiniski, po trditvi 6.11a iz predavanj obstajajo $P_1,\dots,P_n \in \mSpec (R/\Ann M)$, da je produkt $P_1\cdots P_n = (0)$. Ko naredimo kontrakcijo s kvocientno preslikavo $q\colon R \to R/\Ann M$, dobimo končen produkt maksimalnih idealov $q^{-1}(P_1)\cdot q^{-1}(P_n) \subseteq \Ann M$. S tem smo dokazali točko (b). Sedaj smo spomnimo, da smo pri dokazu trditve 6.11b zares potrebovali le trditev 6.11a Torej iz (b) sledi, da $\Spec (R/\Ann M) = \mSpec (R/\Ann M)$. Kontrakcija s kvocientno preslikavo $q$ dokaže še točko (c).
+Privzemimo (a). Ker je $M$ Noetherski s končno dolžino, je po trditvi 6.7 Artinski. Modul $R/\Ann M$ je njegov podmodul, zato je po eksaktnosti tudi Artinski. S tem smo dokazali točko (d). Od tukaj nadaljujemo. Ker je $R/\Ann M$ Artiniski, po trditvi 6.11a iz predavanj obstajajo $P_1,\dots,P_n \in \mSpec (R/\Ann M)$, da je produkt $P_1\cdots P_n = (0)$. Ko naredimo kontrakcijo s kvocientno preslikavo $q\colon R \to R/\Ann M$, dobimo končen produkt maksimalnih idealov $q^{-1}(P_1)\cdot q^{-1}(P_n) \subseteq \Ann M$. S tem smo dokazali točko (b). Sedaj smo spomnimo, da smo pri dokazu trditve 6.11b zares potrebovali le trditev 6.11a Torej iz (b) sledi, da $\Spec (R/\Ann M) = \mSpec (R/\Ann M)$. Kontrakcija s kvocientno preslikavo $q$ dokaže še točko (c).
 (Trenutno shema je (a) $\implies$ (d) $\implies$ (b) $\implies$ (c)). Ker je $R/\Ann M$ Noetherski kot podmodul v $M$, po 6.12 (Hopkinsov izrek) iz (c) sledi (d).
 (Trenutno shema je (a) $\implies$ (d) $\iff$ (b) $\iff$ (c))
 

@@ -78,7 +78,7 @@ Naj bo $V$ množica vseh neničelnih elementov kolobarja $R$. Ker je $R$ domena,
 
 V naslednjem koraku si podrobneje oglejmo generatorje obeh algeber. Naj bo $x_j$ eden od generatorjev $R$-algebre $R'$. Po konstrukciji je $\frac{x_j}{1} \in V^{-1}R'$ celosten nad $K'$, zato obstaja moničen polinom $p_j$ s koeficienti v $K'$, ki uniči $x_j$. Seveda pa je vsak od teh koeficienov že sam polinom v spremenljivkah $z_1,\dots, z_r$ s koeficienti v $K = V^{-1}R$ (koeficienti so torej ulomki). Sedaj definiramo $s \in R$ kot produkt imenovalcev vseh koeficientov vseh polinomov $p_j$ (če sta dva ulomka ekvivalentna, si imenovalec izberemo). Ker so bili v imenovalcih ravno neničelni elementi domene $R$, velja $s \neq 0$.
 
-Sedaj lahko dobimo elemente $y_j$ tako, da vzamemo generatorje $z_j$ in jih pomnožimo z elementom $s$ (s tem se znebimo vseh imenovalcev). Ker so bili generatorji $z_j$ algebraično neodvnisni nad $K$, so neodvisni tudi, če jih omejimo le na $R$. Potem so neodvisni tudi elementi $y_j$, saj so le "raztegi" elementov $z_j$. Naj bo torej $R'' = R[y_1,\dots,y_r]$ razširitev kolobarja $R$.
+Sedaj lahko dobimo elemente $y_j$ tako, da vzamemo generatorje $z_j$ in jih pomnožimo z elementom $s$ (s tem se znebimo vseh imenovalcev). Ker so bili generatorji $z_j$ algebraično neodvisni nad $K$, so neodvisni tudi, če jih omejimo le na $R$. Potem so neodvisni tudi elementi $y_j$, saj so le "raztegi" elementov $z_j$. Naj bo torej $R'' = R[y_1,\dots,y_r]$ razširitev kolobarja $R$.
 
 Oglejmo si še enkrat generatorje $x_1,\dots,x_n$ $R$-algebre $R'$. Spomnimo se, da je za generator $x_j$ moničen polinom $p_j$ v spremenljivkah $z_1,\dots,z_r$ s koeficienti v $K$. Če si ogledamo posamezen člen tega polinoma, vidimo, da lahko ta člen pomnožimo s primerno potenco elementa $s$, da se vsi $z_j$ spremenijo v $y_j$ (vseh je končno). Po konstrukciji $s$ lahko nato še enkrat množimo in delimo s potencami $s$, da se izničijo vsi imenovalci vseh členov (ki jih je tudi končno) in hkrati polinom ostane moničen. V imenovalcu nam lahko ostanejo le potence števila $s$ (lahko tudi le $1$). Nov polinom označimo s $p'_j$. Jasno so koeficienti polinoma $p'_j$ sedaj vsi v kolobarji $R''_s$. Ker je vsak $x_j$ celosten nad $R''_s$, je tudi $R'$ celosten nad $R''_s$. Ker $s \in R$, je po trditvi 9.5b (lokalizacija ohranja celost) $R'_s$ celostna razširitev kolobarja $R''_s = R[y_1,\dots,y_n]_s$.
 \newline
@@ -97,7 +97,7 @@ Obratno, vzemimo najdaljšo verigo praidealov v $R'$, ki so vsebovani v $M$, tor
 \[
 (0) \subset Q_1 \subset Q_2 \subset \cdots \subset Q_m = M.
 \]
-Jasno z operatorjem $. \cap R$ dobimo naraščujočo verigo praidealov v $R$, ki so vsebovani v $N$. Po izreku 9.13 (incomparability) so te vsebovanosti stroge, ker so stroge tudi vsebovanosti v zgornji verigi. Dobili smo torej verigo praidealov dolžine $m$ v $R$, ki cela leži v $N$, torej $\dim R'_M \leq \dim R_N$. Dokazali smo obe neenakosti.
+Jasno z operatorjem $. \cap R$ dobimo naraščajočo verigo praidealov v $R$, ki so vsebovani v $N$. Po izreku 9.13 (incomparability) so te vsebovanosti stroge, ker so stroge tudi vsebovanosti v zgornji verigi. Dobili smo torej verigo praidealov dolžine $m$ v $R$, ki cela leži v $N$, torej $\dim R'_M \leq \dim R_N$. Dokazali smo obe neenakosti.
 
 Iz zgornjega argumenta je razvidno, da postopek potrdi enačbo tudi v primeru, ko je ena od dimenzij neskončna (in s tem tudi druga).
 \end{document}

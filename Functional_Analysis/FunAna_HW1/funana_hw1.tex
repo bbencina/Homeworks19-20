@@ -80,10 +80,10 @@ Naj bo $e = (1, 1, 1,\dots)$ vektor samih enic.
 		Naj bo $(x_n, \lambda_n e)_{n\in\N}$ Cauchyjevo zaporedje v $c_0 \oplus \F e$, tj. za vsak $\epsilon > 0$ obstaja tak $n_0 \in \N$, da za vsaka dva indeksa $m,n > n_0$ velja $||(x_n, \lambda_n e) - (x_m, \lambda_m e)|| = ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$.
 		
 		Po definiciji zgornje norme je $||x_n - x_m||_\infty < ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$,
-		torej je zaporednje $(x_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(c_0, ||.||_\infty)$. Zato je konvergentno, torej obstaja limita $x = \lim_{n \to \infty} x_n$ v prostoru $c_0$.
+		torej je zaporedje $(x_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(c_0, ||.||_\infty)$. Zato je konvergentno, torej obstaja limita $x = \lim_{n \to \infty} x_n$ v prostoru $c_0$.
 		
 		Po definiciji zgornje norme je $||\lambda_n - \lambda_m||_\infty < ||(x_n - x_m, (\lambda_n-\lambda_m)e)|| < \epsilon$,
-		torej je zaporednje $(\lambda_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(\F, |.|)$. Zato je konvergentno, torej obstaja limita $\lambda = \lim_{n \to \infty} \lambda_n$ v prostoru $\F$.
+		torej je zaporedje $(\lambda_n)_{n\in\N}$ Cauchyjevo v Banachovem prostoru $(\F, |.|)$. Zato je konvergentno, torej obstaja limita $\lambda = \lim_{n \to \infty} \lambda_n$ v prostoru $\F$.
 		
 		V pogoju za Cauchyjevo zaporedje $(x_n, \lambda_n e)_{n\in\N}$ (zgoraj) sedaj lahko pošljemo $m \to \infty$ in dobimo pogoj, da za vsak $\epsilon > 0$ obstaja tak $n_0 \in \N$, da za vsak $n > n_0$ velja $||(x_n, \lambda_n e) - (x, \lambda e) || < \epsilon$. Z drugimi besedami, zaporedje $(x_n, \lambda_n e)_{n\in\N}$ v tej normi konvergira.
 		\item topološka izomorfnost:
@@ -132,7 +132,7 @@ Za vse $f \in C[0, 1]$ in $x \in [0, 1]$ definiramo
 	\item Ali je prostor $(Y, ||.||_\infty)$ Banachov?
 	Normiran seveda je, saj $C^1 \subset C$, poln pa ni. Zaporedje $(x^{n+1})_{n \in \N} \subset Y$ je Cauchyjevo, konvergentno pa ni niti v $C[0, 1]$ (prav tako z $||.||_\infty$).
 	\item Dokažimo, da je prostor $Y$ neskončno razsežen. Recimo, da je $\lbrace g_i \rbrace_{i=1}^n$ neka končna baza za prostor $Y$. Potem vsako funkcijo $g \in Y$ lahko zapišemo kot končno vsoto $g = \Sigma_{i=1}^n\lambda_i g_i$. Po točki (b) obstajajo funkcije $\lbrace f_i \rbrace_{i=1}^n$ (vsaka v prasliki $T$, po indeksih), da je $g = \Sigma_{i=1}^n \lambda_i f_i(0) + \int_{0}^{x}\Sigma_{i=1}^n \lambda_i f_i(t)dt$. Vendar pa $C[0, 1]$ ni končno razsežen, zato obstaja funkcija $f$, ki je ne moremo zapisati kot končno linearno kombinacijo funkcij $\lbrace f_i \rbrace_{i=1}^n$. Potem pa tudi funkcije $Tf$ ne moremo zapisati kot linearno kombinacijo funkcij $\lbrace g_i \rbrace_{i=1}^n$, kar je protislovje. Prostor $Y$ je torej neskončno razsežen.
-	\item Določimo lastne vrednosti operatorja $T$. Recimo, da imamo $Tf = af$. To se zgodi nadanko tedaj, ko $af(x) = f(0) + \int_{0}^x f(t)dt$. Po premisleku iz točke (b) je $f \in C^1[0,1]$ in velja $af' = f$. Imamo natanko dve možnosti, bodisi $f \equiv 0$, kar nas ne zanima, bodisi $f(x) = e^{ax}$. Potem pa imamo
+	\item Določimo lastne vrednosti operatorja $T$. Recimo, da imamo $Tf = af$. To se zgodi natanko tedaj, ko $af(x) = f(0) + \int_{0}^x f(t)dt$. Po premisleku iz točke (b) je $f \in C^1[0,1]$ in velja $af' = f$. Imamo natanko dve možnosti, bodisi $f \equiv 0$, kar nas ne zanima, bodisi $f(x) = e^{ax}$. Potem pa imamo
 	\[
 	ae^{ax} = 1 + \int_{0}^x e^{at}dt = 1 + \frac{1}{a}e^{ax} - \frac{1}{a}.
 	\]

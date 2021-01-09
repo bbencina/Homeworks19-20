@@ -92,13 +92,13 @@ Let $n \in \N$ and $a_n, b_n \in \R$ such that $0 < b_n < a_n < n$.
 	\item We would like to construct a sequence of polynomials that is pointwise converging to $0$ on $\C$ such that the convergence is uniform on compact subsets of $\C \setminus \R$, but not in any neighbourhood of a real point.
 	
 	We will use polynomials from (a). Take the sequence $\mathcal{P} = \lbrace p_{n}\rbrace_{n \in \N}$ for $a_{n} = \frac{1}{n}$ and $b_n < a_n$ arbitrary. The sequence $\mathcal{P}$ is obviously converging pointwise to $0$ on $\C$, even on $\R$ because of continuity and by construction (consult (a), we closed the condition sets). Now, take a compact set $K \in \C\setminus\R$. We can assume $K$ is connected, otherwise do the following on every connected component. Since $K$ is bounded, there exists $n_0 \in \N$ such that $K \in \D(0, n_0)$.
-	If $K$ is located in the upper halfplane, we can also suppose that $a_{n_0} < \Im(z)$ for every $z \in K$. Now we see, that $p_{n} \to 0$ uniformly on $K$ by Runge's theorem from (a).
+	If $K$ is located in the upper half-plane, we can also suppose that $a_{n_0} < \Im(z)$ for every $z \in K$. Now we see, that $p_{n} \to 0$ uniformly on $K$ by Runge's theorem from (a).
 	Next, take a real point $a \in \R$ and a neighbourhood $U$ around it. Without loss of generality suppose $U = \D(a, r)$, for some $r > 0$. There exists $n_0 \in \N$ such that $b_{n_0} < r$. Since for every $n \in \N$ we have $|p_{n}| > n$, the sequence is unbounded, and hence convergence cannot be uniform there.
 	
-	\item We would like to constructa sequence of polynomials that is pointwise converging to $0$ on $\R$ and to $1$ on $\C \setminus \R$.
+	\item We would like to construct a sequence of polynomials that is pointwise converging to $0$ on $\R$ and to $1$ on $\C \setminus \R$.
 	
 	Let $n \in \N$ and $0 < a_n < n$. By the same argument from (a) there exists a polynomial $q_n$ so that $|q_n| < \frac{1}{n}$ on $\D(0, n)\cap\lbrace\Im(z) = 0\rbrace$ and $1 + \frac{1}{n} > |q_n| > 1 - \frac{1}{n}$ on $\D(0, n)\cap\lbrace|\Im(z)| > a_n \rbrace$ (we approximate the constant function $0$ on the first set and $1$ on the second).
-	%Note that on $\D(0,n)$, the polynom $q_n$ is bounded, even more, on $\closure{\D(0, n)}$ it has a maximum. Let that maximum be $M_n$.
+	%Note that on $\D(0,n)$, the polynomial $q_n$ is bounded, even more, on $\closure{\D(0, n)}$ it has a maximum. Let that maximum be $M_n$.
 	Now, simply take the sequence of polynomials $\mathcal{Q} = \lbrace q_n\rbrace$ with $a_n = \frac{1}{n}$.
 \end{enumerate}
 
